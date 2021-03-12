@@ -1,4 +1,4 @@
-# self-workout-plan
+# WorkoutsTracker
 
 ## Project setup
 ```

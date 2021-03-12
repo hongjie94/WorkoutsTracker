@@ -1,0 +1,222 @@
+.home {
+  color: #2c3e50;
+}
+
+h1 {
+  margin: 1em;
+}
+
+.sheet {
+  background-color: #EBEFF3;
+  padding: 0px;
+  border-radius: 5px;
+}
+
+.month1 {
+  background-color: #263238;
+  color: #34B9B1;
+}
+
+.month1 h4 {
+  margin: 5px;
+}
+
+.month2 {
+  background-color: #263238;
+  color: #EA1200;
+}
+
+.month2 h4 {
+  margin: 5px;
+}
+
+.month-row {
+  margin: 0px;
+}
+
+.date-row {
+  margin: 0px;
+}
+
+.date-row div.col p {
+  margin: 10px 0px;
+}
+
+.week1-row,
+.week2-row,
+.week3-row,
+.week4-row,
+.week5row,
+.week6-row,
+.week7-row {
+  height: 8em;
+  margin: 0px;
+}
+
+.week1-row p,
+.week2-row p,
+.week3-row p,
+.week4-row p,
+.week5row p,
+.week6-row p,
+.week7-row p {
+  margin: 0px;
+  color: #34B9B1;
+  font-weight: 800;
+}
+
+.work1,
+.work2,
+.work3,
+.work4,
+.work5,
+.work6 {
+  border-bottom: 2px solid black;
+  border-right: 1px solid black;
+}
+
+.work7 {
+  border-bottom: 2px solid black;
+}
+
+div.col-1 {
+  padding: 0px;
+}
+
+div.w {
+  background-color: #34B9B1;
+  border-bottom: 2px solid #eee;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+div.m2w {
+  background-color: #EA1200;
+  border-bottom: 2px solid #eee;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+div.lw {
+  background-color: #34B9B1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+div.m2lw {
+  background-color: #EA1200;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.lwork1,
+.lwork2,
+.lwork3,
+.lwork4,
+.lwork5,
+.lwork6 {
+  border-right: 1px solid black;
+}
+
+.week {
+  color: #eee;
+}
+
+.week h1 {
+  padding: 0px;
+  margin: 0px;
+  font-size: 4.5rem;
+  font-weight: 800;
+}
+
+.week span {
+  padding: 0px;
+  margin: 0px;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.month2 {
+  background-color: #263238;
+  color: #EA1200;
+}
+
+.month2 h4 {
+  margin: 5px;
+}
+
+.boxes {
+  border: 2px solid black;
+}
+
+.b-form-btn-label-control.form-control {
+  width: 6em;
+  height: 3em;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: auto;
+}
+
+.input-mot {
+  margin: 2px;
+}
+
+.maxout-div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.rest::after {
+  content: " or";
+  font-size: 12px;
+  font-weight: 700;
+  color: #7E8784;
+}
+
+.pluse {
+  color: #7E8784;
+  font-weight: 800;
+}
+
+.pluse::after {
+  content: "(optional)";
+  font-size: 12px;
+  display: block;
+  font-weight: 700;
+  color: #7E8784;
+}
+/*# sourceMappingURL=index.css.map */

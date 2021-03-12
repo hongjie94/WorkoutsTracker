@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap')
+
+.auth_register, .auth_login, .forgotpass_auth
+    font-family: "Titillium Web", sans-serif
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1)), url('./img/auth.jpg')
+    background-position: center center
+    background-size: cover
+    padding: 0.5rem calc((100vw - 1200px) / 2)
+    display: flex
+    justify-content: flex-start
+    align-items: center
+
+a
+    text-decoration: none
+    color: $main
+    transition: 0.5s ease
+    &:hover
+        color: $main-dark
+
+.auth_form
+    background: rgba($form-bg, 0.9)
+    padding: 40px
+    max-width: 600px
+    margin: 40px auto
+    border-radius: $br
+    box-shadow: 0 4px 10px 4px rgba($form-bg, 0.3)
+    .tab-group
+        list-style: none
+        padding: 0
+        margin: 0 0 40px 0
+        &:after
+            content: ""
+            display: table
+            clear: both
+        .tab a
+            display: block
+            text-decoration: none
+            padding: 15px
+            background: rgba($gray-light, 0.25)
+            color: $gray-light
+            font-size: 20px
+            float: left
+            width: 50%
+            text-align: center
+            cursor: pointer
+            transition: 0.5s ease
+            &:hover
+                background: $main-dark
+                color: $white
+        .active a
+            background: $main
+            color: $white
+#login,
+#signup,
+#resetPassword
+    h1
+        text-align: center
+        color: $white
+        font-weight: $thin
+        margin: 0 0 40px
+    h4
+        text-align: center
+        color: red
+        font-weight: $thin
+        margin: 0 0 40px
+    .send
+        color: green
+
+.auth_input
+    font-size: 22px
+    display: block
+    width: 100%
+    height: 100%
+    padding: 5px 10px
+    background: none
+    background-image: none
+    border: 1px solid $gray-light
+    color: $white
+    border-radius: 0
+    transition: border-color 0.25s ease, box-shadow 0.25s ease
+    &:focus
+        outline: 0
+        border-color: $main
+
+.field-wrap
+    position: relative
+    margin-bottom: 40px
+
+.top-row
+    &:after
+        content: ""
+        display: table
+        clear: both
+
+    > div
+        float: left
+        width: 48%
+        margin-right: 4%
+        &:last-child
+            margin: 0
+
+.auth_button
+    border: 0
+    outline: none
+    border-radius: 0
+    padding: 15px 0
+    font-size: 2rem
+    font-weight: $bold
+    text-transform: uppercase
+    letter-spacing: 0.1em
+    background: $main
+    color: $white !important
+    transition: all 0.5s ease
+    -webkit-appearance: none
+    &:hover,
+    &:focus
+        background: $main-dark
+
+.button-block
+    display: block
+    width: 100%
+
+.forgot
+    margin-top: -20px
+    text-align: right
+
+.delay
+    animation-delay: 0.5s
+    animation-duration: 2000ms
+
+.head_delay
+    animation-delay: 1.5s
+    animation-duration: 1500ms
