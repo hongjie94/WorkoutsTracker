@@ -51,15 +51,15 @@ const routes = [
     component: Shop
   },
   {
+    path: '/cart',
+    name: 'Cart',
+    component: Cart
+  },
+  {
     path: '/dashbroad',
     name: 'Dashbroad',
     component: Dashbroad,
     meta: { requiresAuth: true }
-  },
-  {
-    path: '/cart',
-    name: 'Cart',
-    component: Cart
   }
 ]
 
