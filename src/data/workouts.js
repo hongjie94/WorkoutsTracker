@@ -16,7 +16,7 @@ export default [
   },
   {
     id: 2,
-    name: 'INSANITY MAX:30',
+    name: 'Insanity Asylum Vol. 1',
     route: 'InsaityMax30',
     price: 4.99,
     imageURL: 'InsanityMax30/img/InsanityMax30.jpg',

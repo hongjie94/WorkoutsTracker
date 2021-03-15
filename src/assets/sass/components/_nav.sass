@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap')
 .fa-shopping-cart
     position: relative
-
+.mobile_icon,.mobile_logout
+    display: none
 .num-cart-product
     position: absolute
     top: -15px
@@ -16,7 +17,6 @@
     justify-content: center
     align-items: center
     font-weight: 400
-
 .navbar
     background: $black
     height: 60px
@@ -31,6 +31,8 @@
         text-decoration: none
         padding-left: 1rem
         font-size: 2em
+        img
+            height: 1.3em
 
     &__link
         color: $white
@@ -43,71 +45,14 @@
         transition: all 0.5s ease
         cursor: pointer
 
-@media screen and (max-width: 768px)
-    body.active
-        overflow-y: hidden
-        overflow-x: hidden
-
-    .navbar__link
-        display: flex
-        align-items: center
-        justify-content: center
-
-    .navbar__authlink
-        display: flex
-        align-items: center
-        justify-content: center
-
-    .navbar__menu
-        display: grid
-        grid-template-columns: 1fr
-        grid-template-rows: repeat(4, 100px)
-        position: absolute
-        width: 100%
-        top: -1000px
-        &.active
-            top: 100%
-            opacity: 1
-            z-index: 99
-            height: 100vh
-            font-size: 1.5rem
-            background: $black
-
-    .navbar__toggle .bar
-        width: 25px
-        height: 3px
-        margin: 5px auto
-        transition: all 0.3 ease-in-out
-        background: $white
-        display: block
-        cursor: pointer
-
-    #mobile-menu
-        position: absolute
-        top: 15%
-        right: 5%
-        transform: translate(5%, 20%)
-
-        &.is-active .bar:nth-child(2)
-            opacity: 0
-
-        &.is-active .bar:nth-child(1)
-            transform: translateY(8px) rotate(45deg)
-
-        &.is-active .bar:nth-child(3)
-            transform: translateY(-8px) rotate(-45deg)
-
-.currentUser
-    color: $myBlue
-    margin-left: auto
-
-img
-    height: 1.3em
-
-.nav_right, .nav_center, .sign_out
+.nav_right, .nav_center, .sign_out,.nav_end, .cart
     display: flex
     height: 100%
     align-items: center
+.cart::after
+    content: " Cart"
+    color: white
+    margin: 5px 5px 0 5px
 
 .d
     color: $myBlue
@@ -148,3 +93,102 @@ img
     align-items: center
 .pd
     animation-delay: 2s
+.user
+    color: $myBlue
+    padding: 0 1em
+    cursor: default
+
+@media screen and (max-width: 940px)
+    body.active
+        overflow-y: hidden
+        overflow-x: hidden
+
+    .navbar__link
+        display: flex
+        align-items: center
+        justify-content: center
+
+    .navbar__authlink
+        display: flex
+        align-items: center
+        justify-content: center
+    .mobile_logout
+        display: flex
+    .navbar__menu
+        width: 100% !important
+    .hide
+        display: none !important
+    .show
+        display: flex !important
+        .nav_right
+            display: none
+
+        .nav_center
+            flex-direction: column
+            width: 100%
+            margin-top: 1em 
+            a
+                height: 4em
+                width: 100%
+            .c
+                &:hover
+                    background: #3072e5
+                    color: $black
+                    transition: 2s ease
+                    animation-duration: 2000ms
+                    text-decoration: none
+                    // background: none
+                    // color: $myBlue
+                    // transition: all 0.5s ease
+        .nav_end
+            display: inline-flex
+            .num-cart-product
+                background-color: $black
+
+        &.active
+            top: 100%
+            opacity: 1
+            z-index: 99
+            height: 100vh
+            font-size: 1.5rem
+            flex-direction: column-reverse
+            background: $black
+
+    .navbar__toggle .bar
+        width: 25px
+        height: 3px
+        margin: 5px auto
+        transition: all 0.3 ease-in-out
+        background: $white
+        display: block
+        cursor: pointer
+
+    #mobile-menu
+        position: absolute
+        top: 15%
+        right: 5%
+        transform: translate(5%, 20%)
+
+        &.isactive .bar:nth-child(2)
+            opacity: 0
+
+        &.isactive .bar:nth-child(1)
+            transform: translateY(8px) rotate(45deg)
+
+        &.isactive .bar:nth-child(3)
+            transform: translateY(-8px) rotate(-45deg)
+    .mobile_icon
+        display: inline
+        position: absolute
+        top: 24%
+        right: 7%
+        font-size: 22px
+        padding: 0 2em
+
+    .mobile_notlogin
+        color: #a0b3b0
+    .mobile_login
+        color: $myBlue
+
+    .mobile_icon a i span
+        padding-left: 8px
