@@ -43,8 +43,8 @@
           </div>
         </v-expand-transition>
       </v-card>
+      </div>
     </div>
-  </div>
 </template>
 
 <script>

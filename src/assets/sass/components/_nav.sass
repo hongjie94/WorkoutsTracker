@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap')
 .fa-shopping-cart
     position: relative
-.mobile_icon,.mobile_logout
-    display: none
+.mobile_icon, .mobile_logout
+    display: none !important
 .num-cart-product
     position: absolute
     top: -15px
@@ -11,12 +11,13 @@
     height: 23px
     font-size: 0.8rem
     border-radius: 50%
-    background-color: #3072e5
-    color: white
+    background-color: $myBlue
+    color: $white
     display: flex
     justify-content: center
     align-items: center
     font-weight: 400
+    
 .navbar
     background: $black
     height: 60px
@@ -40,50 +41,79 @@
         padding: 0rem 1rem
 
     &__link:hover
-        color: $myBlue
+        background-color: $myBlue
+        color: $black
+        transition: .5s ease
+        animation-duration: 1000ms
         text-decoration: none
-        transition: all 0.5s ease
         cursor: pointer
 
-.nav_right, .nav_center, .sign_out,.nav_end, .cart
+.nav_right, .nav_center, .sign_out, .nav_end, .cart, .login_div, .router-link-active, .navbar__link
     display: flex
     height: 100%
     align-items: center
-.cart::after
-    content: " Cart"
-    color: white
-    margin: 5px 5px 0 5px
+    width: max-content
+.login_div
+    a
+        padding: 0
+    span
+        display: flex
+        height: 100%
+        align-items: center
+        padding: 0 1em
+.cart
+    &:hover
+        background-color: $myBlue
+        color: $black
+        transition: .5s ease
+        animation-duration: 1000ms
+        text-decoration: none
+        .num-cart-product
+            background-color: $black
+            transition: .5s ease
+            animation-duration: 1000ms
+            text-decoration: none
+        &:after
+            color: $black
+            transition: .5s ease
+            animation-duration: 1000ms
+    &::after
+        content: " Cart"
+        color: white
+        margin: 5px 5px 0 5px
+    &::after:hover
+        content: " Cart"
+        color: white
 
-.d
-    color: $myBlue
-    outline: none
-    height: 100%
-    display: flex
-    align-items: center
-    &:hover
-        background: #3072e5
-        color: $black
-        transition: 2s ease
-        animation-duration: 2000ms
-        text-decoration: none
-.c,.sign_out
-    color: $white
-    cursor: pointer
-    outline: none
-    height: 100%
-    display: flex
-    align-items: center
-    &:hover
-        background: #3072e5
-        color: $black
-        transition: 2s ease
-        animation-duration: 2000ms
-        text-decoration: none
+// .d
+//     color: $myBlue
+//     outline: none
+//     height: 100%
+//     display: flex
+//     align-items: center
+//     &:hover
+//         color: $myBlue
+//         transition: .5s ease
+//         animation-duration: 1000ms
+// //         text-decoration: none
+// .c,.sign_out
+//     color: $white
+//     cursor: pointer
+//     outline: none
+//     height: 100%
+//     display: flex
+//     align-items: center
+//     &:hover
+//         background: #3072e5
+//         color: $black
+//         transition: .5s ease
+//         animation-duration: 1000ms
+//         text-decoration: none
 .nav_active
     background: #3072e5
     color: $black
-    transition: 2s ease
-    animation-duration: 2000ms
+    transition: .5s ease
+    animation-duration: 1000ms
     text-decoration: none
 .navbar__menu
     display: flex
@@ -97,12 +127,36 @@
     color: $myBlue
     padding: 0 1em
     cursor: default
+    width: max-content
 
+.mobile_icon
+    .router-link-active
+        height: 100%
+        background: $myBlue
+        padding: 5px
+        transition: .5s ease
+    animation-duration: 500ms
+
+.router-link-active
+    background: $main-light
+    color: $black
+    transition: .5s ease
+    animation-duration: 1000ms
+    text-decoration: none
+    .num-cart-product
+        background-color: $black
+        transition: .5s ease
+        animation-duration: 1000ms
+        text-decoration: none
+    &:after
+        color: $black
+        transition: .5s ease
+        animation-duration: 1000ms
+    
 @media screen and (max-width: 940px)
     body.active
         overflow-y: hidden
         overflow-x: hidden
-
     .navbar__link
         display: flex
         align-items: center
@@ -113,7 +167,12 @@
         align-items: center
         justify-content: center
     .mobile_logout
-        display: flex
+        color: #ffffff
+        cursor: pointer
+        outline: none
+        height: 100%
+        display: flex !important
+        align-items: center
     .navbar__menu
         width: 100% !important
     .hide
@@ -122,24 +181,13 @@
         display: flex !important
         .nav_right
             display: none
-
         .nav_center
             flex-direction: column
             width: 100%
-            margin-top: 1em 
+            margin-top: 1em
             a
                 height: 4em
                 width: 100%
-            .c
-                &:hover
-                    background: #3072e5
-                    color: $black
-                    transition: 2s ease
-                    animation-duration: 2000ms
-                    text-decoration: none
-                    // background: none
-                    // color: $myBlue
-                    // transition: all 0.5s ease
         .nav_end
             display: inline-flex
             .num-cart-product
@@ -178,7 +226,7 @@
         &.isactive .bar:nth-child(3)
             transform: translateY(-8px) rotate(-45deg)
     .mobile_icon
-        display: inline
+        display: inline !important
         position: absolute
         top: 24%
         right: 7%
@@ -189,6 +237,9 @@
         color: #a0b3b0
     .mobile_login
         color: $myBlue
-
     .mobile_icon a i span
         padding-left: 8px
+
+@media screen and (max-width: 375px)
+    .v-btn
+        width: max-content !important

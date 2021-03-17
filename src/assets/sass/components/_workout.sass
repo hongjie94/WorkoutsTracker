@@ -4,7 +4,7 @@
   background-size: cover
   padding: 0.5rem calc((100vw - 1200px) / 2)
   display: flex
-  justify-content: flex-start
+  justify-content: center
   align-items: center
   flex-wrap: wrap
   min-height: 80vh
@@ -13,6 +13,8 @@
   display: flex
   flex-wrap: wrap
   margin: 1em 1em
+  justify-content: flex-start
+  width: 100%
 
   .card_theme
     background-color: black !important
@@ -56,7 +58,64 @@
 //   background-color: black
 //   padding: 10px
 //   color: #eee
-//   cursor: pointer
+//   cursor: pointer    
+
+@media screen and (width: 1366px)
+  .card_theme
+    width: 260px !important
+  .v-card__title
+    font-size: 1rem !important  
+  .v-image
+    height: 325px !important  
+
+@media screen and (max-width: 1024px)
+  .card_theme
+    width: 215px !important
+  .v-card__title
+    font-size: 1rem !important  
+
+@media screen and (max-width: 812px)
+  .card_theme
+    width: 228px !important
+
+@media screen and (max-width: 768px)
+  .card_theme
+    width: 213px !important
+  .v-card__title
+    font-size: 1rem !important
+  .v-image
+    height: 267px !important           
+
+@media screen and (max-width: 736px)
+  .cards
+    margin: 1em  1em
+  .card_theme
+    // width: 197px !important
+    width: 197px !important
+  .v-image
+    // height: 245px !important
+    height: 235px !important
+  .v-card__title
+    font-size: 1rem !important
+    line-height: 1rem !important
+
+@media screen and (max-width: 667px)
+  .cards
+    margin: 1em 1em !important
+  .card_theme
+    width: 170px !important
+  .v-image
+    height: 223px !important
+  .v-card__title
+    font-size: 0.9rem !important
+    line-height: 1rem !important
+@media screen and (max-width: 667px)
+  .card_theme
+    width: 170px !important
+  .v-card__title
+    font-size: 0.8rem !important
+    line-height: 1rem !important  
+
 @media screen and (max-width: 610px)
   .card_theme
     width: 300px !important
@@ -64,3 +123,13 @@
     height: 400px !important
   .cards
     justify-content: center
+
+@media screen and (width: 568px)
+  .card_theme
+    width: 235px !important
+  .v-image
+    height: 270px !important
+  .cards
+    justify-content: flex-start  
+
+
