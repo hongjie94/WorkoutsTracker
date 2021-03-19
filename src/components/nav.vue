@@ -5,7 +5,7 @@
     </a>
     <div class="mobile_icon">
       <router-link  v-show="!loggedIn" to= "/login" exact>
-        <i v-b-tooltip.hover title="User is not logged in" class="fas fa-user mobile_notlogin"></i>
+        <i v-b-tooltip.hover title="User is not logged in" @click="closeNav()" class="fas fa-user mobile_notlogin"></i>
       </router-link>
       <i v-b-tooltip.hover :title="'Logged in as ' + currentUser" class="fas fa-user mobile_login" v-show="loggedIn"></i>
     </div>
@@ -14,7 +14,7 @@
       <span class="bar"></span>
       <span class="bar"></span>
     </div>
-    <div class="navbar__menu hide"  :class="{active: active, show: active  }">
+    <div class="navbar__menu hide" :class="{active: active, show: active  }">
       <div class="nav_center" @click="active = !active">
         <router-link class="navbar__link c" to= "/" exact> Home </router-link>
         <router-link class="navbar__link c" to= "/workout" exact> Workouts </router-link>

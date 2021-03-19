@@ -3,7 +3,7 @@
         <div>
             <b-sidebar id="sidebar-variant" title="DAY-1 STATUS" bg-variant="dark" text-variant="light" shadow>
                 <div class="px-3 py-2">
-                    <v-img src="./img/noimg.jpg"></v-img>
+                    <v-img src="./cover.jpg"></v-img>
                     <p>
                     Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis
                     in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
@@ -106,7 +106,7 @@
             <div>
                 <b-sidebar id="sidebar-right" title="Day-30 STATUS" bg-variant="dark" text-variant="light"  right shadow>
                     <div class="px-3 py-2">
-                        <v-img src="./img/noimg.jpg"></v-img>
+                        <v-img src="./cover.jpg"></v-img>
                     <p>
                         Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis
                         in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.

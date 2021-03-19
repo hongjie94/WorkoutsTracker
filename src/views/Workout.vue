@@ -13,7 +13,9 @@
         <div :class="{wks:showProgress}">Unlock for $ 4.99</div>
     </v-card>
     </div> -->
-      <div class="cards">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 10px">
+      <div class="container cards">
+      <div class="row">
       <v-card :key="workout.index" v-for="workout in workouts"  class="card_theme">
         <v-img :src="require('@/components/Workouts/' + workout.imageURL)" />
         <v-card-title>
@@ -45,6 +47,8 @@
       </v-card>
       </div>
     </div>
+   </div>
+  </div>
 </template>
 
 <script>

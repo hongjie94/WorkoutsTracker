@@ -18,9 +18,9 @@
         <div class="footer__wrapper">
             <div class="footer__links">
                 <h2 class="footer__title">Workouts </h2>
-                <a href="#" class="footer__link">Mucle Training</a>
-                <a href="#" class="footer__link">Intence Cardios</a>
-                <a href="#" class="footer__link">Yoga</a>
+                <a href="#" class="footer__link">Muscle Training</a>
+                <a href="#" class="footer__link">Intense Cardio</a>
+                <a href="#" class="footer__link">Yoga & Meditation</a>
             </div>
             <div class="footer__links">
                 <h2 class="footer__title">Products</h2>
