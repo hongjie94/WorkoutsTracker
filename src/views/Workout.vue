@@ -1,5 +1,4 @@
 <template>
-
   <div class="workout">
     <!-- <div class="workout-cards">
     <v-card :key="workout.index" v-for="workout in workouts" class="v-c" max-width="245">
@@ -13,67 +12,66 @@
         <div :class="{wks:showProgress}">Unlock for $ 4.99</div>
     </v-card>
     </div> -->
-    <div style="max-width: 1200px; margin: 0 auto; padding: 10px">
+    <div class="outterlayer">
       <div class="container cards">
-      <div class="row">
-      <v-card :key="workout.index" v-for="workout in workouts"  class="card_theme">
-        <v-img :src="require('@/components/Workouts/' + workout.imageURL)" />
-        <v-card-title>
-          {{workout.name}}
-        </v-card-title>
-      <v-card-subtitle class="price">
-          $ {{workout.price}}
-        </v-card-subtitle>
-        <v-card-actions>
-          <v-btn color="lighten-2" text>
-            Unlock
-          </v-btn>
-          <v-spacer></v-spacer>
-          <v-btn icon  @click="toggle(workout.id)" >
-            <v-icon>{{ isActive === workout.id ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
-          </v-btn>
-        </v-card-actions>
-          <v-expand-transition>
-          <div v-show="isActive === workout.id">
-            <v-divider></v-divider>
-            <v-card-text style="text-align: initial;">
-              <b>Includes:</b>
-              <li :key='include.index' v-for="include in workout.includes">{{include}}</li>
-              <hr style="background-color: white">
-              <b :key='equipment.index' v-for="equipment in workout.equipments">{{equipment}}</b>
-            </v-card-text>
-          </div>
-        </v-expand-transition>
-      </v-card>
+        <div class="row">
+          <WorkoutHeading />
+          <WorkoutCards
+            :page = "page"
+            :showCategory = "showCategory"
+            :filterWorkouts ="filterWorkouts"
+            :select = "select"
+            :no-result = "noResult"
+            :pageNum = "pageNum"
+          />
+        </div>
       </div>
+        <WorkoutPagination
+        :pageNum = "pageNum"
+        />
     </div>
-   </div>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import WorkoutHeading from '@/components/Workout/workoutHeading.vue'
+import WorkoutCards from '@/components/Workout/workoutCards.vue'
+import WorkoutPagination from '@/components/Workout/workoutPagination.vue'
+import { bus } from '@/main'
 export default {
   name: 'Workout',
-  props: ['item'],
+  components: {
+    WorkoutHeading,
+    WorkoutCards,
+    WorkoutPagination
+  },
   data () {
     return {
-      isActive: ''
+      page: 1,
+      showCategory: 'All',
+      search: null,
+      select: '',
+      noResult: false,
+      pageNum: null,
+      filterWorkouts: [],
+      workoutCounts: null
     }
   },
-  methods: {
-    toggle (id) {
-      if (this.isActive === id) {
-        this.isActive = ''
-      } else if (this.isActive !== id) {
-        this.isActive = id
-      }
-    }
-  },
-  computed: {
-    ...mapState([
-      'workouts'
-    ])
+  created () {
+    bus.$on('changePage', (updatedPage) => {
+      this.page = updatedPage
+    })
+    bus.$on('changeData', (data) => {
+      this.search = data.search
+      this.select = data.select
+      this.noResult = data.noResult
+      this.showCategory = data.showCategory
+      this.workoutCounts = data.workoutCounts
+      this.pageNum = data.pageNum
+      this.page = data.page
+      this.filterWorkouts = data.filterWorkouts
+      this.pageNum = Math.ceil(data.workoutCounts / 10)
+    })
   }
 }
 </script>

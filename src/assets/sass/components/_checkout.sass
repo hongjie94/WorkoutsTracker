@@ -1,0 +1,108 @@
+
+// Unlock Payment overlay
+.unlock_vCard
+  border-top-left-radius: unset !important
+  border-top-right-radius: unset !important
+  background: $unlockCard-bg !important
+.unlockPayment 
+  display: flex
+  justify-content: center
+  flex-direction: column
+  align-items: center
+  padding: 1em 2em
+  background: $unlockCard-bg !important
+  .unlock_img
+    max-width:200px
+    min-width: 200px
+    margin-bottom: 1em
+    border-radius: 4px 
+
+// Close overlay div
+.closeUnlockBtn_div
+  border-top-left-radius: 4px !important
+  border-top-right-radius: 4px !important
+  background: $unlockCard-bg
+  height: 40px
+  .closeUnlockBtn
+    display: flex
+    justify-content: flex-end
+    span
+      padding-left: 10px
+      color: red
+    i
+      font-size: 30px
+      padding: 0 10px
+      color: gray
+      &:hover
+        color: $white
+        cursor: pointer
+        transition: all .5s
+
+// Payment Buttonn div
+.paymentBtn_div
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+
+// Stripe Checkout button
+.stripeBtn 
+  display: flex
+  justify-content: center
+  align-items: center
+  max-width: 16em
+  width: 16em
+  height: 3em
+  padding: 1em
+  margin: 1em
+  border-radius: 4px
+  color: $black
+  background: $myBlue
+  &:hover
+    color: $white
+    transition: all .5s
+
+// Palpay Checkout button
+.paypalCheckout 
+  max-width: 16em
+  height:3em
+  width: 16em
+
+// User not login
+.notLogin
+  border-top-left-radius: unset !important
+  border-top-right-radius: unset !important
+  background: url('./img/notLogin.jpg') no-repeat fixed center
+  background-size: contain
+  min-height: 35em  
+  display: flex
+  justify-content: flex-end
+  flex-direction: column
+  padding: 2em 4em
+  width: 25em
+  .notLogin_text, .error
+    margin-bottom: 3em
+  .error
+    color: red
+  .content  
+    button
+      border: 0
+      outline: none
+      border-radius: 0
+      padding: 12px 0
+      font-size: 1.5rem
+      font-weight: 600
+      text-transform: uppercase
+      letter-spacing: 0.1em
+      background: $myBlue
+      color: #ffffff !important
+      transition: all 0.5s ease
+      &:hover,
+      &:focus
+          background: $main-dark
+    p
+      margin-top: 1em        
+      
+  
+
+  

@@ -16,20 +16,20 @@
           <form action="/" method="post">
             <div class="top-row">
               <div class="field-wrap">
-                <input  class="auth_input active highlight" type="text"  placeholder="First Name*" v-model="fristname" required />
+                <input  autocomplete="on" class="auth_input active highlight" type="text"  placeholder="First Name*" v-model="fristname" required />
               </div>
               <div class="field-wrap">
-                <input class="auth_input active highlight"  type="text" placeholder="Last Name*"  v-model="lastname" required />
+                <input  autocomplete="on" class="auth_input active highlight"  type="text" placeholder="Last Name*"  v-model="lastname" required />
               </div>
             </div>
             <div class="field-wrap">
-              <input class="auth_input" type="email" placeholder="Email Address*" v-model="email" required />
+              <input autocomplete="on" class="auth_input" type="email" placeholder="Email Address*" v-model="email" required />
             </div>
             <div class="field-wrap">
-              <input class="auth_input" type="password" placeholder="Set A Password*" v-model="password" required />
+              <input autocomplete="on" class="auth_input" type="password" placeholder="Set A Password*" v-model="password" required />
             </div>
             <div class="field-wrap">
-              <input class="auth_input" type="password"  placeholder="Confirmation Password*" v-model="conformation" required />
+              <input autocomplete="on" class="auth_input" type="password"  placeholder="Confirmation Password*" v-model="conformation" required />
             </div>
             <button type="submit" class="auth_button button-block">Get Started</button>
           </form>
@@ -41,8 +41,8 @@
 
 <script>
 import db from '@/components/firebaseInit'
-import firebase from 'firebase'
-import '@firebase/auth'
+import firebase from 'firebase/app'
+import 'firebase/auth'
 
 export default {
   data () {
@@ -63,17 +63,17 @@ export default {
       } else {
         firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
           .then((userCredential) => {
-            // Signed in
             const user = userCredential.user
-            // console.log(user.uid)
-            // console.log(this.lastname)
-            // console.log(this.fristname)
-            db.collection('users').doc(user.uid).set({
-              lastName: this.lastname,
-              firstName: this.fristname
+            db.collection(user.uid).doc('user').set({
+              lastName: this.lastname.charAt(0).toUpperCase() + this.lastname.slice(1),
+              firstName: this.fristname.charAt(0).toUpperCase() + this.fristname.slice(1),
+              email: this.email
+            }).then(() => {
+              // Redirect user to Workout page
+              this.$router.replace({ name: 'Workout' })
+            }).catch((error) => {
+              console.error('Error writing document: ', error)
             })
-            // Redirect user to Dashbroad page
-            this.$router.replace({ name: 'Dashbroad' })
           })
           // Error handler
           .catch((error) => {

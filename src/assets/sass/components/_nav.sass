@@ -5,10 +5,10 @@
     display: none !important
 .num-cart-product
     position: absolute
-    top: -15px
-    right: -10px
-    width: 23px
-    height: 23px
+    top: -12px
+    right: -8px
+    width: 19px
+    height: 19px
     font-size: 0.8rem
     border-radius: 50%
     background-color: $myBlue
@@ -17,7 +17,6 @@
     justify-content: center
     align-items: center
     font-weight: 400
-    
 .navbar
     background: $black
     height: 60px
@@ -27,6 +26,7 @@
     align-items: center
     position: relative
     font-family: 'Poppins', sans-serif
+    z-index: 99
     &__logo
         color: $white
         text-decoration: none
@@ -84,31 +84,6 @@
     &::after:hover
         content: " Cart"
         color: white
-
-// .d
-//     color: $myBlue
-//     outline: none
-//     height: 100%
-//     display: flex
-//     align-items: center
-//     &:hover
-//         color: $myBlue
-//         transition: .5s ease
-//         animation-duration: 1000ms
-// //         text-decoration: none
-// .c,.sign_out
-//     color: $white
-//     cursor: pointer
-//     outline: none
-//     height: 100%
-//     display: flex
-//     align-items: center
-//     &:hover
-//         background: #3072e5
-//         color: $black
-//         transition: .5s ease
-//         animation-duration: 1000ms
-//         text-decoration: none
 .nav_active
     background: #3072e5
     color: $black
@@ -135,7 +110,11 @@
         background: $myBlue
         padding: 5px
         transition: .5s ease
-    animation-duration: 500ms
+        border-radius: 50%
+        width: 32px
+        height: 32px
+        display: flex
+        justify-content: center
 
 .router-link-active
     background: $main-light
@@ -180,7 +159,7 @@
     .show
         display: flex !important
         .nav_right
-            display: none
+            display: none    
         .nav_center
             flex-direction: column
             width: 100%
@@ -196,7 +175,7 @@
         &.active
             top: 100%
             opacity: 1
-            z-index: 99
+            z-index: 999
             height: 100vh
             font-size: 1.5rem
             flex-direction: column-reverse
@@ -240,6 +219,21 @@
     .mobile_icon a i span
         padding-left: 8px
 
+@media screen and (max-height: 450px)
+    .show .nav_center a 
+        height: 1.6em
+        margin: 5px 0px        
+
 @media screen and (max-width: 375px)
     .v-btn
         width: max-content !important
+
+@media screen and (max-width: 320px)
+    .show .nav_center a 
+        height: 3em
+        margin: 5px 0px       
+
+@media screen and (max-height: 280px)
+    .show .nav_center a 
+        height: 1em
+        margin: 5px 0px          

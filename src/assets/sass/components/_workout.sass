@@ -1,5 +1,6 @@
+// Main div
 .workout
-  background-image: url("./img/workout-bg.jpg")
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1)), url('./img/workout-bg.jpg')
   background-position: center center
   background-size: cover
   padding: 0.5rem calc((100vw - 1200px) / 2)
@@ -7,102 +8,313 @@
   justify-content: center
   align-items: center
   flex-wrap: wrap
-  min-height: 80vh
+  min-height: 100vh
+
+// Workout div  
+#category-workout
+  display: flex
+  flex-wrap: wrap
+  min-height: 50vh
+  max-width: 1160px !important
+  min-width: 100%
+.container
+  max-width: 1160px !important
+.outterlayer
+  min-width: 1160px
+  max-width: 1200px !important
+  margin: 1em auto 0 auto
+  padding: 10px  
+
+// Workout page heading 
+.workout-heading 
+  display: flex
+  justify-content: flex-start
+  align-items: center
+  flex-direction: row
+  margin: 0em 1em 3em 1em
+  width: 100%
+  z-index: 1
+  button 
+    padding: 5px 10px
+    margin: 1em -0.5em 1em 0
+  .workoutCounts
+    margin-right: 10px
+    background: #6c757d
+    min-width: 32px
+    min-height: 32px
+    border-radius: 50%
+    color: $white
+    display: flex
+    justify-content: center
+    align-items: center
+    &:hover
+      cursor: help
+  // Workout heading dropdown menu
+  #dropdown-1__BV_toggle_
+    margin-right: 5px !important
+  .dropdown-menu.show 
+    display: block !important
+    background-color: #272727
+    .dropdown-item
+      color: $white
+      &:hover
+        color: $black
+        background: $myBlue
+  .v-input
+      margin-left: .5em !important
+  .v-input__control      
+    justify-content: center
+    align-items: center
+    display: flex  
+  // Workout heading icon
+  .v-autocomplete .mdi-menu-down::before
+   content: '\F0349'
+
+// No serach result contents  
+.noResult
+  width: 100%
+  display: flex
+  justify-content: center
+  flex-direction: column
+  color: white
+
+// Workout cards     
 .cards
   display: flex
   flex-wrap: wrap
-  margin: 1em  0em
+  margin: 3em auto
   justify-content: flex-start
   width: 100%
   max-width: 1200px
-
+  .card_div
+    margin: 1em
   .card_theme
     background-color: $black !important
-    color: white !important
+    color: $white !important
     border-radius: 10px
     height: max-content
-    margin: 1em auto
     max-width: 350px
-    min-width: 150px
-    width: 22%
-    .v-image
-      height: 325px
-
-  .price
+    min-width: 100px
+    width: 200px 
+  .v-card__title
+    font-size: 17px 
+  .v-image
+    height: 253px
+  .v-card__text
+    font-size: 12px 
+      height: 255px
+  .price_div
     padding: 0 1.1em
     text-align: start
     padding-top: 1px
     color: darkgray !important
-
   .v-divider
     background: white
-
   .v-card__title + .v-card__subtitle
     margin-top: 0px
-
   .v-card__title
     border-top: 1px solid
-    
+  .v-card__text
+    padding: 15px  
   .v-card__subtitle, .v-card__title
     padding: 15px 15px 3px 15px
-
   .v-btn
     background-color: $myBlue !important
     color: $black !important
     width: auto !important
     &:hover
       color: $white !important
-      transition: all 1s
+      transition: all 0.5s
 
-  .v-card__text
-    padding: 15px
+//pagination
+.pagination
+  width: 100%
+  justify-content: center
+  text-align: center !important
+  margin-bottom: 2em
+  .theme--light.v-pagination .v-pagination__navigation
+    background: #272727
+  .mdi-chevron-right::before, .v-pagination__navigation .v-icon 
+    color: $white
+  .theme--light.v-pagination .v-pagination__item 
+    background: #272727
+    color: $white
+    &--active
+      background: #6c757d
+      color: $black
 
-// .wks
-//   position: absolute
-//   margin-left: auto
-//   margin-right: auto
-//   left: 0
-//   right: 0
-//   top: 45%
-//   text-align: center
-//   background-color: black
-//   padding: 10px
-//   color: #eee
-//   cursor: pointer    
+// Responsive   
+@media screen and (max-width: 1263px)
+  #category-workout, .container
+    min-width: 928px !important
 
-@media screen and (max-width: 1265px)  
-  .card_theme
-    width: 200px !important
-  .v-card__title
-    font-size: 17px !important
-  .v-image
-    height: 253px !important
-  .v-card__text
-    font-size: 12px !important    
+@media screen and (max-width: 1179px)
+  #category-workout, .container
+    max-width: 928px !important
 
-@media screen and (max-width: 844px)  
-  .card_theme
-    width: 190px !important
-  .v-card__title
-    font-size: 16px !important
-  .v-image
-    height: 243px !important
+@media screen and (max-width: 955px)
+  .details_btn 
+    width: 8em !important
+  .card_div
+    padding: 1em !important
+    margin: 0px !important
+    width:  180px !important
+    .card_theme
+      width: 150px !important  
+      margin: 0em auto !important
+    .v-image
+      height: 187px !important
+    .v-card__title
+      font-size: 12px !important
+    .v-card__text
+      font-size: 9px !important  
+  #category-workout, .container
+    min-width: 900px !important  
+  .outterlayer
+    min-width: 0px
+    width: 900px !important
+    margin: 0px
+    padding: 0px        
 
-@media screen and (max-width: 500px)  
-  .card_theme
-    width: 350px !important
-  .v-card__title
-    font-size: 20px !important
-  .v-image
-    height: 435px !important
-  .v-card__text
-    font-size: 14px !important
+@media screen and (max-width: 914px)
+  #category-workout, .container
+    min-width: 720px !important  
+  .outterlayer
+    max-width: 720px !important
+  .card_div
+    width:  180px !important
+    .card_theme
+      width: 150px !important  
+    .v-image
+      height: 187px !important
+    .v-card__title
+      font-size: 12px !important
+      padding: 2px 15px 0px 15px
+      height: 2.5em
+    .price 
+        font-size: 12px         
 
-@media screen and (max-width: 360px)  
-  .card_theme
-    width: 250px !important
-  .v-card__title
-    font-size: 17px !important
-  .v-image
-    height: 310px !important
- 
+@media screen and (max-width: 739px)
+  #category-workout, .container
+    min-width: 540px !important
+  .outterlayer
+    max-width: 540px !important 
+  .card_div
+    width:  180px !important
+    .card_theme
+      width: 150px !important  
+    .v-image
+      height: 187px !important
+    .v-card__title
+      font-size: 12px !important
+      padding: 2px 15px 0px 15px
+      height: 2.5em
+    .price 
+        font-size: 12px     
+
+// @media screen and (max-width: 594px) 
+//   .card_div
+//     .card_theme
+//       width: 150px !important
+//       .v-card__title
+//         font-size: 12px !important
+//       .price 
+//         font-size: 11px
+//         margin: 10px 0  
+//       .v-image
+//         height: 187px !important
+//       .v-card__text
+//         font-size: 9px !important
+
+@media screen and (max-width: 539px)
+  #category-workout, .container
+    min-width: 360px !important  
+  .outterlayer
+    max-width: 360px !important
+  // .card_div:nth-last-child(2), .card_div:last-child 
+  //   width: 50% !important
+  //   margin: 0 auto !important
+  //   .card_theme
+  //     width: 150px !important
+@media screen and (max-width: 449px)
+  .v-input__slot
+    width: 8em !important
+  #dropdown-1__BV_toggle_
+    min-width: 1em
+  .v-pagination__navigation
+    min-width: 32px
+  .workout-heading .workoutCounts
+    margin-right: 0px !important
+    margin-left: 5px !important
+  .ml-4, .mx-4
+    margin: 0 .5em !important   
+  .v-toolbar__content, .v-toolbar__extension
+    width: 333.64px
+
+// @media screen and (max-width: 359px)
+//   #category-workout, .container
+//     max-width: 100% !important
+//     max-width: 100% !important
+//     width: 100% !important
+//   .outterlayer
+//     max-width: 100% !important
+//     max-width: 100% !important
+//     width: 100% !important
+//   .card_div
+//     max-width: 100% !important
+//     max-width: 100% !important
+//     width: 100% !important
+//   .card_theme
+//     max-width: 100% !important
+//     max-width: 100% !important
+//     width: 100% !important 
+//   .v-image
+//     max-width: 100% !important
+//     max-width: 100% !important
+//     width: 100% !important   
+//   #category-workout, .container
+//     min-width: auto !important  
+//   .outterlayer
+//     max-width: 100% !important
+//   .card_div 
+//     width: 100% !important
+//     .card_theme
+//       width: 250px !important
+//       .v-card__title
+//         font-size: 17px !important
+//       .price 
+//         font-size: 13px
+//         margin: 10px 0
+//       .v-card__text
+//         font-size: 13px !important 
+//       .v-image
+//         height: 313px !important       
+
+// @media screen and (max-width: 400px)
+  //   .v-input__slot
+  //     width: 8em !important
+  //   #dropdown-1__BV_toggle_
+  //     min-width: 1em
+  //   .v-pagination__navigation
+  //     min-width: 32px    
+// @media screen and (max-width: 350px)
+//   .card_div 
+//     width: auto !important
+//     .card_theme
+//       width: 250px !important
+//       .v-card__title
+//         font-size: 17px !important
+//       .price 
+//         font-size: 13px
+//         margin: 10px 0
+//       .v-card__text
+//         font-size: 13px !important 
+//       .v-image
+//         height: 313px !important       
+  // .card_div:nth-last-child(2), .card_div:last-child 
+  //   width: auto !important
+  //   margin: 0 auto !important
+  //   .card_theme
+  //     width: 250px !important
+  //   .v-image
+  //       height: 313px !important              

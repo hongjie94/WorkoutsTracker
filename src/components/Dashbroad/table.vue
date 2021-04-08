@@ -1,8 +1,18 @@
 
 <template>
+<v-app style="margin: 0px; border-radius: 0px;">
+  <v-card class="theme--dark" style="border-radius: 0;">
+      <v-card-text>
+        <div class="display-3 font-weight-thin dashHeader">
+        Records {{currentTime}}
+        </div>
+      </v-card-text>
+    </v-card>
   <v-data-table
+    style=" border-radius: 0;"
+    dark
     :headers="headers"
-    :items="desserts"
+    :items="workoutsData"
     :items-per-page="5"
     item-key="name"
     class="elevation-1"
@@ -14,67 +24,65 @@
       nextIcon: 'mdi-plus'
     }"
   ></v-data-table>
+</v-app>
 </template>
 
 <script>
 export default {
   data () {
     return {
+      currentTime: '',
       headers: [
         {
-          text: 'Day (Total 58 Days)',
+          text: 'Date',
           align: 'start',
-          value: 'day'
+          value: 'date'
         },
+        { text: 'Time', value: 'time' },
         { text: 'Workout', value: 'name' },
-        { text: 'Complete', value: 'complete' },
-        { text: 'MAXOUT', value: 'day' },
-        { text: 'Duration', value: 'day' }
+        { text: 'Duration', value: 'duration' },
+        { text: 'Progress', value: 'progress' }
       ],
-      desserts: [
+      workoutsData: [
         {
+          date: 'Apr, 12, 2021',
+          time: 'Jan, 15, 2021',
           name: 'Max out cardio',
-          day: 'DAY 1',
-          complete: 'jan, 15, 2021'
+          duration: '32min',
+          progress: 'Insanity Max30 (30/60 Days)'
         },
         {
+          date: new Date().toString().split(' ').splice(0, 4).join(' '),
           name: 'Max out power',
-          day: 'DAY 2'
+          duration: '32min',
+          time: new Date().toString().split(' ').splice(4, 5).join(' ')
         },
         {
           name: 'Cupcake 3',
-          day: 'DAY 3'
+          duration: 'DAY 3',
+          time: new Date()
         },
         {
           name: 'Cupcake',
           category: 'Pastry'
-        },
-        {
-          name: 'Gingerbread',
-          category: 'Cookie'
-        },
-        {
-          name: 'Jelly bean',
-          category: 'Candy'
-        },
-        {
-          name: 'Lollipop',
-          category: 'Candy'
-        },
-        {
-          name: 'Honeycomb',
-          category: 'Toffee'
-        },
-        {
-          name: 'Donut',
-          category: 'Pastry'
-        },
-        {
-          name: 'KitKat',
-          category: 'Candy'
         }
       ]
+    }
+  },
+  mounted () {
+    const Hours = new Date().getHours()
+    const Minutes = new Date().getMinutes()
+    const Seconds = new Date().getSeconds()
+    if (Hours > 12) {
+      const Hours12 = new Date().getHours() - 12
+      this.currentTime = '0' + Hours12 + ':' + Minutes + ':' + Seconds + ' PM'
+      this.workoutsData[1].time = '0' + Hours12 + ':' + Minutes + ':' + Seconds + ' PM'
+    } else if (Hours < 12) {
+      const Hours = new Date().getHours()
+      this.currentTime = Hours + ':' + Minutes + ':' + Seconds + ' AM'
     }
   }
 }
 </script>
+<style>
+</style>

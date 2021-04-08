@@ -1,11 +1,12 @@
 <template>
   <div class="shop">
-    <!-- <p>{{time}}</p>
-    <p>{{date}}</p>
-    <p>{{day}}</p>
-    <p>{{test}}</p> -->
+    <div style="color: white">
+      <p>{{time}}</p>
+      <p>{{date}}</p>
+      <p>{{day}}</p>
+      <p>{{test}}</p>
+    </div>
     <section class="new-arrivial">
-      <button @click="getDB()">DB Renter</button>
       <div class="arrival-heading">
         <strong>New Arrival</strong>
         <p>We Provide You New Design Fashion Clothes</p>
@@ -48,9 +49,8 @@
   </div>
 </template>
 <script>
-import db from '@/components/firebaseInit'
 export default {
-  name: 'Calendar',
+  name: 'Shop',
   data () {
     return {
       time: {},
@@ -68,15 +68,6 @@ export default {
     this.date = date.toLocaleDateString()
     this.day = day
     this.test = date
-  },
-  methods: {
-    getDB () {
-      db.collection('users').get().then((snapshot) => {
-        snapshot.docs.forEach(doc => {
-          console.log(doc.data())
-        })
-      })
-    }
   }
 }
 </script>

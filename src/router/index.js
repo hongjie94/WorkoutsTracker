@@ -9,8 +9,9 @@ import Workout from '../views/Workout.vue'
 import InsaityMax30 from '../views/Workouts/InsanityMax30.vue'
 import Dashbroad from '../views/Dashbroad.vue'
 import Cart from '../views/Cart.vue'
-import firebase from 'firebase'
-import '@firebase/auth'
+import PaymentSuccess from '../views/PaymentSuccess.vue'
+import firebase from 'firebase/app'
+import 'firebase/auth'
 
 Vue.use(VueRouter)
 
@@ -54,6 +55,11 @@ const routes = [
     path: '/cart',
     name: 'Cart',
     component: Cart
+  },
+  {
+    path: '/paymentSuccess/:workout_id',
+    name: 'PaymentSuccess',
+    component: PaymentSuccess
   },
   {
     path: '/dashbroad',

@@ -18,7 +18,7 @@
           </transition> <!-- Send animation-->
           <form action="/" method="post">
             <div class="field-wrap">
-              <input class="auth_input" type="email" v-model="email" placeholder="Email Address" required />
+              <input autocomplete="on" class="auth_input" type="email" v-model="email" placeholder="Email Address" required />
             </div>
             <button type="submit" class="auth_button button-block">Send email</button>
           </form>
@@ -29,8 +29,8 @@
 </template>
 
 <script>
-import firebase from 'firebase'
-import '@firebase/auth'
+import firebase from 'firebase/app'
+import 'firebase/auth'
 export default {
   data () {
     return {

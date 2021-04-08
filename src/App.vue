@@ -2,7 +2,7 @@
   <div id="app">
     <MyNav/>
       <div>
-        <transition  appear enter-active-class="animated fadeInDown fix" leave-active-class="animated fadeOut">
+        <transition  appear enter-active-class="animated fadeInDown customDelay" leave-active-class="animated fadeOut">
           <router-view/>
         </transition>
       </div>
@@ -19,8 +19,8 @@ export default {
 }
 </script>
 
-<style>
-.fix {
+<style scoped>
+.customDelay {
   animation-delay: .5s;
   animation-duration: 2000ms;
 }

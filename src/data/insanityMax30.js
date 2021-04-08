@@ -23,7 +23,7 @@ export default [
       }
     }],
     month2Calendar: [{
-      week1_3:{
+      week1_3: {
         mon: 'MAX OUT CARDIO',
         tue: 'MAX OUT POWER',
         wed: 'MAX OUT SWEAT',

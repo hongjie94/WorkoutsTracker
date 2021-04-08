@@ -6,7 +6,7 @@
             <li class="tab active"><router-link to= "/login"> Log In </router-link></li>
             <li class="tab"><router-link to= "/register"> Sign Up </router-link></li>
           </ul>
-      <div id="login">
+        <div id="login">
           <transition enter-active-class="animated headShake">
             <div v-if="error"><h4>{{error}}</h4></div>
           </transition>
@@ -15,10 +15,10 @@
           </transition>
             <form action="/" method="post">
               <div class="field-wrap">
-              <input class="auth_input" type="email" v-model="email" placeholder="Email Address" />
+              <input class="auth_input" autocomplete="on" type="email" v-model="email"  placeholder="Email Address" />
             </div>
             <div class="field-wrap">
-              <input class="auth_input" type="password" placeholder="Password" v-model="password" >
+              <input class="auth_input" type="password" placeholder="Password" autocomplete="on" v-model="password" >
             </div>
             <p class="forgot"><router-link to= "/resetPassword"> Forgot Password?</router-link></p>
             <button type="submit" class="auth_button button-block">Log In</button>
@@ -30,31 +30,26 @@
 </template>
 
 <script>
-import firebase from 'firebase'
-import '@firebase/auth'
+import firebase from 'firebase/app'
+import 'firebase/auth'
 export default {
   data () {
     return {
       email: '',
       password: '',
       error: '',
-      show: true
+      show: true,
+      loginText: ''
     }
   },
   methods: {
     async login () {
       try {
-        // const user = firebase.auth().currentUser
-        // alert(user.email)
-        const val = await firebase.auth().signInWithEmailAndPassword(this.email, this.password)
-        console.log(val)
+        await firebase.auth().signInWithEmailAndPassword(this.email, this.password)
         this.$router.replace({ name: 'Dashbroad' })
       } catch (error) {
-        // alert(this.$refs.headText.innerHTML)
-        // console.log(this.$refs.headText.innerHTML)
         this.show = false
         this.error = error.message
-        console.log(error.message)
       }
     }
   }

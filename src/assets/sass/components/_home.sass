@@ -38,10 +38,8 @@
         background: black
         text-decoration: none
         color: $white
-
 @media screen and (max-width: 768px)
     .hero
-        background: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1)), url('./img/hero_mobile.jpg')
         height: 100vh
         background-position: center center
         background-size: cover
@@ -49,7 +47,6 @@
         display: flex
         justify-content: flex-start
         align-items: center
-
 // Members section
 
 .memberships
@@ -99,8 +96,17 @@
 .membership__card h3
     font-size: clamp(1rem, 5vw, 2rem)
     margin-bottom: 2rem
-
-@media screen and (max-width: 1100px)
+    
+@media screen and (max-width: 540px), (width: 768px), (height: 1366px) and (width: 1024px)
+    .hero
+        background: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1)), url('./img/hero_mobile.jpg')
+        height: 100vh
+        background-position: center center
+        background-size: cover
+        padding: 0.5rem calc((100vw - 1200px) / 2)
+        display: flex
+        justify-content: flex-start
+        align-items: center
     .membership__wrapper
         flex-direction: column
         align-items: center
@@ -122,7 +128,6 @@
     align-items: center
 #email
     background: $white
-    
 .email__content
     display: flex
     flex-direction: column
