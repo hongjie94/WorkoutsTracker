@@ -2,7 +2,7 @@
   <div class="hero">
         <div class="hero__content">
             <h1 class="animate-hero">Workouts Tracker</h1>
-            <p class="animate-hero">Join Now for $29</p>
+            <p class="animate-hero">Discover New Ways To Conquer Your Goals</p>
             <router-link to= "/register" class="home_button"> Get started </router-link>
         </div>
     </div>

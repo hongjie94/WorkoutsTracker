@@ -6,7 +6,7 @@
      <!-- mobile size nav menu -->
     <div class="mobile_icon">
       <router-link  v-show="!loggedIn" to= "/login" exact>
-        <i v-b-tooltip.hover title="User is not logged in" @click="closeNav" class="fas fa-user mobile_notlogin"></i>
+        <i @click="closeNav" class="fas fa-user mobile_notlogin"></i>
       </router-link>
       <i v-b-tooltip.hover :title="'Logged in as ' + currentUser" class="fas fa-user mobile_login" v-show="loggedIn"></i>
     </div>
@@ -19,12 +19,9 @@
     <div class="navbar__menu hide" :class="{active: active, show: active}">
       <div class="nav_center" @click="overflowYAuto">
         <router-link class="navbar__link c" to= "/" exact> Home </router-link>
-        <router-link class="navbar__link c" to= "/workout" exact> Workout</router-link>
-        <router-link class="navbar__link c" to= "/shop" exact> Shop </router-link>
+        <router-link class="navbar__link c" to= "/workout" exact> Workouts</router-link>
+        <router-link class="navbar__link c" to= "/resources" exact> Resources </router-link>
         <router-link class="navbar__link c" v-if="loggedIn"  to= "/dashbroad" exact> Dashbroad </router-link>
-        <router-link to= "/cart" exact class="navbar__link cart"> <i class="fas fa-shopping-cart">
-          <span class="num-cart-product">52</span></i>
-        </router-link>
         <a class="navbar__link mobile_logout" @click="signOut" v-if="loggedIn"> <span>Sign Out</span></a>
       </div>
       <div class="nav_right">
@@ -34,7 +31,7 @@
               :title="'Logged in as '+ currentUser"
               v-if="loggedIn">
               <i class="fas fa-user"></i>
-              {{userFN}} , {{userLN}}
+              {{userFN}} {{userLN}}
             </span>
         </transition>
         <div class="login_div">
@@ -57,12 +54,12 @@ export default {
   data () {
     return {
       loggedIn: false,
-      currentUser: '',
+      currentUser: null,
       active: false,
       emailVerified: '',
-      uid: '',
-      userLN: '',
-      userFN: ''
+      uid: null,
+      userLN: null,
+      userFN: null
     }
   },
   async created () {
@@ -78,12 +75,18 @@ export default {
       }
     })
     if (this.uid) {
-      db.collection(this.uid).get().then((snapshot) => {
-        snapshot.docs.forEach(doc => {
-          // console.log(doc.data())
+      const dbRef = db.collection(this.uid).doc('userInfo')
+      dbRef.get().then((doc) => {
+        if (doc.exists) {
           this.userLN = doc.data().lastName
           this.userFN = doc.data().firstName
-        })
+          // console.log('Document data:', doc.data())
+        } else {
+          // doc.data() will be undefined in this case
+          console.log('No such document!')
+        }
+      }).catch((error) => {
+        console.log('Error getting document:', error)
       })
     }
   },
@@ -91,7 +94,7 @@ export default {
     async signOut () {
       try {
         await firebase.auth().signOut()
-        this.$router.replace({ name: 'Login' })
+        this.$router.go(0)
       } catch (error) {
         console.log('error ' + error)
       }

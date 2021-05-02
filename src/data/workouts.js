@@ -7,6 +7,7 @@ export default [
     price: 9.99,
     price_id: `${process.env.VUE_APP_INSANITY_PRICE_ID}`, // Strip Checkout price id
     imageURL: require('@/components/Workouts/Insanity/cover.png'),
+    strogeURL: 'https://firebasestorage.googleapis.com/v0/b/workoutstracker.appspot.com/o/WorkoutCovers%2FInsanity.png?alt=media&token=22127ce5-8769-4130-aa00-3b3d71e4d008',
     includes: {
       a: '14 Online Workout Videos',
       b: 'Insanity Calendar',
@@ -18,12 +19,13 @@ export default [
   },
   {
     id: 2,
-    name: 'Insanity Max: 30',
+    name: 'Insanity Max 30',
     route: 'InsaityMax30',
     category: 'Cardio',
     price: 9.99,
     price_id: `${process.env.VUE_APP_MAX30_PRICE_ID}`,
     imageURL: require('@/components/Workouts/InsanityMax30/cover.jpg'),
+    strogeURL: 'https://firebasestorage.googleapis.com/v0/b/workoutstracker.appspot.com/o/WorkoutCovers%2FInsanityMax30.jpg?alt=media&token=318fea6c-8914-4c10-99db-43082eea6aa2',
     includes: {
       a: '15 Online Workout Videos',
       b: 'MAX OUT Calendar',
@@ -44,6 +46,7 @@ export default [
     price: 4.99,
     price_id: `${process.env.VUE_APP_ASYLUM_V1_PRICE_ID}`,
     imageURL: require('@/components/Workouts/AsylumVol1/cover.jpeg'),
+    strogeURL: 'https://firebasestorage.googleapis.com/v0/b/workoutstracker.appspot.com/o/WorkoutCovers%2FAsylumVol1.jpeg?alt=media&token=69442e77-8bc8-4e48-a459-aeed1b8080c2',
     includes: {
       a: '8 Online Workout Videos',
       b: 'Asylum Vol.1 Calendar',
@@ -67,6 +70,7 @@ export default [
     price: 4.99,
     price_id: `${process.env.VUE_APP_ASYLUM_V2_PRICE_ID}`,
     imageURL: require('@/components/Workouts/AsylumVol2/cover.jpg'),
+    strogeURL: 'https://firebasestorage.googleapis.com/v0/b/workoutstracker.appspot.com/o/WorkoutCovers%2FAsylumVol2.jpg?alt=media&token=12b278e0-7539-4951-b6ac-be9625666472',
     includes: {
       a: '8 Online Workout Videos',
       b: 'Asylum Vol.2 Calendar',
@@ -90,6 +94,7 @@ export default [
     price: 9.99,
     price_id: `${process.env.VUE_APP_T25_PRICE_ID}`,
     imageURL: require('@/components/Workouts/T25/cover.jpg'),
+    strogeURL: 'https://firebasestorage.googleapis.com/v0/b/workoutstracker.appspot.com/o/WorkoutCovers%2FT25.jpg?alt=media&token=7832ed3a-18b2-44f7-a16e-c2f60e4b90b2',
     includes: {
       a: '16 Online Workout Videos',
       b: 'T25 Calendar',
@@ -113,6 +118,7 @@ export default [
     price: 14.99,
     price_id: `${process.env.VUE_APP_T20_PRICE_ID}`,
     imageURL: require('@/components/Workouts/Transform20/cover.png'),
+    strogeURL: 'https://firebasestorage.googleapis.com/v0/b/workoutstracker.appspot.com/o/WorkoutCovers%2FTransform20.png?alt=media&token=743a267e-0c69-4f3c-b803-c38c07714762',
     includes: {
       a: '36 Online Workout Videos',
       b: 'Transform 20 Calendar',
@@ -134,6 +140,7 @@ export default [
     price: 9.99,
     price_id: `${process.env.VUE_APP_P90X_PRICE_ID}`,
     imageURL: require('@/components/Workouts/P90x/cover.jpg'),
+    strogeURL: 'https://firebasestorage.googleapis.com/v0/b/workoutstracker.appspot.com/o/WorkoutCovers%2FP90X.jpg?alt=media&token=6c330cba-040d-47d0-aa6d-c2baaaf86c41',
     includes: {
       a: '13 Online Workout Videos',
       b: 'P90X Calendar',
@@ -157,6 +164,7 @@ export default [
     price: 9.99,
     price_id: `${process.env.VUE_APP_P90X2_PRICE_ID}`,
     imageURL: require('@/components/Workouts/P90x2/cover.jpg'),
+    strogeURL: 'https://firebasestorage.googleapis.com/v0/b/workoutstracker.appspot.com/o/WorkoutCovers%2FP90X2.jpg?alt=media&token=272fd16d-26b6-4fb7-8eb9-bb48fceb3d3d',
     includes: {
       a: '16 Online Workout Videos',
       b: 'P90X2 Calendar',
@@ -182,6 +190,7 @@ export default [
     category: 'Muscle',
     price_id: `${process.env.VUE_APP_P90X3_PRICE_ID}`,
     imageURL: require('@/components/Workouts/P90x3/cover.png'),
+    strogeURL: 'https://firebasestorage.googleapis.com/v0/b/workoutstracker.appspot.com/o/WorkoutCovers%2FP90X3.png?alt=media&token=240b952e-95fd-4517-b812-94dfbfeb6b4d',
     includes: {
       a: '13 Online Workout Videos',
       b: 'P90X3 Calendar',
@@ -207,6 +216,7 @@ export default [
     price: 4.99,
     price_id: `${process.env.VUE_APP_P90X_PLUS_PRICE_ID}`,
     imageURL: require('@/components/Workouts/P90xPlus/cover.jpeg'),
+    strogeURL: 'https://firebasestorage.googleapis.com/v0/b/workoutstracker.appspot.com/o/WorkoutCovers%2FP90X_PLUS.jpeg?alt=media&token=40f12007-d7a5-4df6-b2fa-0a83607d9bce',
     includes: {
       a: '5 Online Workout Videos',
       b: 'P90X PLUS Calendar',
@@ -244,9 +254,10 @@ export default [
     name: 'CORE DE FORCE',
     route: 'CDF',
     category: 'Cardio',
-    price: 9.99,
+    price: 4.99,
     price_id: `${process.env.VUE_APP_STRIPE_PRICE_ID11}`,
     imageURL: require('@/components/Workouts/CoreDeForce/cover.jpg'),
+    strogeURL: 'https://firebasestorage.googleapis.com/v0/b/workoutstracker.appspot.com/o/WorkoutCovers%2FCDF.jpg?alt=media&token=fb635309-6502-4726-a0fd-dffd93d3defd',
     includes: {
       a: '15 Online Workout Vedios',
       b: 'MAX OUT Calendar',

@@ -1,54 +1,71 @@
 <template>
   <div class="memberships">
-        <h1 class="animate-membership">3 steps to get you started</h1>
-        <p class="membership__dec animate-membership">Get started today and receive 25% off your first month</p>
+        <h1>Take Your Training To New Heights</h1>
+          <h3>
+            Stay on track of your goals, discover new workouts and see yourself improve.
+          </h3>
         <div class="membership__wrapper">
-            <div class="membership__card animate-card">
-                <div class="membership__title">
-                    <i class="fas fa-user-circle card-icon"></i>
-                    <h3>Sign Up</h3>
-                </div>
-                <div class="membership__perks">
-                    <p>Get access to the entire gym</p>
-                    <p>$29 per month</p>
-                </div>
-                <a href="/" class="home_button">Sign Up</a>
-            </div>
-            <div class="membership__card animate-card">
-                <div class="membership__title">
-                    <i class="fas fa-dumbbell card-icon"></i>
-                    <h3>Pick your Workout </h3>
-                </div>
-                <div class="membership__perks">
-                    <p>Get access to the entire gym</p>
-                    <p>Group Fitness Classes</p>
-                    <p>$49 per month</p>
-                </div>
-                <a href="/" class="home_button">Workouts</a>
-            </div>
-            <div class="membership__card animate-card">
-                <div class="membership__title">
-                    <i class="fas fa-clock card-icon"></i>
-                    <h3>Start tracking</h3>
-                </div>
-                <div class="membership__perks">
-                    <p>Get access to the entire gym</p>
-                    <p>Group Fitness Classes</p>
-                    <p>Private Personal Training</p>
-                    <p>$99 per month</p>
-                </div>
-                <a href="/" class="home_button">Dashbroad</a>
-            </div>
+          <div class="membership__card" @click="showWorkout('Cardio')" @mouseleave="showCover">
+            <!-- <div class="membership__title" v-if="hovered !== 'Cardio'">
+              <i class="mdi mdi-run-fast cadio-icon"></i>
+            </div> -->
+              <img class="cover"
+                src="./img/cardio.jpg"
+                alt="not-found"
+                v-if="hovered !== 'Cardio'"
+              >
+          </div>
+          <div class="membership__card" @click="showWorkout('Strength')" @mouseleave="showCover">
+            <!-- <div class="membership__title" v-if="hovered !== 'Strength'">
+              <i class="mdi mdi-dumbbell mdi-rotate-90 strength-icon"></i>
+            </div> -->
+            <img
+              class="cover"
+              src="./img/strength.jpg"
+              alt="not-found"
+              v-if="hovered !== 'Strength'"
+            >
         </div>
+        <div class="membership__card" @click="showWorkout('Yoga')" @mouseleave="showCover" >
+          <!-- <div class="membership__title" v-if="hovered !== 'Yoga'">
+            <i class="mdi mdi-yoga yoga-icon"></i>
+          </div> -->
+            <img class="cover"
+              src="./img/yoga.jpg"
+              alt="not found"
+              v-if="hovered !== 'Yoga'"
+            >
+        </div>
+      </div>
     </div>
 </template>
 
 <script>
+import { mapGetters, mapState } from 'vuex'
 export default {
-
+  data () {
+    return {
+      hovered: null
+    }
+  },
+  methods: {
+    showWorkout (catagory) {
+      this.hovered = catagory
+      // console.log('hovered')
+    },
+    showCover () {
+      this.hovered = false
+    }
+  },
+  computed: {
+    ...mapGetters([
+      'CardioWorkouts',
+      'MuscleWorkouts',
+      'YogaWorkouts'
+    ]),
+    ...mapState([
+      'workouts'
+    ])
+  }
 }
 </script>
-
-<style>
-
-</style>

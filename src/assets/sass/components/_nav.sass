@@ -3,20 +3,6 @@
     position: relative
 .mobile_icon, .mobile_logout
     display: none !important
-.num-cart-product
-    position: absolute
-    top: -12px
-    right: -8px
-    width: 19px
-    height: 19px
-    font-size: 0.8rem
-    border-radius: 50%
-    background-color: $myBlue
-    color: $white
-    display: flex
-    justify-content: center
-    align-items: center
-    font-weight: 400
 .navbar
     background: $black
     height: 60px
@@ -34,20 +20,23 @@
         font-size: 2em
         img
             height: 1.3em
-
     &__link
         color: $white
         text-decoration: none
-        padding: 0rem 1rem
-
+        padding: 0rem 1rem 
+        transition: all .5s ease-in-out 0s
+        font-weight: 500
     &__link:hover
-        background-color: $myBlue
-        color: $black
+        color: $myBlue
         transition: .5s ease
         animation-duration: 1000ms
-        text-decoration: none
+        text-decoration-line: underline
+        text-underline-offset: 5px
         cursor: pointer
-
+        font-weight: 800
+        transform: scaleX(1.1)
+    
+           
 .nav_right, .nav_center, .sign_out, .nav_end, .cart, .login_div, .router-link-active, .navbar__link
     display: flex
     height: 100%
@@ -61,35 +50,14 @@
         height: 100%
         align-items: center
         padding: 0 1em
-.cart
-    &:hover
-        background-color: $myBlue
-        color: $black
-        transition: .5s ease
-        animation-duration: 1000ms
-        text-decoration: none
-        .num-cart-product
-            background-color: $black
-            transition: .5s ease
-            animation-duration: 1000ms
-            text-decoration: none
-        &:after
-            color: $black
-            transition: .5s ease
-            animation-duration: 1000ms
-    &::after
-        content: " Cart"
-        color: white
-        margin: 5px 5px 0 5px
-    &::after:hover
-        content: " Cart"
-        color: white
 .nav_active
-    background: #3072e5
-    color: $black
+    color: $myBlue
     transition: .5s ease
     animation-duration: 1000ms
-    text-decoration: none
+    text-decoration-line: underline
+    text-underline-offset: 5px
+    cursor: pointer
+    font-weight: 800
 .navbar__menu
     display: flex
     justify-content: space-between
@@ -107,30 +75,21 @@
 .mobile_icon
     .router-link-active
         height: 100%
-        background: $myBlue
         padding: 5px
         transition: .5s ease
-        border-radius: 50%
         width: 32px
         height: 32px
         display: flex
         justify-content: center
 
 .router-link-active
-    background: $main-light
-    color: $black
+    color: $myBlue
     transition: .5s ease
     animation-duration: 1000ms
-    text-decoration: none
-    .num-cart-product
-        background-color: $black
-        transition: .5s ease
-        animation-duration: 1000ms
-        text-decoration: none
-    &:after
-        color: $black
-        transition: .5s ease
-        animation-duration: 1000ms
+    text-decoration-line: underline
+    text-underline-offset: 5px
+    cursor: pointer
+    font-weight: 800
     
 @media screen and (max-width: 940px)
     body.active
@@ -189,6 +148,11 @@
         background: $white
         display: block
         cursor: pointer
+    .num-cart-product    
+        top: -5px
+        right: -3px
+        width: 17px
+        height: 17px       
 
     #mobile-menu
         position: absolute
@@ -221,9 +185,13 @@
 
 @media screen and (max-height: 450px)
     .show .nav_center a 
-        height: 1.6em
-        margin: 5px 0px        
-
+        height: 1.5em
+        margin: 5px 0px
+    .num-cart-product    
+        top: -5px
+        right: -5px
+        width: 18px
+        height: 18px     
 @media screen and (max-width: 375px)
     .v-btn
         width: max-content !important

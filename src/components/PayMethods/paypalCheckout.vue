@@ -12,19 +12,22 @@
       v-on:payment-completed="paymentCompleted"
       >
     </PayPal>
-    <!-- <v-btn @click="test">Test</v-btn> -->
+    <v-btn @click="paymentCompleted">test</v-btn>
   </div>
 </template>
 
 <script>
 import db from '@/components/firebaseInit'
 import PayPal from 'vue-paypal-checkout'
-import firebase from 'firebase/app'
 import 'firebase/auth'
+import axios from 'axios'
+import { mapState } from 'vuex'
 export default {
   props: {
     price: Number,
-    workoutName: String
+    workoutName: String,
+    price_id: String,
+    unlockImage: String
   },
   components: { PayPal },
   data: () => ({
@@ -44,14 +47,15 @@ export default {
         no_shipping: 1
       }
     },
-    priceToString: '',
-    uid: ''
+    priceToString: ''
   }),
+  computed: {
+    ...mapState([
+      'userCalendar',
+      'uid'
+    ])
+  },
   mounted () {
-    // Get user id form firbase
-    firebase.auth().onAuthStateChanged(user => {
-      this.uid = firebase.auth().currentUser.uid
-    })
     // Get api key from env
     this.paypal.sandbox = process.env.VUE_APP_PAYPAL_PUBLISHABLE_KEY
     // Number to String
@@ -59,64 +63,45 @@ export default {
   },
   methods: {
     paymentAuthorized: function (data) {
-      const unlockedWorkout = db.collection(this.uid).doc(this.workoutName)
-      unlockedWorkout.set({
-        unlocked: true,
-        unlcokedTime: new Date()
-      }).then(() => {
-        alert('payment Authorized and' + this.workoutName.toUpperCase() + ' add to data base')
-      }).catch((error) => {
-        console.error('Error writing document: ', error)
-      })
-    },
-    test () {
-      // db.collection(this.uid).doc(this.workoutName).set({
-      //   unlocked: true,
-      //   unlcokedTime: new Date()
-      // }).then(() => {
-      //   alert('payment Authorized and' + this.workoutName.toUpperCase() + ' add to data base')
-      // })
-      // const unlockedWorkoutName = db.collection(this.uid).doc(this.workoutName)
-      // unlockedWorkoutName.set({
-      //   capital: false
-      // }, { merge: true })
-      // var WorkoutStatus = {
-      //   clendars: {
-      //     month:
-      //   }
-      // }
-      const h = new Date().getHours()
-      const m = new Date().getMinutes()
-      const s = new Date().getSeconds()
-      const completedDate = new Date().toString().split(' ').splice(0, 4).join('_')
-      const completedTime = h + ':' + m + ':' + s
-      const newEvent = {
-        color: 'blue',
-        date: '2021-04-16',
-        name: 'Max Out Cardio2',
-        time: '00:60:00'
+      // Get New unlocked workouts from user
+      const newWorkouts = {
+        workoutName: this.workoutName,
+        workoutId: this.price_id.split('price_').pop(','),
+        imgUrl: this.unlockImage,
+        unlockedTime: new Date(),
+        progress: 0
       }
-      db.collection('Calendar_' + this.uid).doc('WorkoutCompleted' + '_' + completedDate + '_' + completedTime).set({
-        Detail: newEvent
+      // Save to firebase
+      if (this.unlockedWorkouts === undefined) {
+        this.unlockedWorkouts = []
+      }
+      const dbRef = db.collection(this.uid).doc('unlockedWorkouts')
+      this.unlockedWorkouts.push(newWorkouts)
+      dbRef.set({
+        unlockedWorkouts: this.unlockedWorkouts
       }, { merge: true })
-
-      // .forEach(doc => {
-      //   console.log(doc.data())
-      // })
-      // const unlockData = {
-      //   workoutName: this.workoutName,
-      //   unlockTime: new Date()
-      // }
-      // db.collection(this.uid).doc('unlockedWorkouts').add({
-      //   workouts: {
-      //     unlockData
-      //   }
-      // }, { merge: true }
-      // ).then(() => {
-      //   console.log('Document successfully written!')
-      // })
     },
-    paymentCompleted: function (data) {
+    async paymentCompleted (data) {
+      const workoutId = this.price_id.split('price_').pop(',')
+      const url = `https://workoutstracker-default-rtdb.firebaseio.com/${workoutId}.json`
+      let CalendarData = []
+      await axios
+        .get(url)
+        .then(response => (CalendarData = response.data))
+      alert('check console')
+      // console.log(this.price_id.split('price_').pop(','))
+      const dbRef = db.collection(this.uid).doc(this.workoutName.replace(/\s/g, ''))
+      dbRef.set({
+        Month1Calendar: CalendarData.Month1Calendar,
+        Month2Calendar: CalendarData.Month2Calendar,
+        Videos: CalendarData.Videos,
+        ProgramName: CalendarData.ProgramName,
+        TotalWorkoutDays: CalendarData.TotalWorkoutDays,
+        CompletedDays: [],
+        Progress: 0
+      }, { merge: true })
+      this.$store.dispatch('getUserData', this.uid)
+      this.$router.push({ name: 'Dashbroad' })
       console.log(`paymentCompleted:  + ${data}`)
       alert('Payment Completed')
     }

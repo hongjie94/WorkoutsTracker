@@ -15,8 +15,8 @@
         <div class="footer__wrapper">
             <div class="footer__links">
                 <h2 class="footer__title">Workouts </h2>
-                <a href="#" class="footer__link">Intense Cardios</a>
-                <a href="#" class="footer__link">Muscle Trainings</a>
+                <a href="/Workout" class="footer__link">Intense Cardios</a>
+                <a href="/Workout" class="footer__link">Strength Trainings</a>
                 <a href="#" class="footer__link">Yoga & Meditation</a>
             </div>
             <div class="footer__links">
@@ -24,7 +24,6 @@
                 <a href="#" class="footer__link">Instagram</a>
                 <a href="#" class="footer__link">Facebook</a>
                 <a href="#" class="footer__link">Youtube</a>
-                <a href="#" class="footer__link">Twitter</a>
             </div>
         </div>
     </div>

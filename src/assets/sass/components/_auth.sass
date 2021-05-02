@@ -131,3 +131,37 @@ a
 .head_delay
     animation-delay: 1.5s
     animation-duration: 1500ms
+
+@media screen and (max-width: 540px)
+  .auth_form
+    width: 350px
+  .top-row
+    margin-bottom: 2.5em  
+  .field-wrap
+    width: 100% !important
+@media screen and (max-width: 360px)
+  #signup, #login
+    h1
+      font-size: 2em
+  .auth_form
+    width: 300px
+  .auth_button
+    min-width: 4em 
+    font-size: 1em
+@media screen and (max-width: 280px) 
+  #signup, #login
+    h1
+      font-size: 1.1em
+  .auth_form
+    width: 220px
+    padding: 30px
+  .auth_button
+    min-width: 4em 
+    font-size: 1em
+    padding: 6px 0
+  .auth_form .tab-group .tab a
+    font-size: 15px
+    padding: 5px
+  .auth_input
+    font-size: 1em
+                

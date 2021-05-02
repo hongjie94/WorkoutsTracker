@@ -57,20 +57,21 @@ export default {
     }
   },
   methods: {
-    register () {
+    async register () {
       if (this.password !== this.conformation) {
         this.error = 'Confirmation password should be the same as password. Please retype password.'
       } else {
-        firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
+        await firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
           .then((userCredential) => {
             const user = userCredential.user
-            db.collection(user.uid).doc('user').set({
+            db.collection(user.uid).doc('userInfo').set({
+              userId: user.uid,
               lastName: this.lastname.charAt(0).toUpperCase() + this.lastname.slice(1),
               firstName: this.fristname.charAt(0).toUpperCase() + this.fristname.slice(1),
               email: this.email
             }).then(() => {
               // Redirect user to Workout page
-              this.$router.replace({ name: 'Workout' })
+              this.$router.replace({ name: 'Dashbroad' })
             }).catch((error) => {
               console.error('Error writing document: ', error)
             })

@@ -4,7 +4,8 @@
         <h1>No results found</h1>
         <p> Your search - {{select}} - did not match any documents.</p>
       </div>
-      <div :key="workout.index" v-for="workout in workouts"  class="card_div">
+      <div :key="workout.id" v-for="workout in workouts"
+      class="card_div">
         <v-card class="card_theme">
            <v-img :src="workout.imageURL" alt="NotFund" />
           <v-card-title>
@@ -16,12 +17,16 @@
             <v-card-actions>
               <v-btn
                 text
-                @click="unlockClicked(workout.name, workout.imageURL, workout.price, workout.price_id)">
-                 <!-- @click="overlay = !overlay"> -->
-                <span>Unlock</span>
+                :disabled ='UnlockedWorkoutName.includes(workout.name)'
+                :class="{ btn_unlocked:UnlockedWorkoutName.includes(workout.name)}"
+                @click="unlockClicked(workout.name, workout.strogeURL, workout.price, workout.price_id)">
+                <i style="font-size: 2em" v-if="UnlockedWorkoutName.includes(workout.name)" class="mdi mdi-lock-open-variant" aria-hidden="true"></i>
+                <span v-if="!(UnlockedWorkoutName.includes(workout.name))"> Unlock</span>
               </v-btn>
               <v-spacer></v-spacer>
-              <v-btn icon  @click="toggle(workout.id)" >
+              <v-btn icon
+              :class="{ btn_unlocked:UnlockedWorkoutName.includes(workout.name)}"
+              @click="toggle(workout.id)" >
                 <v-icon>{{ isActive === workout.id ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
               </v-btn>
             </v-card-actions>
@@ -44,64 +49,66 @@
           style="z-index: 99"
           :value="overlay">
           <transition appear enter-active-class="animated bounceInDown delay">
-          <div>
-          <div class="closeUnlockBtn_div">
-            <div class="closeUnlockBtn" @click="unlockClicked">
-              <div><i class="mdi mdi-close"></i></div>
+          <div class="overlay">
+            <div class="closeUnlockBtn_div">
+              <div class="closeUnlockBtn" @click="unlockClicked">
+                <div><i class="mdi mdi-close"></i></div>
+              </div>
             </div>
+            <v-card class="unlock_vCard">
+              <div class="unlockPayment" v-if="loggedIn">
+                <div class="unlockDetail">
+                  <v-img class="unlock_img" :src="unlock.image" />
+                  <h5> {{unlock.name}}</h5>
+                  <h6>Total: ${{unlock.price}}</h6>
+                </div>
+                <div class="paymentBtn_div">
+                <StripeCheckout
+                  :price_id ="unlock.priceId"
+                  :workoutName = "unlock.name"
+                />
+                <PayPalCheckout
+                  :price_id ="unlock.priceId"
+                  :price = "unlock.price"
+                  :workoutName = "unlock.name"
+                  :unlockImage = "unlock.image"
+                />
+                </div>
+                <div class="card_image">
+                  <img src="../PayMethods/cardImg/visa.png"  class="mx-2">
+                  <img src="../PayMethods/cardImg/mc.svg"  class="mx-2">
+                  <img src="../PayMethods/cardImg/ae.png"  class="mx-2">
+                  <img src="../PayMethods/cardImg/discover.png" class="mx-2">
+                </div>
+              </div>
+              <div class="notLogin" v-if="!loggedIn"> <!-- If user is not login -->
+                <transition appear enter-active-class="animated flipInX head_delay">
+                  <h4 v-if="!error" class="notLogin_text">{{loginRequired}}</h4>
+                  </transition>
+                  <transition enter-active-class="animated headShake">
+                    <div v-if="error" class="error"><h4>{{error}}</h4></div>
+                  </transition>
+                <div class="content">
+                    <div id="login">
+                    <form action="/" method="post" @submit.prevent= "unlockLogin">
+                    <div class="field-wrap">
+                    <input class="auth_input" type="email" v-model="email" autocomplete="on" placeholder="Email Address" />
+                    </div>
+                    <div class="field-wrap">
+                    <input class="auth_input" type="password" placeholder="Password" autocomplete="on" v-model="password" >
+                    </div>
+                    <p class="forgot"><router-link to= "/resetPassword"> Forgot Password?</router-link></p>
+                    <button type="submit" class="unlock_auth_button button-block">Log In</button>
+                    </form>
+                    </div>
+                    <p>Don't have an account?
+                      <router-link to= "/register"> Register</router-link>
+                      here
+                    </p>
+                </div>
+              </div>
+            </v-card>
           </div>
-          <v-card class="unlock_vCard">
-            <div class="unlockPayment" v-if="loggedIn">
-              <div class="unlockDetail">
-                <v-img class="unlock_img" :src="unlock.image" />
-                 <h5> {{unlock.name}}</h5>
-                 <h6>Total: ${{unlock.price}}</h6>
-              </div>
-              <div class="paymentBtn_div">
-              <StripeCheckout
-                :price_id ="unlock.priceId"
-                :workoutName = "unlock.name"
-              />
-              <PayPalCheckout
-                :price = "unlock.price"
-                :workoutName = "unlock.name"
-              />
-              </div>
-              <div class="card_image">
-                <img src="../PayMethods/cardImg/visa.png" width="50" class="mx-2">
-                <img src="../PayMethods/cardImg/mc.svg" width="50" class="mx-2">
-                <img src="../PayMethods/cardImg/ae.png" width="50" class="mx-2">
-                <img src="../PayMethods/cardImg/discover.png" width="50" class="mx-2">
-              </div>
-            </div>
-            <div class="notLogin" v-if="!loggedIn"> <!-- If user is not login -->
-               <transition appear enter-active-class="animated flipInX head_delay">
-                <h4 v-if="!error" class="notLogin_text">{{loginRequired}}</h4>
-                </transition>
-                <transition enter-active-class="animated headShake">
-                  <div v-if="error" class="error"><h4>{{error}}</h4></div>
-                </transition>
-              <div class="content">
-                  <div id="login">
-                  <form action="/" method="post" @submit.prevent= "unlockLogin">
-                  <div class="field-wrap">
-                  <input class="auth_input" type="email" v-model="email" autocomplete="on" placeholder="Email Address" />
-                  </div>
-                  <div class="field-wrap">
-                  <input class="auth_input" type="password" placeholder="Password" autocomplete="on" v-model="password" >
-                  </div>
-                  <p class="forgot"><router-link to= "/resetPassword"> Forgot Password?</router-link></p>
-                  <button type="submit" class="unlock_auth_button button-block">Log In</button>
-                  </form>
-                  </div>
-                  <p>Don't have an account?
-                    <router-link to= "/register"> Register</router-link>
-                    here
-                  </p>
-              </div>
-            </div>
-          </v-card>
-        </div>
           </transition>
         </v-overlay>
       </v-row>
@@ -109,9 +116,9 @@
 </template>
 <script>
 import firebase from 'firebase/app'
-import 'firebase/auth'
 import StripeCheckout from '@/components/PayMethods/stripeCheckout.vue'
 import PayPalCheckout from '@/components/PayMethods/paypalCheckout.vue'
+import { mapState, mapGetters } from 'vuex'
 export default {
   components: { StripeCheckout, PayPalCheckout },
   props: {
@@ -136,6 +143,15 @@ export default {
       password: '',
       error: ''
     }
+  },
+  computed: {
+    ...mapState([
+      'unlockedWorkouts',
+      'uid'
+    ]),
+    ...mapGetters([
+      'UnlockedWorkoutName'
+    ])
   },
   methods: {
     async unlockLogin () {

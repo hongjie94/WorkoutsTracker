@@ -36,6 +36,14 @@ export default {
       //   alert('payment Authorized and' + this.workoutName.toUpperCase() + ' add to data base')
       // })
     })
+  },
+  methods: {
+    show () {
+      this.$modal.show('hello-world')
+    },
+    hide () {
+      this.$modal.hide('hello-world')
+    }
   }
 }
 </script>

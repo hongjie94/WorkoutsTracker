@@ -1,22 +1,188 @@
 .dashbroad
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1)), url('./img/66.jpg')
-    background-position: center center
-    background-size: cover
-    padding: 0rem calc((100vw - 1200px) / 2)
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1)), url('./img/dashbroad.jpg')
+  background-position: center center
+  background-size: cover
+.unlocked_workouts, #calendar, #records, #workouts
+  padding: 1em 2em
+  border-radius: 0px
+  background-color: #1E1E1E  !important
+  background: #1E1E1E  !important
+  min-height: 100vh
+.darkBg
+  background-color: #1E1E1E  !important
+.v-application--wrap
+  min-height: auto !important
+.v-application .display-3 
+  font-size: 3rem !important
+  font-weight: 300 !important
+  line-height: 2rem
+  letter-spacing: -0.0083333333em !important
+  font-family: "Roboto", sans-serif !important
+.dashbroad-header 
+  background-color: #1E1E1E !important
+  opacity: 0.9
+.dashbroad-header--text 
+  color: rgba(255, 255, 255, 0.7) !important    
+        
+// Unlocked Workouts
+.unlocked_div 
+  display: flex
+  flex-wrap: wrap
+  border-radius: 4px
+  .unlocked_div_cards 
+      width: 200px
+      margin: 2em
+      background: black !important
+      border-radius: 4px
+      transition: all .2s ease-in-out
+      cursor: pointer
+      &:hover
+        transform: scale(1.1)
+  .v-image 
+    min-height:250px !important
+    height: 250px
+    border-radius: 4px !important
+.opacity 
+  opacity: 0.9
+.workoutProgress 
+  cursor: pointer
+  display: flex
+  justify-content: center
+  align-items: center
+  position: absolute
+  margin-left: auto
+  margin-right: auto
+  height: 3em
+  left: 0
+  right: 0
+  top: 40%
+  background: black
+  color: white
+  border-radius: 0px !important
+.workoutTitle 
+  background: none
+  color: white
+  padding: 8px
+  font-size: 1em
+  font-weight: 500
+  display: flex
+  background:#1E1E1E
 
-// Workouts
-            
-// Calendar    
-.theme--dark.v-calendar-weekly .v-calendar-weekly__day 
-    border-right: #9e9e9e 2px solid !important
-    border-bottom: #9e9e9e 1px solid !important
-    color: #FFFFFF !important
+// Calendar
+#calendar
+  .textHeader
+    text-align: center
+    margin-bottom: 1.5em
+    font-size: 18px
+    font-weight: 700
+    text-decoration: underline
+    text-underline-offset: 5px
+  .completeText
+    text-align: left
+    font-size: 1em
+  margin-bottom: 15em !important
+  .dashHeader
+    padding: .5em !important
+  .v-select__selections
+    max-width: 10em !important
+  .sheet
+    display: flex !important
+    height: auto !important
+    flex-wrap: wrap  !important
+  .theme--dark.v-calendar-weekly .v-calendar-weekly__day 
+      border-right: #9e9e9e 2px solid !important
+      border-bottom: #9e9e9e 1px solid !important
+      color: #FFFFFF !important
+  .theme--dark.v-calendar-weekly .v-calendar-weekly__head-weekday 
+      border-right: #9e9e9e 2px solid !important
+      color: #FFFFFF !important
+  .theme--light.v-sheet
+    background-color: #1E1E1E !important
+    .v-list-item__title
+      color: white !important
 
-.theme--dark.v-calendar-weekly .v-calendar-weekly__head-weekday 
-    border-right: #9e9e9e 2px solid !important
-    color: #FFFFFF !important
-   
+@media screen and (max-width: 904px)
+  #calendar
+    .theme--dark.v-input
+      max-width: 10em !important         
+@media screen and (max-width: 800px)
+  #calendar
+    .theme--dark.v-input
+      max-width: 6em !important
+    .dayBox
+      display: flex !important
+      justify-content: center !important
+      align-items: center !important
+      font-size: 16px !important   
+@media screen and (max-width: 674px)
+  #calendar
+    .dayBtn
+      max-width: 4em
+@media screen and (max-width: 640px)
+  #calendar
+    .dayBox 
+      font-size: 13px !important
+@media screen and (max-width: 568px)
+  #calendar
+    .v-btn:not(.v-btn--round).v-size--default 
+      padding: 0px 60px
+    .sheet
+      .theme--dark.v-btn  
+        max-width: 15em !important
+      .dayBox   
+        font-size: 19px !important
+      .theme--dark.v-input
+        max-width: 10em !important
+@media screen and (max-width: 414px)
+  #calendar .v-input__slot
+    max-width: 6em
+  #calendar .sheet .theme--dark.v-btn
+    max-width: 0em !important
+  #calendar .sheet .dayBox      
+    font-size: 14px !important
+    .theme--dark.v-input
+      max-width: 6em !important
+  #calendar .v-card__text .dashHeader
+    font-size: 2em !important
+  .Month-Calender .calendarOverlay .calendarOverlay-bottom .colorPicker
+    order: -1
+    margin: 1em
+  .Month-Calender .calendarOverlay .calendarOverlay-bottom .switch
+    order: -2
+  .Month-Calender .calendarOverlay .calendarOverlay-bottom .select,
+  .Month-Calender .calendarOverlay .calendarOverlay-bottom .v-btn 
+    margin-bottom: 10px
+    width: auto                      
+@media screen and (max-width: 320px)
+  #calendar .sheet .dayBox      
+    font-size: 9px !important
+  #calendar .v-input__slot  
+    max-width: 10em !important
+  #calendar .dayBox   
+    font-size: 20px !important
+  #calendar.theme--dark.v-input
+    max-width: 10em !important
+  .Month-Calender .calendarOverlay .topheader span
+    font-size: 13px
+  .Month-Calender .calendarOverlay .calendarOverlay-bottom .select
+    .v-input__slot
+      width: 6em !important
+@media screen and (max-height: 320px)
+  .calendarOverlay-iframe 
+    min-height: 10em !important          
+@media screen and (max-width: 280px)    
+  #calendar .v-card__text .dashHeader
+    font-size: 1em !important
+  #calendar .sheet .dayBox      
+    font-size: 18px !important
+  #calendar .sheet .theme--dark.v-btn 
+    max-width: -1em !important
 
 // Records
-
-// Diet        
+#records
+  margin-bottom: 15em !important
+.theme--light.v-sheet
+  background-color: #1E1E1E !important
+  border-color: #1E1E1E !important
+  .v-list-item__title
+    color: #FFFFFF !important

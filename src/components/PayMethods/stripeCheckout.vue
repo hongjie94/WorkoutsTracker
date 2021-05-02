@@ -15,7 +15,6 @@
 </template>
 
 <script>
-import swal from 'sweetalert'
 import { StripeCheckout } from '@vue-stripe/vue-stripe'
 export default {
   props: {
@@ -36,14 +35,12 @@ export default {
         }
       ],
       successURL: null, // 'https://localhost:8080/workout',
-      cancelURL: 'http://localhost:8080/workout',
-      uid: ''
+      cancelURL: 'http://www.workoutstracker/workout'
     }
   },
   methods: {
     async submit () {
-      swal('"Hello world!"')
-      this.successURL = 'http://localhost:8080/PaymentSuccess/' + this.price_id.split('price_').pop(',')
+      this.successURL = 'http://localhost:8080/dashbroad/' + this.price_id.split('price_').pop(',')
       alert(this.successURL)
       // You will be redirected to Stripe's secure checkout page
       this.$router.replace({ name: 'PaymentSuccess' })

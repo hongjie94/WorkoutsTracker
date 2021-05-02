@@ -39,18 +39,21 @@ export default {
         name: '',
         image: '',
         price: '',
-        priceId: ''
+        priceId: '',
+        unlocked: false
       }]
     }
   },
   computed: {
     ...mapState([
-      'workouts'
+      'workouts',
+      'unlockedWorkouts'
     ]),
     ...mapGetters([
       'CardioWorkouts',
       'MuscleWorkouts',
-      'YogaWorkouts'
+      'YogaWorkouts',
+      'UnlockedWorkoutName'
     ]),
     paginationFilter () {
       const page = this.page
@@ -61,15 +64,15 @@ export default {
     },
     // Toggle dropdown menu
     toggleWorkouts () {
-      if (this.showCategory === 'All') {
+      if (this.showCategory === 'ALL') {
         return this.paginationFilter
-      } else if (this.showCategory === 'Cardio') {
+      } else if (this.showCategory === 'CARDIO') {
         return this.CardioWorkouts
-      } else if (this.showCategory === 'Muscle') {
+      } else if (this.showCategory === 'STRENGTH') {
         return this.MuscleWorkouts
-      } else if (this.showCategory === 'Yoga') {
+      } else if (this.showCategory === 'YOGA') {
         return this.YogaWorkouts
-      } else if (this.showCategory === 'Search') {
+      } else if (this.showCategory === 'SEARCH') {
         return this.filterWorkouts
       } else {
         return this.paginationFilter
@@ -87,11 +90,11 @@ export default {
     },
     // Unlock button clicked
     unlockClicked (name, image, price, priceId) {
-      this.overlay = !this.overlay
       this.unlock.name = name
       this.unlock.image = image
       this.unlock.price = price
       this.unlock.priceId = priceId
+      this.overlay = !this.overlay
     }
   }
 }

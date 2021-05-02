@@ -1,5 +1,7 @@
 import workouts from '../data/workouts'
-
 export default {
-  workouts
+  workouts,
+  uid: '',
+  unlockedWorkouts: [],
+  userCalendar: []
 }

@@ -47,6 +47,7 @@ export default {
       try {
         await firebase.auth().signInWithEmailAndPassword(this.email, this.password)
         this.$router.replace({ name: 'Dashbroad' })
+        // this.$store.dispatch('getUserData', uid)
       } catch (error) {
         this.show = false
         this.error = error.message

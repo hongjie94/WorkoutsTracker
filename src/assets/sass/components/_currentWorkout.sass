@@ -1,0 +1,583 @@
+// Current workout
+.workoutCalendars
+  background-image: url("./img/workoutCalendars.jpg")
+  background-size: cover
+  background-repeat: no-repeat
+  background-attachment: fixed
+  background-position: center
+  min-height: 75vh
+  padding: 1em 0
+  .workout_calendar 
+    padding: 1em
+
+// Banner 
+.banner
+  width: 100%
+  padding: 15px 0
+  text-align: center
+  background: $calendar-color
+  color: white
+  letter-spacing: 5px
+  opacity: 0.9
+  p,h1, h5
+    font-family: $title-font
+  p
+    font-size: 1.1em
+    font-weight: 100
+    margin: .5em 0
+  h1
+    font-size: 2.8em
+    padding: 10px 0
+    font-weight: 800
+    margin: 0
+  h5    
+    font-weight: 800
+    margin-bottom: 1em
+  .calendar_menu
+    display: flex
+    justify-content: flex-start
+    margin: 1em 1em auto
+    .btn
+      display: flex
+      justify-content: center
+      align-items: center
+      border-radius: 50%
+      height: 3em
+      width: 3em
+      min-width: 3em
+      i
+        font-size: 22px
+
+
+// Calendar
+.Month-Calendar
+  max-width: 1200px
+  margin: 0 auto
+  padding: 0px
+  background-color: $calendar-bg
+  justify-content: center
+  display: flex
+  border-radius: 4px
+  .container
+    padding: 1em !important
+    border-radius: 4px
+    .monthToggleBtn
+      display: flex
+      .btn
+        margin: 0 1em 1.5em 2px
+        min-width: 5em
+        border-radius: 4px !important
+    .date-rows, .month-rows 
+      color: #2c3e50
+      background-color: $calendar-bg
+      margin: 0 !important
+      border-bottom: 1px solid
+      div
+        padding: 10px 5px
+        p
+          margin: 0 !important  
+      .month
+        background-color: $calendar-color
+        color: $calendar-bg
+        margin: 0 
+        border-top: 1px solid
+        padding: 5px
+        h4
+          color: $white
+          margin: 5px
+    .week-rows
+      margin: 0 !important
+      padding: 0
+      .noborder
+        border-bottom: none !important
+      .allweeks    
+        border-right: 1px solid black
+        background-color: $week-color
+        border-bottom: 2px solid #eee 
+        display: flex
+        justify-content: center
+        align-items: center 
+        .weeks
+          color: #eee
+          h1
+            padding: 0px
+            margin: 0px
+            font-size: 4.5rem
+            font-weight: 800
+          span
+            padding: 0px
+            margin: 0px
+            font-size: 1rem
+            font-weight: 800
+      .week-workouts
+        border-bottom: 1px solid
+        border-right: 1px solid
+        align-items: center
+        display: flex
+        justify-content: center
+        flex-direction: column
+        cursor: pointer
+        background-color: $calendar-bg
+        padding: 0
+        p
+          padding: 5px 13px
+          margin-top: 0
+          margin-bottom: 0rem 
+          font-weight: 800
+        &:hover
+          p
+            color: $myBlue
+        .rest::after
+          content: " or"
+          font-size: 12px
+          font-weight: 700
+          color: $pluse
+        .rest
+          padding-bottom: 0
+
+        .pluse::after
+          content: "(optional)"
+          font-size: 12px
+          display: block
+          font-weight: 700
+          color: $pluse
+        p.pluse
+          color: $pluse
+          font-weight: 800
+          padding: 0
+        .firstWeek
+          padding: 5px
+          p 
+            font-size: 10px
+            padding: 0px
+            color: $pluse
+        .lastWeek
+          padding: 5px
+          p
+            font-size: 10px
+            padding: 0px
+            color: $pluse
+
+// v-overlay
+.Month-Calendar
+  .isCompleted
+    text-decoration: #ED4337 solid line-through
+    text-decoration-thickness: 2px
+  .v-overlay__content
+    background-color: #2a2929 !important
+    border-radius: 4px
+    .v-list-item__title
+      color: white !important
+  .calendarOverlay
+    z-index: 10
+    .v-sheet.v-list
+      background-color: #2a2929 !important
+    .calendarOverlay-bottom_complete
+      padding: 1em
+      font-size: 1.2em
+      .checkCircle
+        font-size: 1.3em !important
+        margin-bottom: 8px !important
+    .calendarOverlay-bottom
+      display: flex 
+      justify-content: space-between
+      align-items: center
+      flex-wrap: wrap
+      .v-btn
+        margin: 0 1em
+        background-color: #6c757d !important
+        &:hover
+          background-color: $myBlue !important
+          color: white !important
+      .v-label
+        margin: 0px !important
+        color: $white
+      .calendarOverlay-bg
+        background-color:#2a2929 !important
+        width: fit-content 
+        padding: 0 1em
+        width: auto 
+        display: flex
+        align-items: center
+        justify-content: center
+        max-width: 10em
+        .v-text-field__details
+          display: none !important
+      .colorPicker
+        width: 2em
+        border-radius: 50%
+        height: 2em
+        display: flex
+        justify-content: center
+        align-items: center
+        span
+          font-size: 1.5em
+      .Blue
+        background-color: #2196F3
+      .Indigo
+        background-color: #3f51b5 
+      .Purple
+        background-color: #673ab7 
+      .Cyan
+        background-color: #00bcd4 
+      .Green
+        background-color: #4CAF50  
+      .Orange
+        background-color: #ff9800
+      .Grey
+        background-color: #757575  
+    .calendarOverlay-iframe 
+        border: none
+        width: 99.70%
+        height: 100%
+        min-height: 20em
+    .topheader 
+      display: flex
+      justify-content: space-between
+      align-items: center
+      span
+        padding: 0 1em
+    .closeBtn 
+      align-self: flex-end !important
+    .calendarFrame 
+      width: 99.70%
+      position: relative
+      .calendarDownload 
+        width: 100%
+        position: absolute
+        height: 55px
+        z-index: 4
+        display: flex
+        justify-content: flex-end
+        .icon_div 
+          width: 100%
+          display: flex
+          justify-content: flex-end
+          align-items: center
+          padding: 10px 29px 3px 0px
+          .dl_icon
+            background: rgba(0,0,0,.87)
+            width: 3em
+            border: 1px solid #6c757d
+            height: 3em
+            border-radius: 50%
+            display: flex
+            justify-content: center
+            align-items: center
+            cursor: pointer
+            font-size: 13px
+            &:hover
+              background: $white
+            a
+              i
+                font-size: 3.3rem
+                color: #6c757d
+                transition: 0.3s ease
+                &:hover
+                  color: $myBlue     
+              
+// Video
+.videos
+  display: flex
+  flex-wrap: wrap
+  background-color: #2a2929
+  border-radius: 4px
+  // .loadBtn
+  //   width: 7em
+  //   position: absolute
+  //   z-index: 4
+  .iframe_video 
+    width: 250px
+    cursor: pointer
+    transition: all .2s ease-in-out
+    position: relative
+    display: flex
+    margin: 1em
+    border-radius: 4px
+    background-color: black
+    box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034)
+    &:hover
+      transform: scale(1.1)
+    .block 
+      width: 100%
+      height: 55px
+      position: absolute
+      display: flex
+      justify-content: flex-end
+      background: black
+      border-top-left-radius: 4px
+      border-top-right-radius: 4px 
+      z-index: 4
+      .video_title 
+        color: white
+        margin: 0
+        width: 75%
+        display: flex
+        justify-content: flex-start
+        align-items: center
+        padding: 0 10px
+      .download_icon_div 
+        // width: 3em
+        width: 25%
+        display: flex
+        justify-content: center
+        align-items: center
+        .download_icon 
+          background-color: rgba(0,0,0,.87)
+          width: 2.5em
+          border: 1px solid #6c757d
+          height: 2.5em
+          border-radius: 50%
+          display: flex
+          justify-content: center
+          align-items: center
+          cursor: pointer
+          font-size: 14px
+          &:hover
+            background-color: white !important
+          .dl 
+            color: #6c757d
+            font-size: 3.1em
+            transition: 0.3s ease
+            &:hover
+              color: #0062cc
+              
+    .video_cover 
+      position: absolute
+      background-color: black
+      width: 100%
+      height: 315px
+      display: flex
+      justify-content: center
+      align-items: center
+      border-radius: 4px
+      .v-progress-circular 
+        position: absolute
+        z-index: 3
+        color: #fff
+      .img_div 
+        width: 100%
+        height: 100%
+        position: relative
+        z-index: 2
+        border-radius: 4px
+        img
+          width: 100%
+          height: 315px
+          object-fit: contain
+
+    // Iframe            
+    .iframe, .iframe_div 
+      display: flex
+      justify-content: center
+      align-items: center
+      background-color: black
+      border-radius: 4px
+      width: 248px
+      margin: auto
+      height: 313px
+      border: unset
+@media screen and (max-width: 1199px)
+    .videos // Video
+        .iframe_video
+            margin: 1em 25px
+@media screen and (max-width: 1024px)
+  .week-workouts // Calendar
+    p 
+      font-size: 15px
+      padding: 0px 8px !important  
+
+@media screen and (max-width: 955px)
+  .videos // Video
+    .iframe_video
+      margin: 1em 31px !important
+      width: 230px 
+    .block
+      h6
+        font-size: 13px !important
+    .iframe, .iframe_div
+      width: 228px !important       
+@media screen and (max-width: 925px)
+  .week-workouts  // Calendar
+    p 
+      padding: 0px 5px !important  
+
+@media screen and (max-width: 914px)
+  .workout_calendar // Video
+    .videos 
+      width: 100% !important
+      .iframe_video
+        margin: 1em 24px !important
+  
+@media screen and (max-width: 896px)
+   .workout_calendar // Video
+    .videos 
+      .iframe_video
+        margin: 1em calc( (100vw - 746px) / 6 ) !important                                                              
+@media screen and (max-width: 850px)
+  .calendarOverlay-iframe
+    min-height: 15em !important
+  .date-rows // Calendar
+    div
+      p
+        font-size: 13px
+        font-weight: 800
+  .week-workouts 
+    p 
+      font-size: 12px
+  .weeks
+    h1
+      font-size: 4em !important    
+@media screen and (max-width: 780px)
+  .workout_calendar
+    .videos
+      margin: 0px
+      .iframe_video
+        width: 200px !important
+        height: 250px
+        margin: 1em calc( (100vw - 656px) / 6 ) !important 
+        .video_cover, .img_div, .img_div > img
+          width: 200px 
+          height: 250px 
+      .iframe, .iframe_div
+        width: 198px !important
+        height: 246px 
+  .week-workouts  // Calendar
+    p 
+      font-size: 10px     
+@media screen and (max-width: 680px)     
+  .month-rows // Calendar
+    padding: 0 !important
+    .month
+      padding: 0 !important
+  .week-workouts 
+    p 
+      font-size: 9px
+  .weeks
+    h1
+      font-size: 3em !important
+    span
+      font-size: .8em !important
+  .date-rows
+    div
+      p
+        font-size: 9px
+@media screen and (max-width: 667px)
+  .workout_calendar
+    .videos // Video
+      .iframe_video
+        width: 180px !important
+        margin: 1em calc( (100vw - (596px)) / 6 ) !important
+        .video_cover, .img_div, .img_div > img
+          width: 180px !important
+        .iframe, .iframe_div
+          width: 178px !important
+        .block
+          height: 46px
+          h6
+            font-size: 12px           
+@media screen and (max-width: 570px)
+  .workout_calendar
+    .videos  // Video
+      .iframe_video
+        width: 100% !important
+        .video_cover, .img_div, .img_div > img
+          width: 100% !important
+        .iframe, .iframe_div
+          width: 99% !important 
+          display: flex
+          justify-content: center
+          align-items: center
+      .iframe_video
+        margin: 1em auto !important
+        .block
+          background: transparent
+          height: auto
+          .video_title
+            display: none
+          .download_icon_div
+            justify-content: flex-end
+            margin: 1rem 2rem
+            .dl
+              font-size: 54px
+@media screen and (max-width: 540px)      
+  .workout_calendar // calendar
+    padding: 0 !important
+    .container
+      min-height: 280px !important
+    .weeks
+      h1
+        font-size: 2em !important
+      span
+        font-size: 11px !important  
+    .week-workouts 
+      p
+        font-size: 8px !important
+  .rest::after, .pluse::after
+      font-size: 8px !important
+@media screen and (max-width: 492px)
+  .workout_calendar  // calendar
+    .week-workouts 
+      p 
+        padding: 0px !important
+@media screen and (max-width: 465px)
+  .workout_calendar // Calendar
+    .container 
+      min-height: 1em !important
+    .weeks
+      h1
+        font-size: 1.8em !important
+      span
+        font-size: 8px !important
+    .rest::after, .pluse::after
+      font-size: 6px !important    
+    .week-workouts 
+      p 
+        padding: 0 2px !important
+        font-size: 6px !important    
+    .date-rows
+      div
+        p
+          font-size: 7px !important
+    .monthToggleBtn
+      .monthBtn1
+        margin: 0 2em 1.5em 0em
+      .monthBtn2
+        margin: 0 0em 1.5em 0em !important    
+@media screen and (max-width: 370px)
+  .banner  // Banner
+    h1
+      font-size: 2em
+  .container // Calendar
+    min-width: 310px !important
+  .workout_calendar 
+    .rest::after, .pluse::after
+      font-size: 6px !important   
+    .weeks
+      h1
+        font-size: 2em !important
+      span
+        font-size: 7px !important
+    .firstWeek, .lastWeek
+      padding: 3px !important    
+    .week-workouts 
+      p 
+        font-size: 5px !important
+    .date-rows
+      div
+        p
+          font-size: 5.5px !important 
+@media screen and (max-width: 280px)
+  .workout_calendar // Calendar
+    .week-workouts 
+      p 
+        padding: 0px !important   
+    .date-rows
+      div
+        padding: 10px 2px !important
+    .container
+      min-width: 270px !important
+    .lastWeek
+      padding: 0px !important
+    .allWeeks
+      padding: 0 10px !important                                            

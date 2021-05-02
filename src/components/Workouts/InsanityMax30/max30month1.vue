@@ -1,119 +1,80 @@
 <template>
-    <div>
-        <div>
-            <b-sidebar id="sidebar-variant" title="DAY-1 STATUS" bg-variant="dark" text-variant="light" shadow>
-                <div class="px-3 py-2">
-                    <v-img src="./cover.jpg"></v-img>
-                    <p>
-                    Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis
-                    in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-                    </p>
+  <div class="Month-Calender">
+      <div class="container">
+          <div class="row">
+              <div class="col-12 title">
+                  <h4></h4>
+              </div>
+          </div>
+          <div class="row date-rows">
+              <div class="col-12 month">
+                  <h4>MONTH 1</h4>
+              </div>
+          </div>
+          <div class="row date-rows">
+              <div class="col-1"></div>
+              <div class="col"><p>MONDAY</p></div>
+              <div class="col" ><p>TUESDAY</p></div>
+              <div class="col"><p>WENDSDAY</p></div>
+              <div class="col"><p>THURSDAY</p></div>
+              <div class="col"><p>FRIDAY</p></div>
+              <div class="col"><p>SATURDAY</p></div>
+              <div class="col"><p>SUNDAY</p></div>
+          </div>
+          <div class="row week-rows" :key="calendar.index" v-for="calendar in max30Month1Calendar">
+              <div class="col-1 allweeks" :class="{noborder:calendar.week ==='4' }"><div class="weeks"><span>WEEK</span><h1>{{calendar.week}}</h1></div></div>
+                <div class="col week1 week-workouts">
+                  <div v-if="calendar.status ==='week1'" class="firstWeek"><p>Take your "Day 1"</p><p>pic & stats</p></div>
+                  <p>{{calendar.mon}}</p>
                 </div>
-            </b-sidebar>
-        </div>
-        <b-container fluid="xl" class="sheet">
-            <b-row class="month-row">
-                <b-col class="month1"><h4>MONTH 1</h4></b-col>
-            </b-row>
-            <b-row class="date-row">
-                <b-col class="col-1"></b-col>
-                <b-col><p>MONDAY</p></b-col>
-                <b-col><p>TUESDAY</p></b-col>
-                <b-col><p>WENDSDAY</p></b-col>
-                <b-col><p>THURSDAY</p></b-col>
-                <b-col><p>FRIDAY</p></b-col>
-                <b-col><p>SATURDAY</p></b-col>
-                <b-col><p>SUNDAY</p></b-col>
-            </b-row>
-            <div class="boxes">
-                <b-row class="week1-row" week-row-month1>
-                <b-col class="col-1 w"><div class="week"><span>WEEK</span><h1>1</h1></div></b-col>
-                <b-col class="work1" workout-month1><p>CARDIO CHALLENGE<p>
-                    <div class="day-1" v-b-toggle.sidebar-variant><p>Take your "Day 30"</p><p>pic & stats</p></div>
-                </b-col>
-                <b-col class="work2" workout-month1><p>TABATA</p> <p>POWER</p>
-                </b-col>
-                <b-col class="work3" workout-month1><p>SWEAT</p><p>INTERVALS*</p>
-                </b-col>
-                <b-col class="work4" workout-month1>
-                    <p>TABATA</p> <p>POWER</p>
-                </b-col>
-                <b-col class="work5" workout-month1><p>FRIDAY FIGHT:</p><p class="r1">ROUND 1</p>
-                </b-col>
-                <b-col class="work6" workout-month1>
+                <div class="col week-workouts">
+                  <p>{{calendar.tue}}</p>
+                </div>
+                <div class="col week-workouts">
+                  <p>{{calendar.wed}}</p>
+                </div>
+                <div class="col week-workouts">
+                  <p>{{calendar.thu}}</p>
+                </div>
+                <div class="col week-workouts">
+                  <p>{{calendar.fri}}</p>
+                </div>
+                <div class="col week-workouts">
                     <p class="rest">REST</p>
-                    <p class="pluse">PULSE</p>
-                </b-col>
-                <b-col class="work7" w7-m1><p>REST</p></b-col>
-                </b-row>
-                <b-row class="week2-row" week-row-month1>
-                <b-col class="col-1 w"><div class="week"><span>WEEK</span><h1>2</h1></div></b-col>
-                <b-col class="work1" workout-month1><p>CARDIO CHALLENGE</p>
-                </b-col>
-                <b-col class="work2" workout-month1><p>TABATA</p> <p>POWER</p>
-                </b-col>
-                <b-col class="work3" workout-month1><p>SWEAT</p><p>INTERVALS*</p>
-                </b-col>
-                <b-col class="work4" workout-month1>
-                    <p>TABATA</p> <p>POWER</p>
-                </b-col>
-                <b-col class="work5" workout-month1><p>FRIDAY FIGHT:</p><p class="r1">ROUND 1</p>
-                </b-col>
-                <b-col class="work6" workout-month1>
-                    <p class="rest">REST</p>
-                    <p class="pluse">PULSE</p>
-                </b-col>
-                <b-col class="work7" w7-m1><p>REST</p></b-col>
-                </b-row>
-                <b-row class="week3-row" week-row-month1>
-                <b-col class="col-1 w"><div class="week"><span>WEEK</span><h1>3</h1></div></b-col>
-                <b-col class="work1" workout-month1><p>CARDIO CHALLENGE</p>
-                </b-col>
-                <b-col class="work2" workout-month1><p>TABATA</p> <p>STRENGTH</p>
-                </b-col>
-                <b-col class="work3" workout-month1><p>SWEAT</p><p>INTERVALS*</p>
-                </b-col>
-                <b-col class="work4" workout-month1><p>TABATA</p> <p>STRENGTH</p>
-                </b-col>
-                <b-col class="work5" workout-month1><p>FRIDAY FIGHT:</p><p class="r1">ROUND 1</p>
-                </b-col>
-                <b-col class="work6" workout-month1>
-                    <p class="rest">REST</p>
-                    <p class="pluse">PULSE</p>
-                </b-col>
-                <b-col class="work7" w7-m1><p>REST</p></b-col>
-                </b-row>
-                <b-row class="week4-row" week-row-month1>
-                <b-col class="col-1 lw"><div class="week"><span>WEEK</span><h1>4</h1></div></b-col>
-                <b-col class="lwork1" lwork-m1><p>CARDIO CHALLENGE</p>
-                </b-col>
-                <b-col class="lwork2" lwork-m1> <p>TABATA</p> <p>STRENGTH</p>
-                </b-col>
-                <b-col class="lwork3" lwork-m1><p>SWEAT</p><p>INTERVALS*</p>
-                </b-col>
-                <b-col class="lwork4" lwork-m1>
-                    <p>TABATA</p> <p>STRENGTH</p>
-                </b-col>
-                <b-col class="lwork5" lwork-m1><p>FRIDAY FIGHT:</p><p class="r1">ROUND 1</p>
-                </b-col>
-                <b-col class="lwork6" lwork-m1>
-                    <p class="rest">REST</p>
-                    <p class="pluse">PULSE</p>
-                </b-col>
-                <b-col class="lwork7-m1"><p>REST</p><div class="day-30" v-b-toggle.sidebar-right><p>Take your "Day 30"</p><p>pic & stats</p></div></b-col>
-                </b-row>
-            </div>
-            <div>
-                <b-sidebar id="sidebar-right" title="Day-30 STATUS" bg-variant="dark" text-variant="light"  right shadow>
-                    <div class="px-3 py-2">
-                        <v-img src="./cover.jpg"></v-img>
-                    <p>
-                        Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis
-                        in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-                    </p>
+                  <p class="pluse">PULSE</p>
+                  <!-- <p>{{calendar.sat}}</p> -->
+                </div>
+                <div class="col week-workouts">
+                  <p  v-if="calendar.status !=='week4'">
+                    {{calendar.sun}}
+                  </p>
+                  <div v-if="calendar.status ==='week4'">
+                      <p>REST</p>
+                      <div class="lastWeek">
+                        <p>Take your "Day 30"</p>
+                        <p>pic & stats</p>
+                      </div>
                     </div>
-                </b-sidebar>
-            </div>
-        </b-container>
-    </div>
+                </div>
+          </div>
+      </div>
+  </div>
 </template>
+<script>
+import axios from 'axios'
+export default {
+  data () {
+    return {
+      max30Month1Calendar: ''
+    }
+  },
+  mounted () {
+    axios
+      .get('https://workoutstracker-default-rtdb.firebaseio.com/InsanityMax30.json')
+      .then(response => (this.max30Month1Calendar = response.data.Month1Calendar))
+  }
+}
+</script>
+<style scoped>
+
+</style>

@@ -1,12 +1,6 @@
 <template>
   <div class="dashbroad">
-    <v-card dark color="dashbroad-header">
-      <v-card-title class="text-center justify-center py-6">
-        <h1 class="font-weight-bold display-4 dashbroad-header--text">
-          My Dashbroad
-        </h1>
-      </v-card-title>
-
+  <v-card dark color="dashbroad-header">
     <v-tabs
       dark
       v-model="tab"
@@ -18,17 +12,41 @@
         v-for="section in sections"
         :key="section"
       >
-        {{ section }}
+      {{ section }}
       </v-tab>
     </v-tabs>
+     <v-tabs-items class="darkBg" v-model="tab">
+      <v-tab-item v-for="(selection, i) in selections" :key="i">
+        <v-card color="basil" flat v-if="tab === 0">
+          <UnlockedWorkouts
+            id="calendar"
+            v-if="selection === 'Workouts'"
+            :unlockedWorkouts ='unlockedWorkouts'
+          />
+        </v-card>
+      </v-tab-item>
+    </v-tabs-items>
 
-    <v-tabs-items  v-model="tab">
-      <v-tab-item v-for="selection in selections" :key="selection">
-        <v-card color="basil" flat>
-          <Calendar class="calendar" v-if="selection === 'Calendar'" />
-          <MyTable class="table" v-if="selection === 'Records'"/>
-          <LineChart class="lineChart" v-if="selection === 'Records'" style="display:none"/>
-          <BarChart class="barChart"  v-if="selection === 'Diet'" />
+    <v-tabs-items  class="darkBg" v-model="tab">
+      <v-tab-item v-for="(selection, i) in selections" :key="i">
+        <v-card color="basil" flat v-if="tab === 1"  >
+          <Calendar
+            id="calendar"
+            v-if="selection === 'Calendar'"
+            :userCalendar = 'userCalendar'
+          />
+        </v-card>
+      </v-tab-item>
+    </v-tabs-items>
+
+    <v-tabs-items  class="darkBg" v-model="tab">
+      <v-tab-item v-for="(selection, i) in selections" :key="i">
+        <v-card color="basil" flat v-if="tab === 2">
+          <Records
+            id="records"
+            v-if="selection === 'Records'"
+            :userCalendar = 'userCalendar'
+          />
         </v-card>
       </v-tab-item>
     </v-tabs-items>
@@ -37,18 +55,16 @@
 </template>
 
 <script>
-import LineChart from '@/components/Dashbroad/lineChart.vue'
-import BarChart from '@/components/Dashbroad/barChart.vue'
-import MyTable from '@/components/Dashbroad/table.vue'
+import UnlockedWorkouts from '@/components/Dashbroad/UnlockedWorkouts/unlockedWorkouts.vue'
 import Calendar from '@/components/Dashbroad/calendar.vue'
-
+import Records from '@/components/Dashbroad/records.vue'
+import { mapState } from 'vuex'
 export default {
   name: 'Home',
   components: {
-    MyTable,
-    BarChart,
-    LineChart,
-    Calendar
+    UnlockedWorkouts,
+    Calendar,
+    Records
   },
   data () {
     return {
@@ -57,28 +73,18 @@ export default {
       context: '',
       tab: null,
       sections: [
-        'Workouts', 'Calendar', 'Records', 'Diet'
+        'Workouts', 'Calendar', 'Records'
       ],
       selections: [
-        'Workouts', 'Calendar', 'Records', 'Diet'
+        'Workouts', 'Calendar', 'Records'
       ]
     }
+  },
+  computed: {
+    ...mapState([
+      'unlockedWorkouts',
+      'userCalendar'
+    ])
   }
 }
 </script>
-<style>
-.v-application--wrap {
-  min-height: auto
-}
-/* Helper classes */
-.dashbroad-header {
-  background-color: #1E1E1E !important;
-  opacity: .8 !important;
-}
-.dashbroad-header--text {
-  color: rgba(255, 255, 255, 0.7) !important;
-}
-/* .v-sheet.v-card {
-    border-radius: 0;
-} */
-</style>

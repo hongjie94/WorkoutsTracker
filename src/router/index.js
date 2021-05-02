@@ -4,11 +4,12 @@ import Home from '../views/Home.vue'
 import Login from '../views/Authentication/Login.vue'
 import Register from '../views/Authentication/Register.vue'
 import ResetPassword from '../views/Authentication/ResetPassword.vue'
-import Shop from '../views/Shop.vue'
+
+import Resources from '../views/Resources.vue'
 import Workout from '../views/Workout.vue'
-import InsaityMax30 from '../views/Workouts/InsanityMax30.vue'
+import CurrentWorkout from '../components/Dashbroad/UnlockedWorkouts/currentWorkout.vue'
 import Dashbroad from '../views/Dashbroad.vue'
-import Cart from '../views/Cart.vue'
+// import Cart from '../views/Cart.vue'
 import PaymentSuccess from '../views/PaymentSuccess.vue'
 import firebase from 'firebase/app'
 import 'firebase/auth'
@@ -42,20 +43,21 @@ const routes = [
     component: Workout
   },
   {
-    path: '/workouts/:name',
-    name: 'InsaityMax30',
-    component: InsaityMax30
+    path: '/workouts/:id',
+    name: 'CurrentWorkout',
+    component: CurrentWorkout,
+    meta: { requiresAuth: true }
   },
   {
-    path: '/shop',
-    name: 'Shop',
-    component: Shop
+    path: '/resources',
+    name: 'Resources',
+    component: Resources
   },
-  {
-    path: '/cart',
-    name: 'Cart',
-    component: Cart
-  },
+  // {
+  //   path: '/cart',
+  //   name: 'Cart',
+  //   component: Cart
+  // },
   {
     path: '/paymentSuccess/:workout_id',
     name: 'PaymentSuccess',

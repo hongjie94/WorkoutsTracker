@@ -1,27 +1,14 @@
-
-// Unlock Payment overlay
-.unlock_vCard
-  border-top-left-radius: unset !important
-  border-top-right-radius: unset !important
+// Overlay div
+.overlay
   background: $unlockCard-bg !important
-.unlockPayment 
-  display: flex
-  justify-content: center
-  flex-direction: column
-  align-items: center
-  padding: 1em 2em
-  background: $unlockCard-bg !important
-  .unlock_img
-    max-width:200px
-    min-width: 200px
-    margin-bottom: 1em
-    border-radius: 4px 
+  border-top-left-radius: 4px !important
+  border-top-right-radius: 4px !important
 
 // Close overlay div
 .closeUnlockBtn_div
   border-top-left-radius: 4px !important
   border-top-right-radius: 4px !important
-  background: $unlockCard-bg
+  background: $unlockCard-bg !important
   height: 40px
   .closeUnlockBtn
     display: flex
@@ -37,6 +24,28 @@
         color: $white
         cursor: pointer
         transition: all .5s
+
+// Unlock Payment overlay
+.unlock_vCard
+  border-top-left-radius: unset !important
+  border-top-right-radius: unset !important
+  background: $unlockCard-bg !important
+.unlockPayment 
+  display: flex
+  justify-content: center
+  flex-direction: column
+  align-items: center
+  padding: 1em 2em
+  background: $unlockCard-bg !important
+  .card_image
+    img
+      width: 50px
+
+  .unlock_img
+    max-width:200px
+    width: 100%
+    margin-bottom: 1em
+    border-radius: 4px 
 
 // Payment Buttonn div
 .paymentBtn_div
@@ -72,14 +81,15 @@
 .notLogin
   border-top-left-radius: unset !important
   border-top-right-radius: unset !important
-  background: url('./img/notLogin.jpg') no-repeat fixed center
-  background-size: contain
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1)), url('./img/notLogin.jpg')
+  background-position: center center
+  background-size: cover
   min-height: 35em  
   display: flex
   justify-content: flex-end
   flex-direction: column
   padding: 2em 4em
-  width: 25em
+  max-width: 25em
   .notLogin_text, .error
     margin-bottom: 3em
   .error
@@ -102,7 +112,209 @@
           background: $main-dark
     p
       margin-top: 1em        
-      
-  
 
+@media screen and ( max-width: 414px ) 
+  .v-overlay__content
+    width: 21rem !important
+  .notLogin
+    min-height: 30em 
+    padding: 1em 4em 
+  .notLogin_text
+    margin-bottom: 2em !important
+    font-size: 1.1em  !important
+  .error
+    overflow: scroll
+    margin: 1em  0px !important
+    h4
+      font-size: 1.1em  !important 
+  .unlock_auth_button
+    padding: 5px 0 !important
+    min-width: 3em
+  .forgot
+    margin-top: -1em !important  
+
+@media screen and ( max-height: 540px )
+  .closeUnlockBtn_div
+    height: 30px
+    .closeUnlockBtn i
+      font-size: 22px
+  .unlockPayment
+    height: 77vh !important
+    padding: .5em 2em
+    .unlockDetail
+      .unlock_img
+        height: 175px
+        width: 133px !important
+        margin: .5em auto !important
+    .card_image
+        img
+          width: 25px  
+    .paymentBtn_div
+      .stripeBtn
+        width: 10em
+        height: 2em
+      .paypalCheckout
+        max-width: 10em
+        height: 2em
+  .overlay
+    width: 20em 
+    height: 80vh
+  .notLogin
+    min-height: 50vh !important
+    max-width: auto !important 
+    height: 75vh
+    .field-wrap
+      margin-bottom: 20px !important
+  .error
+    margin: .5em 0 !important
+    overflow: scroll
+    h4
+      font-size: 1em  !important 
+  .notLogin_text
+    font-size: 1em !important
+    margin: 1em 0 !important
+  .unlock_auth_button
+    padding: 5px 0 !important
+  .content p
+    margin: .5em 0 !important
   
+@media screen and ( max-height: 414px )
+  .unlockPayment   // user login views  
+    height: 80vh
+    .paymentBtn_div
+      .stripeBtn
+        margin: .5em
+    .unlockDetail
+      h5
+        font-size: 13px
+        margin-bottom: 0.2rem
+      h6
+        font-size: 11px
+        margin-bottom: 0rem  
+      .unlock_img
+        height: 142px
+        width: 107px !important
+  .unlock_auth_button  // user not login views     
+    padding: 5px 0 !important
+    font-size: 1em !important
+  .notLogin
+    padding: 0em 3em .5em !important
+    .auth_input
+      padding: 1px 10px
+  .error 
+    h4
+      font-size: 14px  !important      
+  .overlay
+    width: 17em
+    height: 83vh
+  .content p
+    font-size: 13px
+@media screen and ( max-height: 390px )
+    
+  .unlockPayment // user login views
+    .unlockDetail
+      .unlock_img
+        height: 120px
+        width: 90px !important
+    // user not login views        
+  .overlay
+    width: 15em
+    height: 80vh
+  .closeUnlockBtn_div .closeUnlockBtn i 
+    font-size: 21px
+  .closeUnlockBtn_div
+    height: auto
+  .notLogin_text
+    font-size: 14px !important
+    margin: auto !important
+  .notLogin
+    .auth_input
+      font-size: 14px 
+      padding: 3px 10px
+@media screen and ( max-height: 320px )
+  .unlockPayment // user login views        
+    height: 75vh
+    .paymentBtn_div
+      .stripeBtn
+        width: 113px
+        height: 2.5em
+        font-size: 10px
+      .paypalCheckout
+        max-width: 7em
+        height: 2em
+    .unlockDetail
+      h5
+        font-size: 12px !important
+      h6
+        font-size: 11px !important
+      .unlock_img
+        height: 88px
+        width: 67px !important
+  .notLogin
+    .field-wrap
+      margin-bottom: 10px !important
+    .content
+      .login
+        p
+          font-size: 8px
+          margin: 3px 0 !important       
+@media screen and ( max-height: 280px )
+  .closeUnlockBtn_div  // user login views  
+    height: 20px
+    .closeUnlockBtn i
+      font-size: 16px
+      padding: 0 5px
+  .unlockPayment
+    height: 78vh !important 
+    .paymentBtn_div
+      .stripeBtn
+        font-size: 9px
+        width: 80px
+      .paypalCheckout
+        width: 80px
+        height: 2em
+    .unlockDetail
+      h5
+        font-size: 8px !important
+      h6
+        font-size: 7px !important            
+@media screen and ( max-width: 320px )
+  .unlockPayment  // user login views  
+    .unlockDetail
+      .unlock_img
+        height: 195px
+        width: 150px !important
+        margin: .5em auto !important 
+    .card_image
+      img
+        width: 30px !important
+    .paymentBtn_div
+      .stripeBtn
+        font-size: 12.2px
+        min-width: 3em
+        max-width: 17em
+        width: 17em
+      .paypalCheckout
+        width:13em
+        height: 2em
+        margin-bottom: 1em
+  .v-overlay__content  // user not login views    
+    width: 16rem !important 
+  .notLogin
+    padding: 0em 3em !important
+    min-height: 15em !important
+    height: 22em !important
+    .field-wrap
+      margin-bottom: 1em
+  .forgot
+    margin: .5em 0 !important
+  .unlock_auth_button
+    padding: 5px 0 !important
+    font-size: 1.3em !important 
+  .notLogin_text
+    margin: auto !important
+  .error
+    margin: .5em 0 !important  
+    h4 
+     font-size: 14px !important
+         

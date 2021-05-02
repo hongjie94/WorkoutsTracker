@@ -1,8 +1,8 @@
 <template>
      <div class="home_email">
         <div class="email__content">
-            <h1 class="animate-email">Get Access to Your Favorite Workout</h1>
-            <p class="animate-email">Sign up and get started with your first traning today!</p>
+            <h1 class="animate-email">Get Access to Your Favorite Workouts</h1>
+            <p class="animate-email">Sign up and Get Started Today!</p>
             <form action="#" class="animate-email">
                 <div class="form__wrap">
                     <label for="email">

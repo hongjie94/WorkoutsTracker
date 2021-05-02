@@ -6,19 +6,19 @@
           <b-dropdown id="dropdown-1"  size="sm" :text="showCategory" class="m-md-2">
             <b-dropdown-item
               @click="showAll(); changeData();">
-              All
+              ALL
             </b-dropdown-item>
               <b-dropdown-item
               @click="showCardio(); changeData();">
-              Cardio
+              CARDIO
             </b-dropdown-item>
             <b-dropdown-item
               @click="showMuscle(); changeData();">
-              Muscle
+              STRENGTH
             </b-dropdown-item>
             <b-dropdown-item
               @click="showYoga(); changeData();">
-              Yoga
+              YOGA
             </b-dropdown-item>
           </b-dropdown>
           <v-autocomplete
@@ -49,7 +49,7 @@ export default {
     return {
       select: '',
       search: null,
-      showCategory: 'All',
+      showCategory: 'ALL',
       pageNum: null,
       Category: 'Workouts',
       workoutCounts: null,
@@ -68,7 +68,7 @@ export default {
   methods: {
     // When Click Category All (Default)
     showAll () {
-      this.showCategory = 'All'
+      this.showCategory = 'ALL'
       this.Category = 'Workouts'
       this.workoutCounts = this.$store.state.workouts.length
       this.pageNum = Math.ceil(this.$store.state.workouts.length / 10)
@@ -77,7 +77,7 @@ export default {
     },
     // When Click Category Cardio
     showCardio () {
-      this.showCategory = 'Cardio'
+      this.showCategory = 'CARDIO'
       this.Category = 'Cardio Workouts'
       this.workoutCounts = this.$store.getters.CardioWorkouts.length
       this.pageNum = Math.ceil(this.$store.getters.CardioWorkouts.length / 10)
@@ -86,8 +86,8 @@ export default {
     },
     // When Click Category Muscle
     showMuscle () {
-      this.showCategory = 'Muscle'
-      this.Category = 'Muscle Workouts'
+      this.showCategory = 'STRENGTH'
+      this.Category = 'STRENGTH Workouts'
       this.workoutCounts = this.$store.getters.MuscleWorkouts.length
       this.pageNum = Math.ceil(this.$store.getters.MuscleWorkouts.length / 10)
       this.noResult = false
@@ -95,7 +95,7 @@ export default {
     },
     // When Click Category Yoga
     showYoga () {
-      this.showCategory = 'Yoga'
+      this.showCategory = 'YOGA'
       this.Category = 'Yoga Workouts'
       this.workoutCounts = this.$store.getters.YogaWorkouts.length
       this.pageNum = Math.ceil(this.$store.getters.YogaWorkouts.length / 10)
@@ -105,7 +105,7 @@ export default {
     // When user press enter in search bar
     enterPressed () {
       this.select = this.search
-      this.showCategory = 'Search'
+      this.showCategory = 'SEARCH'
       this.Category = 'Search results'
       this.workoutCounts = this.filterWorkouts.length
       if (this.workoutCounts === 0) {

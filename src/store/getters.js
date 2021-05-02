@@ -13,5 +13,12 @@ export default {
     return state.workouts.filter(
       (workout) => workout.category === 'Yoga'
     )
+  },
+  UnlockedWorkoutName: (state) => {
+    const Unlockedname = []
+    state.unlockedWorkouts.forEach(workouts => {
+      Unlockedname.push(workouts.workoutName)
+    })
+    return Unlockedname
   }
 }
