@@ -8,7 +8,7 @@
       <router-link  v-show="!loggedIn" to= "/login" exact>
         <i @click="closeNav" class="fas fa-user mobile_notlogin"></i>
       </router-link>
-      <i v-b-tooltip.hover :title="'Logged in as ' + currentUser" class="fas fa-user mobile_login" v-show="loggedIn"></i>
+      <i v-b-tooltip.hover :title="`Logged in as ${currentUser}`" class="fas fa-user mobile_login" v-show="loggedIn"></i>
     </div>
     <div class="navbar__toggle" :class="{isactive: active }" @click="actvieToggle" id="mobile-menu" >
       <span class="bar"></span>
@@ -19,7 +19,7 @@
     <div class="navbar__menu hide" :class="{active: active, show: active}">
       <div class="nav_center" @click="overflowYAuto">
         <router-link class="navbar__link c" to= "/" exact> Home </router-link>
-        <router-link class="navbar__link c" to= "/workout" exact> Workouts</router-link>
+        <router-link class="navbar__link c" to= "/workouts" exact> Workouts</router-link>
         <router-link class="navbar__link c" to= "/resources" exact> Resources </router-link>
         <router-link class="navbar__link c" v-if="loggedIn"  to= "/dashbroad" exact> Dashbroad </router-link>
         <a class="navbar__link mobile_logout" @click="signOut" v-if="loggedIn"> <span>Sign Out</span></a>
@@ -28,7 +28,7 @@
         <transition  appear enter-active-class="animated rubberBand pd">
             <span class="user"
               v-b-tooltip.hover
-              :title="'Logged in as '+ currentUser"
+              :title="`Logged in as ${currentUser}`"
               v-if="loggedIn">
               <i class="fas fa-user"></i>
               {{userFN}} {{userLN}}

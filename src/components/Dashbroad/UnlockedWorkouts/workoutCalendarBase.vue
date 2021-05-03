@@ -184,6 +184,7 @@
 </template>
 
 <script>
+import { bus } from '@/main'
 import firebase from 'firebase/app'
 import db from '@/components/firebaseInit'
 import { mapState, mapActions } from 'vuex'
@@ -312,7 +313,13 @@ export default {
       await dbProgramName.get().then((doc) => {
         this.CompletedDays.push(this.workoutDay)
         const remainDays = (this.CompletedDays.length / this.totalWorkoutDays)
-        const updateProgress = Math.round(remainDays * 100)
+        const updateProgress = Math.ceil(remainDays * 100)
+        // Pass data to parent components
+        bus.$emit('changeCompletedData', {
+          progress: updateProgress,
+          completedDays: this.CompletedDays.length,
+          remainingDays: (this.totalWorkoutDays - this.CompletedDays.length)
+        })
         dbProgramName.set({
           CompletedDays: this.CompletedDays,
           Progress: updateProgress
@@ -335,6 +342,7 @@ export default {
         }
       })
       this.$store.dispatch('getUserData', this.uid)
+      this.hideOverlay()
       alert('Nice job you have completed Insanity day # 1 workout')
     }
   }

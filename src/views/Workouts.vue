@@ -26,8 +26,10 @@ import WorkoutHeading from '@/components/Workout/workoutHeading.vue'
 import WorkoutCards from '@/components/Workout/workoutCards.vue'
 import WorkoutPagination from '@/components/Workout/workoutPagination.vue'
 import { bus } from '@/main'
+import { mapActions } from 'vuex'
+import firebase from 'firebase/app'
 export default {
-  name: 'Workout',
+  name: 'Workouts',
   components: {
     WorkoutHeading,
     WorkoutCards,
@@ -44,6 +46,21 @@ export default {
       filterWorkouts: [],
       workoutCounts: null
     }
+  },
+  computed: {
+    ...mapActions([
+      'getUserData'
+    ])
+  },
+  async mounted () {
+    // Get user id form firbase
+    await firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        const uid = firebase.auth().currentUser.uid
+        this.uid = uid
+        this.$store.dispatch('getUserData', uid)
+      }
+    })
   },
   created () {
     bus.$on('changePage', (updatedPage) => {

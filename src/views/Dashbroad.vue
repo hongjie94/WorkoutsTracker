@@ -22,6 +22,7 @@
             id="calendar"
             v-if="selection === 'Workouts'"
             :unlockedWorkouts ='unlockedWorkouts'
+            :uid = "uid"
           />
         </v-card>
       </v-tab-item>
@@ -58,7 +59,8 @@
 import UnlockedWorkouts from '@/components/Dashbroad/UnlockedWorkouts/unlockedWorkouts.vue'
 import Calendar from '@/components/Dashbroad/calendar.vue'
 import Records from '@/components/Dashbroad/records.vue'
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
+import firebase from 'firebase/app'
 export default {
   name: 'Home',
   components: {
@@ -72,6 +74,7 @@ export default {
       time: '',
       context: '',
       tab: null,
+      uid: null,
       sections: [
         'Workouts', 'Calendar', 'Records'
       ],
@@ -84,7 +87,20 @@ export default {
     ...mapState([
       'unlockedWorkouts',
       'userCalendar'
+    ]),
+    ...mapActions([
+      'getUserData'
     ])
+  },
+  async mounted () {
+    // Get user id form firbase
+    await firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        const uid = firebase.auth().currentUser.uid
+        this.uid = uid
+        this.$store.dispatch('getUserData', uid)
+      }
+    })
   }
 }
 </script>

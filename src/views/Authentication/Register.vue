@@ -40,6 +40,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import db from '@/components/firebaseInit'
 import firebase from 'firebase/app'
 import 'firebase/auth'
@@ -56,6 +57,11 @@ export default {
       show: true
     }
   },
+  computed: {
+    ...mapActions([
+      'getUserData'
+    ])
+  },
   methods: {
     async register () {
       if (this.password !== this.conformation) {
@@ -70,7 +76,16 @@ export default {
               firstName: this.fristname.charAt(0).toUpperCase() + this.fristname.slice(1),
               email: this.email
             }).then(() => {
+              // Create unlocked workout array
+              db.collection(user.uid).doc('unlockedWorkouts').set({
+                unlockedWorkouts: null
+              })
+              // Create User calendar array
+              db.collection(user.uid).doc('userCalendar').set({
+                userCalendar: null
+              })
               // Redirect user to Workout page
+              this.$store.dispatch('getUserData', user.uid)
               this.$router.replace({ name: 'Dashbroad' })
             }).catch((error) => {
               console.error('Error writing document: ', error)

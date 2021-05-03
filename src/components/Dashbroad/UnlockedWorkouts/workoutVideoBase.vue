@@ -1,51 +1,50 @@
 <template>
-   <div class="container videos">
-        <div
-          class="iframe_video"
-          v-for="(video, i) in workoutVideos"
-          :key="i"
-          @click="toggleLoader(video.name)"
-        >
-          <!-- Title and download icon -->
-          <div class="block">
-              <h6 class="video_title">{{video.name}}</h6>
-            <div class="download_icon_div">
-              <div class="download_icon">
-                <a :href="video.downloadLinks" download>
-                  <i class="mdi mdi-download-circle dl"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- loader -->
-          <div class="video_cover" v-if="video.name !== showCover">
-            <div class="img_div">
-              <img :src="video.thumnail" alt="not-found">
-            </div>
-            <v-progress-circular
-              v-if="video.name === showLoader"
-              :rotate="-90"
-              :size="70"
-              :width="15"
-              :value="value"
-            >
-              {{ value }}%
-            </v-progress-circular>
-          </div>
-
-          <!-- iframe -->
-          <div class="iframe_div">
-          <iframe
-            v-if="video.name === showFrame"
-            class="iframe"
-            :src="video.url"
-            allowfullscreen
-            />
+  <div class="container videos">
+    <div
+      class="iframe_video"
+      v-for="(video, i) in workoutVideos"
+      :key="i"
+      @click="toggleLoader(video.name)"
+    >
+      <!-- Title and download icon -->
+      <div class="block">
+          <h6 class="video_title">{{video.name}}</h6>
+        <div class="download_icon_div">
+          <div class="download_icon">
+            <a :href="video.downloadLinks" download>
+              <i class="mdi mdi-download-circle dl"></i>
+            </a>
           </div>
         </div>
-
       </div>
+
+      <!-- loader -->
+      <div class="video_cover" v-if="video.name !== showCover">
+        <div class="img_div">
+          <img :src="video.thumnail" alt="not-found">
+        </div>
+        <v-progress-circular
+          v-if="video.name === showLoader"
+          :rotate="-90"
+          :size="70"
+          :width="15"
+          :value="value"
+        >
+          {{ value }}%
+        </v-progress-circular>
+      </div>
+
+      <!-- iframe -->
+      <div class="iframe_div">
+      <iframe
+        v-if="video.name === showFrame"
+        class="iframe"
+        :src="video.url"
+        allowfullscreen
+        />
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>

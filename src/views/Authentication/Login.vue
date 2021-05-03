@@ -30,6 +30,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import firebase from 'firebase/app'
 import 'firebase/auth'
 export default {
@@ -38,16 +39,25 @@ export default {
       email: '',
       password: '',
       error: '',
-      show: true,
-      loginText: ''
+      show: true
     }
+  },
+  computed: {
+    ...mapActions([
+      'getUserData'
+    ])
   },
   methods: {
     async login () {
       try {
         await firebase.auth().signInWithEmailAndPassword(this.email, this.password)
+        await firebase.auth().onAuthStateChanged(user => {
+          if (user) {
+            const uid = firebase.auth().currentUser.uid
+            this.$store.dispatch('getUserData', uid)
+          }
+        })
         this.$router.replace({ name: 'Dashbroad' })
-        // this.$store.dispatch('getUserData', uid)
       } catch (error) {
         this.show = false
         this.error = error.message

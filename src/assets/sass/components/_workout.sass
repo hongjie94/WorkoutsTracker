@@ -49,7 +49,6 @@
     align-items: center
     &:hover
       cursor: help
-
   // Workout heading dropdown menu
   #dropdown-1__BV_toggle_
     margin-right: 5px !important
@@ -67,7 +66,6 @@
     justify-content: center
     align-items: center
     display: flex  
-    
   // Workout heading icon
   .v-autocomplete .mdi-menu-down::before
    content: '\F0349'
@@ -89,7 +87,9 @@
   width: 100%
   max-width: 1200px
   .card_div
+    opacity: 0.9
     margin: 1em
+    cursor: pointer        
   .card_theme
     background-color: $black !important
     color: $white !important
@@ -110,14 +110,31 @@
     text-align: start
     padding-top: 1px
     color: darkgray !important
-  .v-divider
-    background: white
+  .unlock-section
+    position: absolute
+    width: 100%
+    top: 28%
+    display: flex
+    flex-direction: column
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.7))
+    padding: 0
   .v-card__title + .v-card__subtitle
     margin-top: 0px
-  .v-card__title
-    border-top: 1px solid
   .v-card__text
-    padding: 15px  
+    padding: 15px
+  .workoutsTitle
+    color: white
+    padding: 8px
+    font-size: 1em
+    font-weight: 500
+    display: flex
+    background:#1E1E1E
+    border-bottom-left-radius: 10px
+    border-bottom-right-radius: 10px
+    flex-direction: column
+    align-items: flex-start
+    p
+      margin-bottom: 0px
   .v-card__subtitle, .v-card__title
     padding: 15px 15px 3px 15px
   .btn_unlocked
@@ -169,6 +186,11 @@
       margin: 0em auto !important
     .v-image
       height: 187px !important
+    .workoutsTitle
+      p
+        font-size: 14px
+      span
+        font-size: 12px    
     .v-card__title
       font-size: 12px !important
     .v-card__text
@@ -212,6 +234,7 @@
       width: 150px !important  
     .v-image
       height: 187px !important
+      border-radius: 4px
     .v-card__title
       font-size: 12px !important
       padding: 2px 15px 0px 15px

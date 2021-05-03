@@ -9,8 +9,10 @@ export default {
     const dbRef = db.collection(uid).doc('unlockedWorkouts')
     dbRef.get().then((doc) => {
       const workouts = doc.data().unlockedWorkouts
-      const reverseWorkouts = [...workouts].reverse()
-      state.unlockedWorkouts = reverseWorkouts
+      if (workouts !== null) {
+        const reverseWorkouts = [...workouts].reverse()
+        state.unlockedWorkouts = reverseWorkouts
+      }
     })
   },
 
@@ -19,7 +21,9 @@ export default {
     const dbRef = db.collection(uid).doc('userCalendar')
     dbRef.get().then((doc) => {
       const calendarData = doc.data().userCalendar
-      state.userCalendar = calendarData
+      if (calendarData !== null) {
+        state.userCalendar = calendarData
+      }
     })
   }
 }

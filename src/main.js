@@ -33,12 +33,12 @@ export const bus = new Vue()
 let app
 
 firebase.auth().onAuthStateChanged(user => {
-  console.log('user', user)
   if (!app) {
     new Vue({
       router,
       store,
       vuetify,
+      user,
       render: h => h(App)
     }).$mount('#app')
   }

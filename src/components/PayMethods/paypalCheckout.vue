@@ -19,9 +19,10 @@
 <script>
 import db from '@/components/firebaseInit'
 import PayPal from 'vue-paypal-checkout'
+import firebase from 'firebase/app'
 import 'firebase/auth'
 import axios from 'axios'
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 export default {
   props: {
     price: Number,
@@ -47,19 +48,29 @@ export default {
         no_shipping: 1
       }
     },
-    priceToString: ''
+    priceToString: '',
+    uid: null
   }),
   computed: {
     ...mapState([
-      'userCalendar',
-      'uid'
+      'userCalendar'
+    ]),
+    ...mapActions([
+      'getUserData'
     ])
   },
-  mounted () {
+  async mounted () {
     // Get api key from env
     this.paypal.sandbox = process.env.VUE_APP_PAYPAL_PUBLISHABLE_KEY
     // Number to String
     this.priceToString = this.price.toString()
+    await firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        const uid = firebase.auth().currentUser.uid
+        this.uid = uid
+        this.$store.dispatch('getUserData', uid)
+      }
+    })
   },
   methods: {
     paymentAuthorized: function (data) {
@@ -68,8 +79,7 @@ export default {
         workoutName: this.workoutName,
         workoutId: this.price_id.split('price_').pop(','),
         imgUrl: this.unlockImage,
-        unlockedTime: new Date(),
-        progress: 0
+        unlockedTime: new Date()
       }
       // Save to firebase
       if (this.unlockedWorkouts === undefined) {

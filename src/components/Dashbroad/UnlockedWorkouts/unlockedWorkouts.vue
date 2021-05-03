@@ -1,15 +1,16 @@
 <template>
     <v-app>
         <v-card class="theme--dark" style="border-radius: 0;">
-            <v-card-text>
-                <div class="display-3 font-weight-thin dashHeader">
-                  Workouts
-                </div>
-            </v-card-text>
+          <v-card-text>
+              <div class="display-3 font-weight-thin dashHeader">
+              Workouts
+              </div>
+          </v-card-text>
         </v-card>
         <div class="unlocked_div">
-        <v-card class="unlocked_div_cards"
-            @mouseover="overProgress(index)"
+          <transition  appear enter-active-class="animated zoomIn" leave-active-class="animated fadeOut">
+          <v-card class="unlocked_div_cards"
+            @mouseenter="overProgress((index), (unlockedWorkout.workoutName))"
             @mouseleave="leaveProgress"
             v-for="(unlockedWorkout, index) in unlockedWorkouts"
             :key="unlockedWorkout.index"
@@ -17,35 +18,48 @@
             <router-link :to="'/workouts/'+`${unlockedWorkout.workoutName.replace(/\s/g, '')}`">
               <v-img :src="unlockedWorkout.imgUrl" alt="NotFund"
               :class="{ opacity: showProgress === index }"/>
+              <transition
+              appear enter-active-class="animated fadeInUp"
+              leave-active-class="animated fadeOut">
+                <div
+                  v-if="showProgress === index"
+                  class="workoutProgress"
+                  >
+                  Progress: {{progress}}%
+                </div>
+              </transition>
             </router-link>
             <div class="workoutTitle">
               {{unlockedWorkout.workoutName}}
             </div>
-            <div
-              v-if="showProgress === index"
-              class="workoutProgress"
-              >
-              Progress {{unlockedWorkout.progress}}%
-            </div>
-          </v-card>
+            </v-card>
+          </transition>
         </div>
     </v-app>
 </template>
 
 <script>
+import db from '@/components/firebaseInit'
 export default {
   name: 'Dashbroad',
   data () {
     return {
-      showProgress: null
+      showProgress: null,
+      progress: null
     }
   },
   props: {
     userCalendar: Array,
-    unlockedWorkouts: Array
+    unlockedWorkouts: Array,
+    uid: String
   },
   methods: {
-    overProgress (index) {
+    async overProgress (index, workoutName) {
+      const programName = workoutName.replace(/\s/g, '')
+      const dbprogramName = db.collection(this.uid).doc(programName)
+      await dbprogramName.get().then((doc) => {
+        this.progress = doc.data().Progress
+      })
       this.showProgress = index
     },
     leaveProgress () {

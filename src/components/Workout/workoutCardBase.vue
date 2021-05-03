@@ -5,15 +5,29 @@
         <p> Your search - {{select}} - did not match any documents.</p>
       </div>
       <div :key="workout.id" v-for="workout in workouts"
-      class="card_div">
+      class="card_div"
+      @mouseleave="hideUnlockSection"
+      >
         <v-card class="card_theme">
-           <v-img :src="workout.imageURL" alt="NotFund" />
-          <v-card-title>
+          <v-img :src="workout.imageURL"
+          @mouseover="showUnlockSection(workout.name)"
+          alt="NotFund" />
+            <div class="workoutsTitle">
+              <p>{{workout.name}}</p>
+              <span class="price">$ {{workout.price}}</span>
+            </div>
+           <transition
+              enter-active-class="animated fadeInUp"
+              leave-active-class="animated fadeOutDown">
+          <div class="unlock-section"
+          @mouseover="showUnlockSection(workout.name)"
+          v-if="unlockSection === workout.name">
+             <v-card-title>
           {{workout.name}}
           </v-card-title>
           <v-card-subtitle class="price_div">
             <span class="price">$ {{workout.price}}</span>
-            </v-card-subtitle>
+          </v-card-subtitle>
             <v-card-actions>
               <v-btn
                 text
@@ -25,11 +39,13 @@
               </v-btn>
               <v-spacer></v-spacer>
               <v-btn icon
-              :class="{ btn_unlocked:UnlockedWorkoutName.includes(workout.name)}"
+              :class="{ btn_unlocked:UnlockedWorkoutName.includes(workoutName)}"
               @click="toggle(workout.id)" >
                 <v-icon>{{ isActive === workout.id ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
               </v-btn>
             </v-card-actions>
+          </div>
+           </transition>
           <v-expand-transition>
             <div v-show="isActive === workout.id">
               <v-divider></v-divider>
@@ -48,7 +64,7 @@
         <v-overlay
           style="z-index: 99"
           :value="overlay">
-          <transition appear enter-active-class="animated bounceInDown delay">
+          <transition appear enter-active-class="animated fadeInDown">
           <div class="overlay">
             <div class="closeUnlockBtn_div">
               <div class="closeUnlockBtn" @click="unlockClicked">
@@ -141,7 +157,9 @@ export default {
       loginRequired: 'Please log in before continuing to unlock your workout.',
       email: '',
       password: '',
-      error: ''
+      error: '',
+      unlockSection: '',
+      workoutName: ''
     }
   },
   computed: {
@@ -161,6 +179,13 @@ export default {
       } catch (error) {
         this.error = error.message
       }
+    },
+    showUnlockSection (workoutName) {
+      this.workoutName = workoutName
+      this.unlockSection = workoutName
+    },
+    hideUnlockSection () {
+      this.unlockSection = ''
     }
   },
   created () {

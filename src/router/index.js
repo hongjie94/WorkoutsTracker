@@ -6,7 +6,7 @@ import Register from '../views/Authentication/Register.vue'
 import ResetPassword from '../views/Authentication/ResetPassword.vue'
 
 import Resources from '../views/Resources.vue'
-import Workout from '../views/Workout.vue'
+import Workouts from '../views/Workouts.vue'
 import CurrentWorkout from '../components/Dashbroad/UnlockedWorkouts/currentWorkout.vue'
 import Dashbroad from '../views/Dashbroad.vue'
 // import Cart from '../views/Cart.vue'
@@ -38,9 +38,9 @@ const routes = [
     component: ResetPassword
   },
   {
-    path: '/workout',
-    name: 'Workout',
-    component: Workout
+    path: '/workouts',
+    name: 'Workouts',
+    component: Workouts
   },
   {
     path: '/workouts/:id',

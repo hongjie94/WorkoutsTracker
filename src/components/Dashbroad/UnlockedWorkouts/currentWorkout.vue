@@ -6,8 +6,14 @@
       <section class="banner jumbotron">
         <h1>{{workoutName}}</h1>
         <h5> Completed: {{progress}}%</h5>
+        <div class="progress">
+              <div class="progress-bar"
+                :style="`width:${progress}%`">
+                {{progress}}%
+              </div>
+        </div>
         <p>Total Days Completed: {{totalCompletedDays}}</p>
-        <p>Remaining Days: {{remainingDays}}</p>
+        <p>Total Days Remaining: {{remainingDays}}</p>
         <div class="calendar_menu" >
                 <b-button
                 class="mr-4"
@@ -29,45 +35,52 @@
     </div>
 
     <!-- Calendar -->
-    <Calendar
-      v-show="month1 && showCalendar"
-      :month = "month.one"
-      :calendars = "month1Calendar"
-      :workoutVideos = "workoutVideos"
-      :totalWorkoutDays = "totalWorkoutDays"
-      :currentProgram = "workoutName"
-      :progress = "progress"
-      >
-      <div slot="monthToggleBtn" class="monthToggleBtn">
-        <b-button class="monthBtn1" @click="showMonth1" :pressed="!month2 || month1" squared :variant="month1_btn" >MONTH 1</b-button>
-        <b-button class="monthBtn2"  @click="showMonth2" :pressed="!month1" :variant="month2_btn" squared>MONTH 2</b-button>
-      </div>
-    </Calendar> <!-- month1 -->
-    <Calendar
-      v-show="month2 & showCalendar"
-      :month = "month.two"
-      :calendars = "month2Calendar"
-      :workoutVideos = "workoutVideos"
-      :totalWorkoutDays = "totalWorkoutDays"
-      :currentProgram = "workoutName"
-      :progress = "progress"
-      >
-      <div slot="monthToggleBtn" class="monthToggleBtn">
-        <b-button  class="monthBtn1" @click="showMonth1" :pressed="!month2 || month1" squared :variant="month1_btn" >MONTH 1</b-button>
-        <b-button  class="monthBtn2" @click="showMonth2" :pressed="!month1" :variant="month2_btn" squared>MONTH 2</b-button>
-      </div>
-    </Calendar> <!-- month2 -->
+    <transition  appear enter-active-class="animated fadeInDown m1in" leave-active-class="animated fadeOutLeft m1out">
+      <Calendar
+        v-if="month1 && showCalendar"
+        :month = "month.one"
+        :calendars = "month1Calendar"
+        :workoutVideos = "workoutVideos"
+        :totalWorkoutDays = "totalWorkoutDays"
+        :currentProgram = "workoutName"
+        :progress = "progress"
+        >
+        <div slot="monthToggleBtn" class="monthToggleBtn">
+          <b-button class="monthBtn1" @click="showMonth1" :pressed="!month2 || month1" squared :variant="month1_btn" >MONTH 1</b-button>
+          <b-button class="monthBtn2"  @click="showMonth2" :pressed="!month1" :variant="month2_btn" squared>MONTH 2</b-button>
+        </div>
+      </Calendar> <!-- month1 -->
+    </transition>
 
+    <transition  appear enter-active-class="animated fadeInRight a2in" leave-active-class="animated fadeOutLeft m1out">
+      <Calendar
+        v-if="month2 & showCalendar"
+        :month = "month.two"
+        :calendars = "month2Calendar"
+        :workoutVideos = "workoutVideos"
+        :totalWorkoutDays = "totalWorkoutDays"
+        :currentProgram = "workoutName"
+        :progress = "progress"
+        >
+        <div slot="monthToggleBtn" class="monthToggleBtn">
+          <b-button  class="monthBtn1" @click="showMonth1" :pressed="!month2 || month1" squared :variant="month1_btn" >MONTH 1</b-button>
+          <b-button  class="monthBtn2" @click="showMonth2" :pressed="!month1" :variant="month2_btn" squared>MONTH 2</b-button>
+        </div>
+      </Calendar> <!-- month2 -->
+    </transition>
     <!-- Videos -->
+    <transition  appear enter-active-class="animated fadeInRight vin" leave-active-class="animated fadeOutLeft m1out">
     <Video
-      v-show="showVideos"
+      v-if="showVideos"
       :workoutVideos = "workoutVideos"
     />
+    </transition>
     </div>
   </div>
 </template>
 
 <script>
+import { bus } from '@/main'
 import db from '@/components/firebaseInit'
 import firebase from 'firebase/app'
 import Calendar from '@/components/Dashbroad/UnlockedWorkouts/workoutCalendarBase.vue'
@@ -124,6 +137,13 @@ export default {
       }
     })
   },
+  created () {
+    bus.$on('changeCompletedData', (updatedData) => {
+      this.progress = updatedData.progress
+      this.totalCompletedDays = updatedData.completedDays
+      this.remainingDays = updatedData.remainingDays
+    })
+  },
   methods: {
     showMonth1: function () {
       this.month1 = true
@@ -159,4 +179,23 @@ export default {
 }
 </script>
 <style>
+</style>
+
+<style scoped>
+.m1in {
+  animation-delay: .2s;
+  animation-duration: 1000ms;
+}
+.m1out {
+  animation-delay: 0s;
+  animation-duration: 500ms;
+}
+.m2in {
+  animation-delay: 0.4s;
+  animation-duration: 1000ms;
+}
+.vin {
+  animation-delay: 0.1s;
+  animation-duration: 1000ms;
+}
 </style>
