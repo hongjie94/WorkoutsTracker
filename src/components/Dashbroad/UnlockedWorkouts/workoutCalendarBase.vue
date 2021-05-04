@@ -85,8 +85,12 @@
                   class="pluse">PULSE
                 </p>
               </div>
-              <div class="col week-workouts">
-                <p :class="{isCompleted : CompletedDays.includes(calendar.sun.day)}">
+              <div class="col week-workouts"
+                @click="getWorkoutData((calendar.sun.videoIndex), (calendar.week), (calendar.sun.day))"
+              >
+                <p
+                  @click="showOverlay(calendar.sun.videoIndex)"
+                  :class="{isCompleted : CompletedDays.includes(calendar.sun.day)}">
                   {{calendar.sun.workout}}
                 </p>
                 <div v-if="calendar.week === 4">
@@ -103,17 +107,20 @@
                 </div>
               </div>
           </div>
-            <v-row justify="center">
+          <v-row justify="center">
+          <transition  appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
             <v-overlay
               class="calendarOverlay"
-              :value="overlay">
+              :value="overlay"
+              v-if="overlay"
+              >
             <div class="topheader">
               <span> Day # {{workoutDay}} - {{currentWorkout.name}}</span>
               <v-btn @click="hideOverlay" icon dark class="closeBtn">
                 <v-icon>mdi-close</v-icon>
               </v-btn>
             </div>
-            <div class="calendarFrame">
+            <div class="calendarFrame" v-if="currentWorkout.name !== 'Rest Day'">
               <div class="calendarDownload">
                 <div class="icon_div">
                   <div class="dl_icon">
@@ -129,9 +136,9 @@
             allowfullscreen
             />
             </div>
-            <!-- <p>{{currentWorkout.url}}</p>
-            <p>{{currentWorkout.thumnail}}</p> -->
-            <!-- if workout is incomplete -->
+            <div v-if="currentWorkout.name === 'Rest Day'">
+              <v-img max-width="31em" src="./Rest.jpeg" />
+            </div>
             <div class="calendarOverlay-bottom" v-if="!isCompleted">
               <v-app class="calendarOverlay-bg switch">
                 <v-switch
@@ -170,14 +177,11 @@
                :disabled="!toggleStatus"
                >summit</v-btn>
             </div>
-
             <div class="calendarOverlay-bottom_complete" v-if="isCompleted">
-              <!-- <span style='color:red;text-decoration:line-through'>
-                <span style='color:black'>black with red strikethrough</span>
-              </span> -->
                 Workout Completed  <v-icon class="checkCircle">mdi-check-circle</v-icon>
             </div>
           </v-overlay>
+           </transition>
           </v-row>
       </div>
   </div>
@@ -239,6 +243,7 @@ export default {
       if (user) {
         this.uid = firebase.auth().currentUser.uid
       }
+      this.$store.dispatch('getUserData', this.uid)
     })
     this.programName = this.$route.params.id
 
@@ -264,12 +269,18 @@ export default {
     },
     // Get data from firebase
     async getWorkoutData (videoIndex, week, day) {
-      this.currentWorkout = this.workoutVideos[videoIndex]
-      this.workoutName = this.workoutVideos[videoIndex].name
-      this.workoutDuration = this.workoutVideos[videoIndex].duration
-      this.workoutDay = day
-      this.workoutWeek = week
-
+      if (videoIndex === 'REST') {
+        this.workoutDay = day
+        this.workoutWeek = week
+        this.currentWorkout.name = 'Rest Day'
+        this.workoutDuration = 0
+      } else {
+        this.currentWorkout = this.workoutVideos[videoIndex]
+        this.workoutName = this.workoutVideos[videoIndex].name
+        this.workoutDuration = this.workoutVideos[videoIndex].duration
+        this.workoutDay = day
+        this.workoutWeek = week
+      }
       // Get Completed Days from firestore
       this.getCompletedDays()
       this.isCompleted = (this.CompletedDays).includes(day)
@@ -305,9 +316,9 @@ export default {
         duration: this.workoutDuration,
         color: this.selectColors.toLowerCase(),
         dateComplete: currentDate,
-        timeComplete: currentTime
+        timeComplete: currentTime,
+        currentDay: today.toLocaleString()
       }
-
       // Save data to firestore
       const dbProgramName = db.collection(this.uid).doc(this.programName)
       await dbProgramName.get().then((doc) => {

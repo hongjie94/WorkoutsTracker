@@ -99,7 +99,9 @@
     min-width: 100px
     width: 200px 
   .v-card__title
-    font-size: 17px 
+    font-size: 17px
+  .cards .unlock-section .v-card__subtitle, .cards .v-card__title  
+    padding: 81px 15px 3px 15px 
   .v-image
     height: 253px
   .v-card__text
@@ -113,11 +115,16 @@
   .unlock-section
     position: absolute
     width: 100%
-    top: 28%
+    top: 66px
     display: flex
     flex-direction: column
     background: linear-gradient(to right, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.7))
     padding: 0
+    .v-card__actions
+      padding: 16px 8px 
+    .v-card__title
+      span
+        width: 100% 
   .v-card__title + .v-card__subtitle
     margin-top: 0px
   .v-card__text
@@ -133,6 +140,8 @@
     border-bottom-right-radius: 10px
     flex-direction: column
     align-items: flex-start
+    .price
+      color: darkgray !important
     p
       margin-bottom: 0px
   .v-card__subtitle, .v-card__title
@@ -175,6 +184,13 @@
     max-width: 928px !important
 
 @media screen and (max-width: 955px)
+  .cards .unlock-section
+    .v-card__actions
+      padding: 26px 8px
+  .cards .unlock-section
+    top: 0%
+  .cards .unlock-section .details
+    font-size: 11px
   .details_btn 
     width: 8em !important
   .card_div
@@ -218,9 +234,11 @@
       font-size: 12px !important
       padding: 2px 15px 0px 15px
       height: 2.5em
-    .price 
-        font-size: 12px         
-
+    .price, .details 
+        font-size: 12px
+        text-align: start
+        padding-top: 1px
+        color: darkgray !important         
 @media screen and (max-width: 739px)
   #dropdown-1__BV_toggle_
     font-size: 10px
@@ -265,6 +283,12 @@
 @media screen and (max-width: 320px)
   #category-workout
     justify-content: center !important
+  .cards .unlock-section
+    top: 130px  
+  .card_div .details
+    font-size: 16px
+  .card_div .workoutsTitle p
+    font-size: 24px  
   .workout-heading
     justify-content: center !important
   .card_div
@@ -284,7 +308,10 @@
   .v-toolbar__content, .v-toolbar__extension
     width: auto 
     padding: 4px 12px !important
-  .card_div 
+  .card_div
+    .unlock-section 
+      .v-card__actions
+        padding: 1em 8px
     .v-card__title
       font-size: 1.2em !important   
     .price, .v-card__text 

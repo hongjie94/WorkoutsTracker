@@ -35,7 +35,7 @@
     </div>
 
     <!-- Calendar -->
-    <transition  appear enter-active-class="animated fadeInDown m1in" leave-active-class="animated fadeOutLeft m1out">
+    <transition  appear enter-active-class="animated fadeInRight m1in">
       <Calendar
         v-if="month1 && showCalendar"
         :month = "month.one"
@@ -183,7 +183,7 @@ export default {
 
 <style scoped>
 .m1in {
-  animation-delay: .2s;
+  animation-delay: 0s;
   animation-duration: 1000ms;
 }
 .m1out {

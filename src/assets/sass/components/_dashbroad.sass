@@ -100,6 +100,11 @@
     background-color: #1E1E1E !important
     .v-list-item__title
       color: white !important
+  .updateColor
+    .v-select
+      .v-input__control
+        .v-text-field__details
+          display: none    
 
 @media screen and (max-width: 904px)
   #calendar
@@ -120,19 +125,33 @@
       max-width: 4em
 @media screen and (max-width: 640px)
   #calendar
+  .Month-Calendar .calendarOverlay .calendarOverlay-bottom
+    margin-bottom: 0.5em  
+  .Month-Calendar 
+    .v-overlay__content
+      width: 333px  
     .dayBox 
       font-size: 13px !important
 @media screen and (max-width: 568px)
   #calendar
     .v-btn:not(.v-btn--round).v-size--default 
-      padding: 0px 60px
+      padding: 0px 2em
     .sheet
       .theme--dark.v-btn  
         max-width: 15em !important
       .dayBox   
         font-size: 19px !important
+        width: min-content  
       .theme--dark.v-input
         max-width: 10em !important
+@media screen and (max-width: 490px) 
+  #calendar .v-btn:not(.v-btn--round).v-size--default
+    padding: 0px 30px
+@media screen and (max-width: 430px)
+  #calendar
+    .sheet
+      .dayBox   
+        font-size: 16px !important     
 @media screen and (max-width: 414px)
   #calendar .v-input__slot
     max-width: 6em

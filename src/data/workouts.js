@@ -9,9 +9,9 @@ export default [
     imageURL: require('@/components/Workouts/Insanity/cover.png'),
     strogeURL: 'https://firebasestorage.googleapis.com/v0/b/workoutstracker.appspot.com/o/WorkoutCovers%2FInsanity.png?alt=media&token=22127ce5-8769-4130-aa00-3b3d71e4d008',
     includes: {
-      a: '14 Online Workout Videos',
-      b: 'Insanity Calendar',
-      c: 'Download Links'
+      a: '2 Month Workout',
+      b: '6 Days a Week ',
+      c: '14 Workout Videos'
     },
     equipments: {
       a: 'No Equipment Required'
@@ -27,15 +27,12 @@ export default [
     imageURL: require('@/components/Workouts/InsanityMax30/cover.jpg'),
     strogeURL: 'https://firebasestorage.googleapis.com/v0/b/workoutstracker.appspot.com/o/WorkoutCovers%2FInsanityMax30.jpg?alt=media&token=318fea6c-8914-4c10-99db-43082eea6aa2',
     includes: {
-      a: '15 Online Workout Videos',
-      b: 'MAX OUT Calendar',
-      c: 'Download Links'
+      a: '2 Month Workout',
+      b: '6 Days a Week',
+      c: '15 Workout Videos'
     },
     equipments: {
       a: 'No Equipment Required'
-    },
-    required: {
-      a: 'Yoga Mat (optional)'
     }
   },
   {
@@ -48,8 +45,8 @@ export default [
     imageURL: require('@/components/Workouts/AsylumVol1/cover.jpeg'),
     strogeURL: 'https://firebasestorage.googleapis.com/v0/b/workoutstracker.appspot.com/o/WorkoutCovers%2FAsylumVol1.jpeg?alt=media&token=69442e77-8bc8-4e48-a459-aeed1b8080c2',
     includes: {
-      a: '8 Online Workout Videos',
-      b: 'Asylum Vol.1 Calendar',
+      a: '8 Workout Videos',
+      b: 'Full Calendar',
       c: 'Download Links'
     },
     equipments: {
@@ -192,7 +189,7 @@ export default [
     imageURL: require('@/components/Workouts/P90x3/cover.png'),
     strogeURL: 'https://firebasestorage.googleapis.com/v0/b/workoutstracker.appspot.com/o/WorkoutCovers%2FP90X3.png?alt=media&token=240b952e-95fd-4517-b812-94dfbfeb6b4d',
     includes: {
-      a: '13 Online Workout Videos',
+      a: '13 Workout Videos',
       b: 'P90X3 Calendar',
       c: 'Download Links'
     },

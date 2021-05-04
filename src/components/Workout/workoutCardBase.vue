@@ -10,7 +10,7 @@
       >
         <v-card class="card_theme">
           <v-img :src="workout.imageURL"
-          @mouseover="showUnlockSection(workout.name)"
+          @mouseenter="showUnlockSection(workout.name)"
           alt="NotFund" />
             <div class="workoutsTitle">
               <p>{{workout.name}}</p>
@@ -23,10 +23,12 @@
           @mouseover="showUnlockSection(workout.name)"
           v-if="unlockSection === workout.name">
              <v-card-title>
-          {{workout.name}}
+          <span>{{workout.name}}</span>
           </v-card-title>
           <v-card-subtitle class="price_div">
-            <span class="price">$ {{workout.price}}</span>
+            <span class="details">
+              <li :key='include.index' v-for="include in workout.includes">{{include}}</li>
+            </span>
           </v-card-subtitle>
             <v-card-actions>
               <v-btn
@@ -48,11 +50,7 @@
            </transition>
           <v-expand-transition>
             <div v-show="isActive === workout.id">
-              <v-divider></v-divider>
               <v-card-text style="text-align: initial;">
-                <b>Includes:</b>
-                <li :key='include.index' v-for="include in workout.includes">{{include}}</li>
-                <hr style="background-color: white">
                 <b :key='equipment.index' v-for="equipment in workout.equipments">{{equipment}}</b>
                 <li :key='require.index' v-for="require in workout.required">{{require}}</li>
               </v-card-text>
