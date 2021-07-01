@@ -1,5 +1,5 @@
 .dashbroad
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1)), url('./img/dashbroad.jpg')
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1)), url('../../images/dashbroad.jpg')
   background-position: center center
   background-size: cover
 .unlocked_workouts, #calendar, #records, #workouts
@@ -120,11 +120,9 @@
       align-items: center !important
       font-size: 16px !important   
 @media screen and (max-width: 674px)
-  #calendar
-    .dayBtn
-      max-width: 4em
+  .dayBtn
+    max-width: 4em
 @media screen and (max-width: 640px)
-  #calendar
   .Month-Calendar .calendarOverlay .calendarOverlay-bottom
     margin-bottom: 0.5em  
   .Month-Calendar 
@@ -135,7 +133,7 @@
 @media screen and (max-width: 568px)
   #calendar
     .v-btn:not(.v-btn--round).v-size--default 
-      padding: 0px 2em
+      padding: 20px 
     .sheet
       .theme--dark.v-btn  
         max-width: 15em !important
@@ -158,16 +156,17 @@
   #calendar .sheet .theme--dark.v-btn
     max-width: 0em !important
   #calendar .sheet .dayBox      
-    font-size: 14px !important
+    font-size: 20px !important
     .theme--dark.v-input
       max-width: 6em !important
   #calendar .v-card__text .dashHeader
     font-size: 2em !important                   
 @media screen and (max-width: 320px)
   #calendar .sheet .dayBox      
-    font-size: 9px !important
+    font-size: 14px !important
   #calendar .v-input__slot  
     max-width: 10em !important
+    font-size: 12px
   #calendar .dayBox   
     font-size: 20px !important
   #calendar.theme--dark.v-input
@@ -179,7 +178,8 @@
       width: 6em !important
 @media screen and (max-height: 320px)
   .calendarOverlay-iframe 
-    min-height: 10em !important          
+    min-height: 10em !important
+
 @media screen and (max-width: 280px)    
   #calendar .v-card__text .dashHeader
     font-size: 1em !important

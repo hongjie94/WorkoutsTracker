@@ -15,10 +15,14 @@ export default {
     )
   },
   UnlockedWorkoutName: (state) => {
-    const Unlockedname = []
-    state.unlockedWorkouts.forEach(workouts => {
-      Unlockedname.push(workouts.workoutName)
-    })
-    return Unlockedname
+    if (state.unlockedWorkouts) {
+      const Unlockedname = []
+      state.unlockedWorkouts.forEach(workouts => {
+        Unlockedname.push(workouts.workoutName)
+      })
+      return Unlockedname
+    } else {
+      console.log('No data available')
+    }
   }
 }

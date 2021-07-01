@@ -12,11 +12,11 @@
       v-on:payment-completed="paymentCompleted"
       >
     </PayPal>
-    <v-btn @click="paymentCompleted">test</v-btn>
   </div>
 </template>
 
 <script>
+import swal from 'sweetalert'
 import db from '@/components/firebaseInit'
 import PayPal from 'vue-paypal-checkout'
 import firebase from 'firebase/app'
@@ -53,7 +53,8 @@ export default {
   }),
   computed: {
     ...mapState([
-      'userCalendar'
+      'userCalendar',
+      'unlockedWorkouts'
     ]),
     ...mapActions([
       'getUserData'
@@ -73,7 +74,7 @@ export default {
     })
   },
   methods: {
-    paymentAuthorized: function (data) {
+    async paymentAuthorized (data) {
       // Get New unlocked workouts from user
       const newWorkouts = {
         workoutName: this.workoutName,
@@ -82,14 +83,18 @@ export default {
         unlockedTime: new Date()
       }
       // Save to firebase
+      const dbRef = db.collection(this.uid).doc('unlockedWorkouts')
       if (this.unlockedWorkouts === undefined) {
         this.unlockedWorkouts = []
+        await dbRef.set({
+          unlockedWorkouts: this.unlockedWorkouts
+        })
+      } else {
+        this.unlockedWorkouts.push(newWorkouts)
+        await dbRef.set({
+          unlockedWorkouts: this.unlockedWorkouts
+        }, { merge: true })
       }
-      const dbRef = db.collection(this.uid).doc('unlockedWorkouts')
-      this.unlockedWorkouts.push(newWorkouts)
-      dbRef.set({
-        unlockedWorkouts: this.unlockedWorkouts
-      }, { merge: true })
     },
     async paymentCompleted (data) {
       const workoutId = this.price_id.split('price_').pop(',')
@@ -98,12 +103,9 @@ export default {
       await axios
         .get(url)
         .then(response => (CalendarData = response.data))
-      alert('check console')
-      // console.log(this.price_id.split('price_').pop(','))
       const dbRef = db.collection(this.uid).doc(this.workoutName.replace(/\s/g, ''))
-      dbRef.set({
-        Month1Calendar: CalendarData.Month1Calendar,
-        Month2Calendar: CalendarData.Month2Calendar,
+      await dbRef.set({
+        Calendar: CalendarData.Calendar,
         Videos: CalendarData.Videos,
         ProgramName: CalendarData.ProgramName,
         TotalWorkoutDays: CalendarData.TotalWorkoutDays,
@@ -111,9 +113,8 @@ export default {
         Progress: 0
       }, { merge: true })
       this.$store.dispatch('getUserData', this.uid)
+      swal('Payment Completed')
       this.$router.push({ name: 'Dashbroad' })
-      console.log(`paymentCompleted:  + ${data}`)
-      alert('Payment Completed')
     }
   }
 }

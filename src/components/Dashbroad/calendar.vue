@@ -16,7 +16,7 @@
       >
       <v-btn
         icon
-        class=" ma-2"
+        class="ma-2"
         @click="$refs.calendar.prev()"
         >
         <v-icon>mdi-chevron-left</v-icon>
@@ -143,6 +143,7 @@
 </template>
 
 <script>
+import swal from 'sweetalert'
 import db from '@/components/firebaseInit'
 import firebase from 'firebase/app'
 import 'firebase/auth'
@@ -180,7 +181,7 @@ export default {
   methods: {
     getEvents () {
       const events = []
-      if (this.userCalendar !== undefined) {
+      if (this.userCalendar) {
         return this.userCalendar.forEach(dbCalendar => {
           events.push({
             name: dbCalendar.workoutName,
@@ -198,9 +199,10 @@ export default {
           this.calendarTime = new Date(`${dbCalendar.dateComplete}T${dbCalendar.timeComplete}`).toLocaleTimeString()
           this.events = events
         })
+      } else {
+        console.log('No data available')
+        return this.events === []
       }
-      console.log('no data')
-      this.events = events
     },
     async getCompletedDays (programName) {
       const CurrentWorkoutData = db.collection(this.uid).doc(programName)
@@ -233,6 +235,7 @@ export default {
         this.showCalendarDetails = true
         this.selectedOpen = false
       }
+      this.getEvents()
     },
     toggleColorPicker () {
       this.ogColor = this.selectedEvent.color
@@ -247,58 +250,80 @@ export default {
       return event.color
     },
     async deleteEvent (event) {
-      alert('deleteing this event will effect your progress and you record data!')
+      await swal({
+        title: 'Are you sure?',
+        text: 'Once deleted, you will not be able to recover this event !',
+        icon: 'warning',
+        buttons: true,
+        dangerMode: true
+      })
+        .then((willDelete) => {
+          if (willDelete) {
+            // Deleted Completed Days
+            const currentPorgramName = event.programName.replace(/\s/g, '')
+            const CurrentWorkoutData = db.collection(this.uid).doc(currentPorgramName)
+            CurrentWorkoutData.get().then((doc) => {
+              const CompletedDays = doc.data().CompletedDays
+              const TotalWorkoutDays = doc.data().TotalWorkoutDays
+              const deletedDay = CompletedDays.filter(
+                (CompletedDay) => CompletedDay !== event.dayNum
+              )
 
-      // Deleted Completed Days
-      const currentPorgramName = event.programName.replace(/\s/g, '')
-      const CurrentWorkoutData = db.collection(this.uid).doc(currentPorgramName)
-      await CurrentWorkoutData.get().then((doc) => {
-        const CompletedDays = doc.data().CompletedDays
-        const TotalWorkoutDays = doc.data().TotalWorkoutDays
-        const deletedDay = CompletedDays.filter(
-          (CompletedDay) => CompletedDay !== event.dayNum
-        )
+              // Update progress
+              const remainDays = (deletedDay.length / TotalWorkoutDays)
+              const updateProgress = Math.ceil(remainDays * 100)
 
-        // Update progress
-        const remainDays = (deletedDay.length / TotalWorkoutDays)
-        const updateProgress = Math.ceil(remainDays * 100)
-        console.log('"updateProgress is : "' + updateProgress)
+              // Pass data to parent components
+              bus.$emit('changeCompletedData', {
+                progress: updateProgress,
+                completedDays: deletedDay.length,
+                remainingDays: remainDays
+              })
 
-        // Pass data to parent components
-        bus.$emit('changeCompletedData', {
-          progress: updateProgress,
-          completedDays: deletedDay.length,
-          remainingDays: remainDays
+              // Update data form firbase
+              CurrentWorkoutData.set({
+                CompletedDays: deletedDay,
+                Progress: updateProgress
+              }, { merge: true })
+            })
+
+            // Update Datas from firebase
+            const fbUserCalendar = db.collection(this.uid).doc('userCalendar')
+            // If user only have 1 existing calendar
+            if (this.userCalendar.length === 1) {
+              fbUserCalendar.set({
+                userCalendar: []
+              })
+              this.selectedOpen = false
+              swal(`${event.programName} Day ${event.dayNum} has been deleted!`, {
+                icon: 'success'
+              })
+              this.$store.dispatch('getUserData', this.uid)
+              this.events = []
+            } else if (this.userCalendar.length > 1) {
+              // Get index of the array from firebase
+              const index = this.userCalendar.findIndex((userCalendar) => {
+                return userCalendar.currentDay === event.submitDay
+              })
+
+              // Delete selected array
+              this.userCalendar.splice(index, 1)
+
+              // Update firestore
+              fbUserCalendar.set({
+                userCalendar: this.userCalendar
+              }, { merge: true })
+
+              // Update Datas
+              this.$store.dispatch('getUserData', this.uid)
+              this.getEvents()
+              this.selectedOpen = false
+              return swal(`${event.programName} Day ${event.dayNum} has been deleted!`, {
+                icon: 'success'
+              })
+            }
+          }
         })
-
-        // Update data form firbase
-        CurrentWorkoutData.set({
-          CompletedDays: deletedDay,
-          Progress: updateProgress
-        }, { merge: true })
-      })
-
-      // Get index of the array from firebase
-      const fbUserCalendar = db.collection(this.uid).doc('userCalendar')
-      const index = this.userCalendar.findIndex(function (userCalendar) {
-        return userCalendar.currentDay === event.submitDay
-      })
-
-      // Delete selected array
-      this.userCalendar.splice(index, 1)
-
-      // Update firestore
-      await fbUserCalendar.set({
-        userCalendar: this.userCalendar
-      }, { merge: true })
-
-      // Update Current data
-      this.getEvents()
-
-      // Update vuex store
-      this.$store.dispatch('getUserData', this.uid)
-      this.selectedOpen = false
-      alert('Event susscfully remove fom canlendar')
     },
     async upDateColor (event) {
       // Update current color
@@ -309,7 +334,7 @@ export default {
       if (this.userCalendar.length === 1) {
         index = this.userCalendar.length - 1
       } else {
-        index = this.userCalendar.findIndex(function (userCalendar) {
+        index = this.userCalendar.findIndex((userCalendar) => {
           return userCalendar.currentDay === event.submitDay
         })
       }
@@ -325,7 +350,7 @@ export default {
       this.$store.dispatch('getUserData', this.uid)
       this.getEvents()
       this.selectedOpen = false
-      alert('color update complete')
+      // alert('color update complete')
     },
     setToday () {
       this.value = new Date().toString().split(' ').splice(0, 4).join(' ')
@@ -345,6 +370,11 @@ export default {
       this.$store.dispatch('getUserData', this.uid)
     })
     this.value = new Date().toString().split(' ').splice(0, 4).join(' ')
+  },
+  watch: {
+    getEvents (newVal, oldVal) {
+      console.log(`a ${newVal} , b ${oldVal}`)
+    }
   }
 }
 </script>

@@ -8,7 +8,7 @@
     >
       <!-- Title and download icon -->
       <div class="block">
-          <h6 class="video_title">{{video.name}}</h6>
+        <div class="video_title">{{video.name}}</div>
         <div class="download_icon_div">
           <div class="download_icon">
             <a :href="video.downloadLinks" download>
@@ -21,7 +21,7 @@
       <!-- loader -->
       <div class="video_cover" v-if="video.name !== showCover">
         <div class="img_div">
-          <img :src="video.thumnail" alt="not-found">
+          <img :src="video.thumbnail" alt="not-found">
         </div>
         <v-progress-circular
           v-if="video.name === showLoader"
@@ -81,6 +81,3 @@ export default {
   }
 }
 </script>
-<style scoped>
-
-</style>

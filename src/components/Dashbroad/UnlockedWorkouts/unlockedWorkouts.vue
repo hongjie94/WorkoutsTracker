@@ -7,8 +7,8 @@
               </div>
           </v-card-text>
         </v-card>
+        <transition  appear enter-active-class="animated zoomIn" leave-active-class="animated fadeOut">
         <div class="unlocked_div">
-          <transition  appear enter-active-class="animated zoomIn" leave-active-class="animated fadeOut">
           <v-card class="unlocked_div_cards"
             @mouseenter="overProgress((index), (unlockedWorkout.workoutName))"
             @mouseleave="leaveProgress"
@@ -33,8 +33,18 @@
               {{unlockedWorkout.workoutName}}
             </div>
             </v-card>
-          </transition>
         </div>
+        </transition>
+         <div class="noWorkouts" v-if="unlockedWorkouts.length < 1">
+              <p>No Workouts Available ...</p>
+              <v-btn
+                @click="toWorkoutPage"
+                text
+                color="#fff"
+                >
+                Add Workouts
+              </v-btn>
+            </div>
     </v-app>
 </template>
 
@@ -64,7 +74,15 @@ export default {
     },
     leaveProgress () {
       this.showProgress = null
+    },
+    toWorkoutPage () {
+      this.$router.push({ name: 'Workouts' })
     }
   }
 }
 </script>
+<style lang="sass">
+.noWorkouts
+  color: rgba(255, 255, 255, 0.5)
+  margin-top: 10%
+</style>

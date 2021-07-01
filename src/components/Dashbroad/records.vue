@@ -28,6 +28,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   data () {
     return {
@@ -48,11 +49,18 @@ export default {
     }
   },
   props: {
-    userCalendar: Array
+    userCalendar: Array,
+    uid: String
+  },
+  computed: {
+    ...mapActions([
+      'getUserData'
+    ])
   },
   mounted () {
+    this.$store.dispatch('getUserData', this.uid)
     const workoutsData = []
-    if (this.userCalendar !== undefined) {
+    if (this.userCalendar) {
       return this.userCalendar.forEach(dbCalendar => {
         const completedTime = new Date(`${dbCalendar.dateComplete}T${dbCalendar.timeComplete}`).toLocaleTimeString()
         const completedDate = new Date(`${dbCalendar.dateComplete}T${dbCalendar.timeComplete}`).toLocaleDateString()
@@ -67,7 +75,7 @@ export default {
         this.workoutsData = workoutsData
       })
     }
-    console.log('no data')
+    console.log('No data available')
     this.workoutsData = workoutsData
   }
 }

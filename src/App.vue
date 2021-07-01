@@ -11,8 +11,8 @@
 </template>
 
 <script>
-import MyFooter from '@/components/footer.vue'
-import MyNav from '@/components/nav.vue'
+import MyFooter from '@/components/Footer/footer.vue'
+import MyNav from '@/components/Navbar/nav.vue'
 export default {
   components: { MyFooter, MyNav },
   name: 'App'

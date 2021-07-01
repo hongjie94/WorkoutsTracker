@@ -10,6 +10,7 @@
       >
         <v-card class="card_theme">
           <v-img :src="workout.imageURL"
+          :class="{ opacity: unlockSection === workout.name }"
           @mouseenter="showUnlockSection(workout.name)"
           alt="NotFund" />
             <div class="workoutsTitle">
@@ -33,15 +34,15 @@
             <v-card-actions>
               <v-btn
                 text
-                :disabled ='UnlockedWorkoutName.includes(workout.name)'
-                :class="{ btn_unlocked:UnlockedWorkoutName.includes(workout.name)}"
+                :disabled ='isUnlock(workout.name)'
+                :class="{ btn_unlocked: isUnlock(workout.name) }"
                 @click="unlockClicked(workout.name, workout.strogeURL, workout.price, workout.price_id)">
-                <i style="font-size: 2em" v-if="UnlockedWorkoutName.includes(workout.name)" class="mdi mdi-lock-open-variant" aria-hidden="true"></i>
-                <span v-if="!(UnlockedWorkoutName.includes(workout.name))"> Unlock</span>
+                <i style="font-size: 2em" v-if="isUnlock(workout.name)" class="mdi mdi-lock-open-variant" aria-hidden="true"></i>
+                <span v-if="!isUnlock(workout.name)"> Unlock</span>
               </v-btn>
               <v-spacer></v-spacer>
               <v-btn icon
-              :class="{ btn_unlocked:UnlockedWorkoutName.includes(workoutName)}"
+              :class="{ btn_unlocked:isUnlock(workout.name)}"
               @click="toggle(workout.id)" >
                 <v-icon>{{ isActive === workout.id ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
               </v-btn>
@@ -184,6 +185,14 @@ export default {
     },
     hideUnlockSection () {
       this.unlockSection = ''
+    },
+    isUnlock (workoutName) {
+      if (this.UnlockedWorkoutName) {
+        return (this.UnlockedWorkoutName.includes(workoutName))
+      } else {
+        // console.log('No data available')
+        return false
+      }
     }
   },
   created () {

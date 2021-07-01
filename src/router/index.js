@@ -1,18 +1,15 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import firebase from 'firebase/app'
+import 'firebase/auth'
 import Home from '../views/Home.vue'
 import Login from '../views/Authentication/Login.vue'
 import Register from '../views/Authentication/Register.vue'
 import ResetPassword from '../views/Authentication/ResetPassword.vue'
-
-import Resources from '../views/Resources.vue'
 import Workouts from '../views/Workouts.vue'
 import CurrentWorkout from '../components/Dashbroad/UnlockedWorkouts/currentWorkout.vue'
 import Dashbroad from '../views/Dashbroad.vue'
-// import Cart from '../views/Cart.vue'
 import PaymentSuccess from '../views/PaymentSuccess.vue'
-import firebase from 'firebase/app'
-import 'firebase/auth'
 
 Vue.use(VueRouter)
 
@@ -48,16 +45,6 @@ const routes = [
     component: CurrentWorkout,
     meta: { requiresAuth: true }
   },
-  {
-    path: '/resources',
-    name: 'Resources',
-    component: Resources
-  },
-  // {
-  //   path: '/cart',
-  //   name: 'Cart',
-  //   component: Cart
-  // },
   {
     path: '/paymentSuccess/:workout_id',
     name: 'PaymentSuccess',

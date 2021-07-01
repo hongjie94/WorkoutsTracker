@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar" ref="elHtml">
     <a to= "/" class="navbar__logo">
-      <img src="../assets/sass/img/logo.png" alt="">
+      <img src="../../images/logo.png" alt="">
     </a>
      <!-- mobile size nav menu -->
     <div class="mobile_icon">

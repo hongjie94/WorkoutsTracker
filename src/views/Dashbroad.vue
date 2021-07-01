@@ -47,6 +47,7 @@
             id="records"
             v-if="selection === 'Records'"
             :userCalendar = 'userCalendar'
+            :uid = "uid"
           />
         </v-card>
       </v-tab-item>
@@ -62,7 +63,7 @@ import Records from '@/components/Dashbroad/records.vue'
 import { mapState, mapActions } from 'vuex'
 import firebase from 'firebase/app'
 export default {
-  name: 'Home',
+  name: 'Dashbroad',
   components: {
     UnlockedWorkouts,
     Calendar,

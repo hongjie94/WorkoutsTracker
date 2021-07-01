@@ -6,10 +6,10 @@
                 <p> © {{ new Date().getFullYear() }}  Online Workout Tracker. All Rights Reserved</p>
             </div>
             <div class="footer__links">
-                <h2 class="footer__title">Contact Us</h2>
-                <a href="#" class="footer__link">Contact</a>
-                <a href="#" class="footer__link">Support</a>
-                <a href="#" class="footer__link">Sponserships</a>
+                <h2 class="footer__title">Footer menu</h2>
+                <a href="#" class="footer__link">Home</a>
+                <a href="#" class="footer__link">Workouts</a>
+                <a href="#" class="footer__link">Resources</a>
             </div>
         </div>
         <div class="footer__wrapper">

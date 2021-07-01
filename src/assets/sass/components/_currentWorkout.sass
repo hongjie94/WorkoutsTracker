@@ -1,6 +1,6 @@
 // Current workout
 .workoutCalendars
-  background-image: url("./img/workoutCalendars.jpg")
+  background-image: url("../../images/workoutCalendars.jpg")
   background-size: cover
   background-repeat: no-repeat
   background-attachment: fixed
@@ -55,7 +55,6 @@
       i
         font-size: 22px
 
-
 // Calendar
 .Month-Calendar
   max-width: 1200px
@@ -92,6 +91,8 @@
         h4
           color: $white
           margin: 5px
+          text-transform: capitalize
+          letter-spacing: 5px
     .week-rows
       margin: 0 !important
       padding: 0
@@ -111,6 +112,10 @@
             margin: 0px
             font-size: 4.5rem
             font-weight: 800
+          h6
+            font-size: clamp(.5em, 1.5vw, 1.2em)
+            font-weight: 900
+            margin: 0  
           span
             padding: 0px
             margin: 0px
@@ -126,6 +131,7 @@
         cursor: pointer
         background-color: $calendar-bg
         padding: 0
+        position: relative   
         p
           padding: 5px 13px
           margin-top: 0
@@ -152,24 +158,25 @@
           color: $pluse
           font-weight: 800
           padding: 0
-        .firstWeek
-          padding: 5px
-          p 
-            font-size: 10px
-            padding: 0px
-            color: $pluse
-        .lastWeek
-          padding: 5px
-          p
-            font-size: 10px
-            padding: 0px
-            color: $pluse
 
 // v-overlay
 .Month-Calendar
   .isCompleted
-    text-decoration: #ED4337 solid line-through
-    text-decoration-thickness: 2px
+    position: relative
+    opacity: .5
+    &::before
+      content: ""
+      position: absolute
+      border: 1px solid red
+      width: clamp(5rem, 10vw, 8rem)
+      transform: rotate(45deg)
+    &::after
+      content: ""
+      position: absolute
+      border: 1px solid red
+      width:  clamp(5rem, 10vw, 8rem)
+      transform: rotate(135deg)
+
   .v-overlay__content
     background-color: #2a2929 !important
     border-radius: 4px
@@ -243,46 +250,56 @@
       display: flex
       justify-content: space-between
       align-items: center
-      span
+      div
         padding: 0 1em
+        -webkit-line-clamp: 1
+        -webkit-box-orient: vertical
+        display: -webkit-box
+        overflow: hidden
     .closeBtn 
       align-self: flex-end !important
+    .calendarFrame-2workouts
+      display: flex
+      justify-content: space-evenly
+    .calendarFrame-w1, .calendarFrame-w2
+      width: 48%  
+      position: relative
     .calendarFrame 
       width: 99.70%
       position: relative
-      .calendarDownload 
-        width: 100%
-        position: absolute
-        height: 55px
-        z-index: 4
-        display: flex
-        justify-content: flex-end
-        .icon_div 
-          width: 100%
-          display: flex
-          justify-content: flex-end
-          align-items: center
-          padding: 10px 29px 3px 0px
-          .dl_icon
-            background: rgba(0,0,0,.87)
-            width: 3em
-            border: 1px solid #6c757d
-            height: 3em
-            border-radius: 50%
-            display: flex
-            justify-content: center
-            align-items: center
-            cursor: pointer
-            font-size: 13px
-            &:hover
-              background: $white
-            a
-              i
-                font-size: 3.3rem
-                color: #6c757d
-                transition: 0.3s ease
-                &:hover
-                  color: $myBlue     
+    .calendarDownload, .calendarDownload-w1, .calendarDownload-w2
+      width: 100%
+      position: absolute
+      height: 55px
+      z-index: 4
+      display: flex
+      justify-content: flex-end
+    .icon_div 
+      width: 100%
+      display: flex
+      justify-content: flex-end
+      align-items: center
+      padding: 10px 29px 3px 0px
+    .dl_icon
+      background: rgba(0,0,0,.87)
+      width: 3em
+      border: 1px solid #6c757d
+      height: 3em
+      border-radius: 50%
+      display: flex
+      justify-content: center
+      align-items: center
+      cursor: pointer
+      font-size: 13px
+      &:hover
+        background: $white
+      a
+        i
+          font-size: 3.3rem
+          color: #6c757d
+          transition: 0.3s ease
+          &:hover
+            color: $myBlue     
               
 // Video
 .videos
@@ -322,10 +339,13 @@
         color: white
         margin: 0
         width: 75%
-        display: flex
-        justify-content: flex-start
-        align-items: center
         padding: 0 10px
+        -webkit-line-clamp: 1
+        -webkit-box-orient: vertical
+        display: -webkit-box
+        overflow: hidden
+        margin: auto
+        height: min-content
       .download_icon_div 
         // width: 3em
         width: 25%
@@ -436,9 +456,18 @@
     p 
       font-size: 12px
   .weeks
+    min-height: 4em
     h1
       font-size: 4em !important    
 @media screen and (max-width: 780px)
+  .Month-Calendar
+    .container .week-rows .allweeks
+      font-size: 50%
+    .isCompleted
+        &::before
+          transform: rotate(65deg)
+        &::after
+          transform: rotate(115deg)  
   .workout_calendar
     .videos
       margin: 0px
@@ -555,7 +584,7 @@
       .monthBtn2
         margin: 0 0em 1.5em 0em !important
 @media screen and (max-width: 414px)
-  .Month-Calendar 
+  .Month-Calendar
     .calendarOverlay 
       .calendarOverlay-bottom
         margin-bottom: 0.5rem
@@ -577,9 +606,7 @@
       h1
         font-size: 2em !important
       span
-        font-size: 7px !important
-    .firstWeek, .lastWeek
-      padding: 3px !important    
+        font-size: 7px !important 
     .week-workouts 
       p 
         font-size: 5px !important
@@ -608,7 +635,5 @@
         padding: 10px 2px !important
     .container
       min-width: 270px !important
-    .lastWeek
-      padding: 0px !important
     .allWeeks
       padding: 0 10px !important                                               

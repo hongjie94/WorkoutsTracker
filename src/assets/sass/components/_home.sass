@@ -1,28 +1,46 @@
 // Hero section
 .hero
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1)), url('./img/hero.jpg')
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.0)), url('../../images/hero.jpg')
     height: 100vh
     background-position: center center
     background-size: cover
+    background-color: $myBlue
     padding: 0.5rem calc((100vw - 1200px) / 2)
     display: flex
     justify-content: center
     align-items: center
+    font-family: 'Lato'
+    &::before
+        background: rgba(0, 0, 1, 0.9)
+        opacity: .9
 
 .hero__content
     color: $white
-    padding: 3rem 1rem
+    padding: 3rem
     line-height: 1
     width: 100%
+    text-align: start
 
+.hero__content h3
+    font-size: clamp(1rem, 4vw, 2rem)
+    text-transform: capitalize
+    margin-bottom: .6em
+    
 .hero__content h1
-    font-size: clamp(3rem, 8vw, 7rem)
+    font-size: clamp(2.5rem, 7vw, 4.5rem)
     text-transform: uppercase
-    margin-bottom: 0.5rem
-
+    font-weight: 900
+    letter-spacing: 4px
+    margin-bottom: .5em
+  
 .hero__content p
-    font-size: clamp(1rem, 3.8vw, 2.5rem)
-    margin-bottom: 3rem
+    // font-size: clamp(1rem, 3.8vw, 1.5rem)
+    margin-bottom: 3.5rem
+    font-size: clamp(13px, 3vw, 18px)
+    line-height: 25px
+    letter-spacing: 2px
+    padding: 0px 35% 0 0
+    text-transform: capitalize
 
 .home_button, .button
     padding: 1rem 3rem
@@ -34,11 +52,11 @@
     outline: none
     transition: 0.3s ease
     text-decoration: none
-    border-radius: 4px
+    border-radius: 2px
     &:hover
         background: $myBlue
-        text-decoration: none
         color: $white
+        text-decoration: none
 @media screen and (max-width: 768px)
     .hero
         height: 100vh
@@ -95,7 +113,7 @@
     
 @media screen and (max-width: 540px), (width: 768px), (height: 1366px) and (width: 1024px)
     .hero
-        background: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1)), url('./img/hero_mobile.jpg')
+        background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url('../../images/hero_mobile.jpg')
         height: 100vh
         background-position: center center
         background-size: cover
@@ -103,6 +121,11 @@
         display: flex
         justify-content: flex-start
         align-items: center
+        .hero__content
+            padding: 3rem 2rem
+            text-align: center
+            p
+                padding: 0 3em
     .membership__wrapper
         flex-direction: column
         align-items: center
@@ -110,7 +133,10 @@
     .membership__card
         width: 90%
         margin-bottom: 2rem
-
+@media screen and (max-width: 414px)
+    .hero__content
+            p
+                line-height: 18px
 @media screen and (max-width: 1023px)
     .membership__card
         width: 90%
@@ -121,7 +147,7 @@
     
 //email section
 .home_email
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.6) 35%, rgba(0, 0, 0, 0.1) 100%), url('./img/home_email.jpg') no-repeat center
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.6) 35%, rgba(0, 0, 0, 0.1) 100%), url('../../images/home_email.jpg') no-repeat center
     background-size: cover
     height: 450px
     width: 100%
@@ -140,7 +166,7 @@
     & h1
         text-align: center
         margin-bottom: 1rem
-        font-size: clamp(1rem, 5vw, 3rem)
+        font-size: clamp(1rem, 5vw, 2.5rem)
         padding: 0 1rem
 
     & p
