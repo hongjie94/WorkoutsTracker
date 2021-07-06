@@ -119,8 +119,10 @@
           span
             padding: 0px
             margin: 0px
-            font-size: 1rem
+            font-size: 1.5em
             font-weight: 800
+          b
+            font-size: 11px    
       .week-workouts
         border-bottom: 1px solid
         border-right: 1px solid
@@ -168,13 +170,13 @@
       content: ""
       position: absolute
       border: 1px solid red
-      width: clamp(5rem, 10vw, 8rem)
+      width: clamp(3.5rem, 10vw, 8rem)
       transform: rotate(45deg)
     &::after
       content: ""
       position: absolute
       border: 1px solid red
-      width:  clamp(5rem, 10vw, 8rem)
+      width:  clamp(3.5rem, 10vw, 8rem)
       transform: rotate(135deg)
 
   .v-overlay__content
@@ -411,6 +413,15 @@
     .videos // Video
         .iframe_video
             margin: 1em 25px
+    .Month-Calendar .container .week-rows .allweeks .weeks  // Calendar
+      span
+        font-size: 1.2rem
+      h1
+        font-size: 3.5rem
+      b 
+        font-size: 9px
+     
+
 @media screen and (max-width: 1024px)
   .week-workouts // Calendar
     p 
@@ -438,6 +449,9 @@
       width: 100% !important
       .iframe_video
         margin: 1em 24px !important
+  .Month-Calendar .container .week-rows .allweeks .weeks // Calendar 
+    b 
+      font-size: 7px 
   
 @media screen and (max-width: 896px)
    .workout_calendar // Video
@@ -457,8 +471,10 @@
       font-size: 12px
   .weeks
     min-height: 4em
+    span
+      font-size: 1rem !important  
     h1
-      font-size: 4em !important    
+      font-size: 2.5em !important    
 @media screen and (max-width: 780px)
   .Month-Calendar
     .container .week-rows .allweeks
@@ -483,7 +499,10 @@
         height: 246px 
   .week-workouts  // Calendar
     p 
-      font-size: 10px     
+      font-size: 10px   
+  .Month-Calendar .container .week-rows .allweeks .weeks // Calendar 
+    b
+      font-size: 5px       
 @media screen and (max-width: 680px)     
   .month-rows // Calendar
     padding: 0 !important
@@ -492,15 +511,13 @@
   .week-workouts 
     p 
       font-size: 9px
-  .weeks
-    h1
-      font-size: 3em !important
-    span
-      font-size: .8em !important
   .date-rows
     div
       p
         font-size: 9px
+  .Month-Calendar .container .week-rows .allweeks .weeks // Calendar 
+    span
+      font-size: .8rem !important    
 @media screen and (max-width: 667px)
   .workout_calendar
     .videos // Video
@@ -547,27 +564,33 @@
     .weeks
       h1
         font-size: 2em !important
-      span
-        font-size: 11px !important  
+      b
+        font-size: 4px !important      
     .week-workouts 
       p
         font-size: 7px !important
   .rest::after, .pluse::after
       font-size: 8px !important
+  .Month-Calendar .container .week-rows .allweeks .weeks
+    span
+      font-size: 9px !important     
 @media screen and (max-width: 492px)
   .workout_calendar  // calendar
+    .container 
+      min-height: 1em !important
+    .week-rows
+      .allweeks   
+        .weeks
+          h1
+            font-size: 1.8em !important
     .week-workouts 
       p 
         padding: 0px !important
+  .Month-Calendar .container .week-rows .allweeks .weeks
+    span
+      font-size: 8px !important                 
 @media screen and (max-width: 465px)
   .workout_calendar // Calendar
-    .container 
-      min-height: 1em !important
-    .weeks
-      h1
-        font-size: 1.8em !important
-      span
-        font-size: 8px !important
     .rest::after, .pluse::after
       font-size: 6px !important    
     .week-workouts 
@@ -592,7 +615,9 @@
           margin-top: 8px
         .v-input--selection-controls 
           margin-top: 8px
-          padding-top: 0px            
+          padding-top: 0px
+  .Month-Calendar .container .week-rows .allweeks .weeks b
+    font-size: 3px !important                             
 @media screen and (max-width: 370px)
   .banner  // Banner
     h1

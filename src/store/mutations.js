@@ -8,8 +8,8 @@ export default {
   getUnlockedWorkouts: (state, uid) => {
     const dbRef = db.collection(uid).doc('unlockedWorkouts')
     dbRef.get().then((doc) => {
-      const workouts = doc.data().unlockedWorkouts
-      if (workouts) {
+      if (doc.data()) {
+        const workouts = doc.data().unlockedWorkouts
         const reverseWorkouts = [...workouts].reverse()
         state.unlockedWorkouts = reverseWorkouts
       } else {
@@ -22,8 +22,8 @@ export default {
   getUserCalendar: (state, uid) => {
     const dbRef = db.collection(uid).doc('userCalendar')
     dbRef.get().then((doc) => {
-      const calendarData = doc.data().userCalendar
-      if (calendarData) {
+      if (doc.data()) {
+        const calendarData = doc.data().userCalendar
         state.userCalendar = calendarData
       } else {
         return console.log('No Calendar Data')

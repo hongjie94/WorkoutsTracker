@@ -34,17 +34,17 @@ export default {
           quantity: 1
         }
       ],
-      successURL: null, // 'https://localhost:8080/workout',
+      successURL: 'https://www.workoutstracker/workout',
       cancelURL: 'http://www.workoutstracker/workout'
     }
   },
   methods: {
     async submit () {
-      this.successURL = 'http://localhost:8080/dashbroad/' + this.price_id.split('price_').pop(',')
+      this.successURL = 'http://www.workoutstracker/dashbroad/' + this.price_id.split('price_').pop(',')
       alert(this.successURL)
       // You will be redirected to Stripe's secure checkout page
-      this.$router.replace({ name: 'PaymentSuccess' })
-      // this.$refs.checkoutRef.redirectToCheckout()
+      this.$refs.checkoutRef.redirectToCheckout()
+      // this.$router.replace({ name: 'PaymentSuccess' })
     }
   }
 }

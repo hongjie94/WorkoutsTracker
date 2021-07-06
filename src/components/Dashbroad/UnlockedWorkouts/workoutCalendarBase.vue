@@ -3,7 +3,7 @@
       <div class="container">
           <div class="row month-rows">
               <div class="col-12 month">
-                  <h4>{{header.toLowerCase()}}</h4>
+                  <h4>{{header.toUpperCase()}}</h4>
               </div>
           </div>
           <div class="row date-rows">
@@ -19,15 +19,10 @@
           <div class="row week-rows" :key="index" v-for="(calendar, index) in calendars">
             <div class="col-1 allweeks"
               :class="{ noborder: calendar.week === lastWeeks }">
-              <div class="weeks" v-if="calendar.week !== 'Recovery'">
+              <div class="weeks">
                 <span>WEEK</span>
-                 Phase {{calendar.phase}}
                 <h1>{{calendar.week}}</h1>
-              </div>
-              <div class="weeks" v-if="calendar.week === 'Recovery'">
-                <span>WEEK</span>
-                <h1>5</h1>
-                  <h6>{{calendar.week}}</h6>
+                <b v-if="calendar.detail">{{calendar.detail}}</b>
               </div>
             </div>
               <div
@@ -43,11 +38,11 @@
                   )"
               >
                 <p
-                  @click="showOverlay">
+                  @click="showOverlay(calendar.mon.day)">
                   {{calendar.mon.workout}}
                 </p>
 
-                <p @click="showOverlay"
+                <p @click="showOverlay(calendar.mon.day)"
                   v-if="calendar.mon.workout2">
                   + {{calendar.mon.workout2}}
                 </p>
@@ -65,10 +60,10 @@
                 )"
               >
                 <p
-                  @click="showOverlay">
+                  @click="showOverlay(calendar.tue.day)">
                   {{calendar.tue.workout}}
                 </p>
-                 <p @click="showOverlay"
+                 <p @click="showOverlay(calendar.tue.day)"
                   v-if="calendar.tue.workout2">
                   + {{calendar.tue.workout2}}
                  </p>
@@ -86,10 +81,10 @@
                 )"
               >
                 <p
-                  @click="showOverlay">
+                  @click="showOverlay(calendar.wed.day)">
                   {{calendar.wed.workout}}
                 </p>
-                 <p @click="showOverlay"
+                 <p @click="showOverlay(calendar.wed.day)"
                   v-if="calendar.wed.workout2">
                   + {{calendar.wed.workout2}}
                  </p>
@@ -107,10 +102,10 @@
                 )"
               >
                 <p
-                  @click="showOverlay">
+                  @click="showOverlay(calendar.thu.day)">
                   {{calendar.thu.workout}}
                 </p>
-                 <p @click="showOverlay"
+                 <p @click="showOverlay(calendar.thu.day)"
                   v-if="calendar.thu.workout2">
                   + {{calendar.thu.workout2}}
                  </p>
@@ -128,10 +123,10 @@
                 )"
               >
                 <p
-                  @click="showOverlay">
+                  @click="showOverlay(calendar.fri.day)">
                   {{calendar.fri.workout}}
                 </p>
-                <p @click="showOverlay"
+                <p @click="showOverlay(calendar.fri.day)"
                   v-if="calendar.fri.workout2">
                   + {{calendar.fri.workout2}}
                 </p>
@@ -149,22 +144,22 @@
                 )"
               >
                 <p
-                  @click="showOverlay"
-                  v-if="calendar.sat.workout === 'REST'"
+                  @click="showOverlay(calendar.sat.day)"
+                  v-if="currentProgram === 'Insanity Max 30' & calendar.sat.workout === 'REST'"
                   class="rest">
                   {{calendar.sat.workout}}
                 </p>
                 <p
-                  @click="showOverlay"
-                  v-if="calendar.sat.workout !== 'REST'">
-                  {{calendar.sat.workout}}
+                  @click="showOverlay(calendar.sat.day)"
+                  v-if="currentProgram === 'Insanity Max 30' & calendar.sat.workout === 'REST' "
+                  class="pluse rest">PULSE
                 </p>
                 <p
-                  @click="showOverlay"
-                  v-if="calendar.pluse || calendar.sat.workout === 'REST' "
-                  class="pluse">PULSE
+                  @click="showOverlay(calendar.sat.day)"
+                  v-if="currentProgram !== 'Insanity Max 30' ">
+                  {{calendar.sat.workout}}
                 </p>
-                <p @click="showOverlay"
+                <p @click="showOverlay(calendar.sat.day)"
                   v-if="calendar.sat.workout2">
                   + {{calendar.sat.workout2}}
                 </p>
@@ -181,7 +176,7 @@
                 )"
               >
                 <p
-                  @click="showOverlay">
+                  @click="showOverlay(calendar.sun.day)">
                   {{calendar.sun.workout}}
                 </p>
               </div>
@@ -191,7 +186,7 @@
           <v-overlay
               class="calendarOverlay"
               :value="overlay"
-              v-if="overlay"
+              v-if="overlay && workoutName"
               >
             <div class="topheader">
               <div v-if="workoutName2"> Day # {{workoutDay}} - {{workoutName}}</div>
@@ -201,7 +196,7 @@
               </v-btn>
             </div>
             <div class="calendarFrame"
-              v-if="(workoutName !== 'Rest Day') && (!workoutName2)"
+              v-if="(workoutName !== 'REST') && (!workoutName2)"
               >
                 <div class="calendarDownload">
                   <div class="icon_div">
@@ -254,10 +249,10 @@
             </div>
             </div>
 
-            <div v-if="workoutName === 'Rest Day'">
+            <div v-if="workoutName === 'REST'">
               <v-img max-width="31em" src="./Rest.jpeg" />
             </div>
-            <v-app>
+              <v-app>
                 <v-progress-linear
                   :active="loading"
                   :indeterminate="loading"
@@ -309,10 +304,6 @@
             <div class="calendarOverlay-bottom_complete" v-if="isCompleted">
                 <p> <v-icon class="checkCircle">mdi-check-circle</v-icon>Workout Completed </p>
                 <p>{{currentCompletedData}}</p>
-                <p v-for="(calendar, index) in calendars" :key="index">
-                   {{calendar.sat.workout2}}
-                    {{calendar.sat.videoIndex2}}
-                </p>
                 <!-- {{calendars}} -->
             </div>
           </v-overlay>
@@ -366,7 +357,7 @@ export default {
   props: {
     currentProgram: String,
     calendars: Array,
-    workoutVideos: Array,
+    workoutVideos: [Object, Array],
     header: String,
     totalWorkoutDays: Number,
     progress: Number,
@@ -397,12 +388,18 @@ export default {
     }
   },
   methods: {
+    test () {
+      console.log(this.calendars)
+      console.log(this.currentProgram)
+    },
     // Show overlay
-    showOverlay () {
+    showOverlay (day) {
+      this.workoutDay = day
+      alert(this.workoutDay)
       this.toggleStatus = false
       this.overlay = true
     },
-    // Hide overlay
+    // Hide overlay (clear datas)
     hideOverlay () {
       this.overlay = false
       this.currentWorkout = null
@@ -410,7 +407,6 @@ export default {
       this.workoutDuration = null
       this.workoutName2 = null
       this.currentWorkout2 = null
-      this.workoutDay = null
       this.workoutWeek = null
       this.workoutDl = null
       this.workoutDl2 = null
@@ -426,21 +422,22 @@ export default {
       })
     },
     // Get data from firebase
-    async getWorkoutData (videoIndex, workoutName, week, day, videoIndex2, workoutName2) {
-      if (videoIndex === 'REST') {
+    getWorkoutData  (videoIndex, workoutName, week, day, videoIndex2, workoutName2) {
+      // on rest day and complete day
+      if (videoIndex === 'REST' || videoIndex === 'NONE') {
+        // alert('REST or COMPLETE, NONE')
         this.workoutDay = day
         this.workoutWeek = week
-        this.workoutName = workoutName
+        videoIndex === 'REST' ? this.workoutName = 'REST' : this.workoutName = 'NONE'
+        this.workoutName2 = null
+        this.workoutVideo = null
+        this.workoutVideo2 = null
         this.workoutDuration = null
         this.workoutDuration2 = null
-      } else if (videoIndex === 'COMPLETE') {
-        this.workoutDay = day
-        this.workoutWeek = week
-        this.workoutName = workoutName
-        this.workoutDuration = null
-        this.workoutDuration2 = null
-      }
-      if (workoutName2) {
+        this.workoutDl = null
+        this.workoutDl2 = null
+      } else if (workoutName2) { // if there is 2 workouts in a day
+        // alert('workoutName2')
         this.workoutVideo = this.workoutVideos[videoIndex].url
         this.workoutVideo2 = this.workoutVideos[videoIndex2].url
         this.workoutName = `${workoutName} + ${workoutName2}`
@@ -451,7 +448,8 @@ export default {
         this.workoutWeek = week
         this.workoutDl = this.workoutVideos[videoIndex].downloadLinks
         this.workoutDl2 = this.workoutVideos[videoIndex2].downloadLinks
-      } else {
+      } else { // regular workout days
+        // alert('regular')
         this.currentWorkout = this.workoutVideos[videoIndex]
         this.workoutName = workoutName
         this.workoutDuration = this.workoutVideos[videoIndex].duration
@@ -464,6 +462,7 @@ export default {
         this.workoutDl2 = null
         this.workoutVideo = this.workoutVideos[videoIndex].url
         this.workoutVideo2 = null
+        // alert('day' + day + 'or' + this.workoutDay)
       }
       // Get Completed Days and check if current day is completed
       this.getCompletedDays()
@@ -481,7 +480,10 @@ export default {
       }
     },
     // Summit completed workout to firebase
-    async summitWorkoutData (currentWorkoutName) {
+    async summitWorkoutData () {
+      if (!this.workoutName) {
+        this.workoutName = 'REST'
+      }
       this.loading = true
       const today = new Date()
       const dd = String(today.getDate()).padStart(2, '0')
@@ -494,7 +496,7 @@ export default {
       // Get data
       const submitedData = {
         programName: this.currentProgram,
-        workoutName: currentWorkoutName,
+        workoutName: this.workoutName,
         workoutWeek: this.workoutWeek,
         dayNum: this.workoutDay,
         duration: this.workoutDuration,
@@ -549,10 +551,10 @@ export default {
         }, { merge: true })
       })
       this.$store.dispatch('getUserData', this.uid)
-      this.hideOverlay()
-      swal(`Day #${this.workoutDay} Completed !`, `Nice job! you have completed ${this.currentProgram} Day ${this.workoutDay} (${currentWorkoutName}).`, {
+      swal(`Day #${this.workoutDay} Completed !`, `Nice job! you have completed ${this.currentProgram} Day ${this.workoutDay} (${this.workoutName}).`, {
         icon: 'success'
       })
+      this.hideOverlay()
     }
   }
 }

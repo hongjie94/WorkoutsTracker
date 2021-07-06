@@ -68,7 +68,11 @@ export default {
       const programName = workoutName.replace(/\s/g, '')
       const dbprogramName = db.collection(this.uid).doc(programName)
       await dbprogramName.get().then((doc) => {
-        this.progress = doc.data().Progress
+        if (doc.data()) {
+          this.progress = doc.data().Progress
+        } else {
+          this.progress = 0
+        }
       })
       this.showProgress = index
     },
