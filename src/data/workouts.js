@@ -3,14 +3,13 @@ export default [
     id: 1,
     name: 'Insanity',
     category: 'Cardio',
-    route: 'Insanity',
     price: 9.99,
     price_id: `${process.env.VUE_APP_INSANITY_PRICE_ID}`, // Strip Checkout price id
     imageURL: require('../images/workoutCovers/Insanity.png'),
     strogeURL: 'https://firebasestorage.googleapis.com/v0/b/workoutstracker.appspot.com/o/WorkoutCovers%2FInsanity.png?alt=media&token=22127ce5-8769-4130-aa00-3b3d71e4d008',
     includes: {
-      a: '55 Days Program',
-      b: '6 Days a Week ',
+      a: '63 Days Program',
+      b: '6 Workouts Per Week',
       c: '14 Workout Videos'
     },
     equipments: {
@@ -20,15 +19,14 @@ export default [
   {
     id: 2,
     name: 'Insanity Max 30',
-    route: 'InsaityMax30',
     category: 'Cardio',
     price: 9.99,
     price_id: `${process.env.VUE_APP_MAX30_PRICE_ID}`,
     imageURL: require('../images/workoutCovers/InsanityMax30.jpg'),
     strogeURL: 'https://firebasestorage.googleapis.com/v0/b/workoutstracker.appspot.com/o/WorkoutCovers%2FInsanityMax30.jpg?alt=media&token=318fea6c-8914-4c10-99db-43082eea6aa2',
     includes: {
-      a: '2 Month Workout',
-      b: '6 Days a Week',
+      a: '55 Days Program',
+      b: '6 Workouts Per Week',
       c: '15 Workout Videos'
     },
     equipments: {
@@ -37,8 +35,7 @@ export default [
   },
   {
     id: 3,
-    name: 'Insanity Asylum Vol. 1',
-    route: 'InsaityAsylumv1',
+    name: 'Insanity Asylum Vol 1',
     category: 'Cardio',
     price: 4.99,
     price_id: `${process.env.VUE_APP_ASYLUM_V1_PRICE_ID}`,
@@ -54,32 +51,31 @@ export default [
     },
     required: {
       a: 'Agility ladder',
-      b: 'Exercise bands',
-      c: 'Speed rope',
+      b: 'Resistance Bands',
+      c: 'Jump Rope',
       d: 'Yoga Mat (optional)'
     }
   },
   {
     id: 4,
-    name: 'Insanity Asylum Vol. 2',
-    route: 'InsaityAsylumv2',
+    name: 'Insanity Asylum Vol 2',
     category: 'Cardio',
     price: 4.99,
     price_id: `${process.env.VUE_APP_ASYLUM_V2_PRICE_ID}`,
     imageURL: require('../images/workoutCovers/AsylumVol2.jpg'),
     strogeURL: 'https://firebasestorage.googleapis.com/v0/b/workoutstracker.appspot.com/o/WorkoutCovers%2FAsylumVol2.jpg?alt=media&token=12b278e0-7539-4951-b6ac-be9625666472',
     includes: {
-      a: '8 Online Workout Videos',
-      b: 'Asylum Vol.2 Calendar',
-      c: 'Download Links'
+      a: '28 Days Program',
+      b: '6 Workouts Per Week',
+      c: '9 Workout Videos'
     },
     equipments: {
       a: 'Equipment Required'
     },
     required: {
       a: 'Agility ladder',
-      b: 'Exercise bands',
-      c: 'Speed rope',
+      b: 'Resistance Bands',
+      c: 'Jump Rope',
       d: 'Yoga Mat (optional)'
     }
   },
@@ -87,7 +83,6 @@ export default [
     id: 5,
     name: 'FOCUS T25',
     category: 'Cardio',
-    route: 'FT25',
     price: 9.99,
     price_id: `${process.env.VUE_APP_T25_PRICE_ID}`,
     imageURL: require('../images/workoutCovers/T25.jpg'),
@@ -111,7 +106,6 @@ export default [
     id: 6,
     name: 'Transform 20',
     category: 'Cardio',
-    route: 'T20',
     price: 14.99,
     price_id: `${process.env.VUE_APP_T20_PRICE_ID}`,
     imageURL: require('../images/workoutCovers/Transform20.png'),
@@ -132,7 +126,6 @@ export default [
   {
     id: 7,
     name: 'P90X',
-    route: 'P90X',
     category: 'Muscle',
     price: 9.99,
     price_id: `${process.env.VUE_APP_P90X_PRICE_ID}`,
@@ -156,7 +149,6 @@ export default [
   {
     id: 8,
     name: 'P90X2',
-    route: 'P90X2',
     category: 'Muscle',
     price: 9.99,
     price_id: `${process.env.VUE_APP_P90X2_PRICE_ID}`,
@@ -182,7 +174,6 @@ export default [
   {
     id: 9,
     name: 'P90X3',
-    route: 'P90X3',
     price: 9.99,
     category: 'Muscle',
     price_id: `${process.env.VUE_APP_P90X3_PRICE_ID}`,
@@ -207,57 +198,32 @@ export default [
   },
   {
     id: 10,
-    name: 'P90X PLUS',
-    route: 'P90X_plus',
-    category: 'Muscle',
-    price: 4.99,
-    price_id: `${process.env.VUE_APP_P90X_PLUS_PRICE_ID}`,
-    imageURL: require('../images/workoutCovers/P90xPlus.jpeg'),
-    strogeURL: 'https://firebasestorage.googleapis.com/v0/b/workoutstracker.appspot.com/o/WorkoutCovers%2FP90X_PLUS.jpeg?alt=media&token=40f12007-d7a5-4df6-b2fa-0a83607d9bce',
-    includes: {
-      a: '5 Online Workout Videos',
-      b: 'P90X PLUS Calendar',
-      c: 'Download Links'
-    },
-    equipments: {
-      a: 'No Equipment Required'
-    }
-  },
-  // {
-  //   id: 11,
-  //   name: 'CORE DE FORCE',
-  //   route: 'CDF',
-  //   price: 9.99,
-  //   imageURL: require('@/components/Workouts/CoreDeForce/cover.jpg'),
-  //   includes: {
-  //     a: 'MMA Speed-27 minutes',
-  //     b: 'Dynamic Strength-47 minutes',
-  //     c: 'Core Kinetics-16 minutes',
-  //     d: '5 Minute Core on the Floor-5 minutes',
-  //     e: 'MMA Shred-37 minutes',
-  //     f: 'Power Sculpt-37 minutes',
-  //     g: 'Core De Force Relief-5 minutes',
-  //     h: 'MMA Power-47 minutes',
-  //     i: 'MMA Plyo-47 minutes',
-  //     j: 'Active Recovery-21 minutes',
-  //     k: 'MMA Mashup-26 minutes'
-  //   },
-  //   equipments: {
-  //     a: 'No Equipment Required'
-  //   }
-  // },
-  {
-    id: 11,
     name: 'CORE DE FORCE',
-    route: 'CDF',
     category: 'Cardio',
     price: 9.99,
     price_id: `${process.env.VUE_APP_CDF_PRICE_ID}`,
     imageURL: require('../images/workoutCovers/CoreDeForce.jpg'),
     strogeURL: 'https://firebasestorage.googleapis.com/v0/b/workoutstracker.appspot.com/o/WorkoutCovers%2FCDF.jpg?alt=media&token=fb635309-6502-4726-a0fd-dffd93d3defd',
     includes: {
-      a: '15 Online Workout Vedios',
-      b: 'MAX OUT Calendar',
+      a: '30 Days Program',
+      b: '7 Workouts Per Week',
+      c: '15 Workout Videos'
+    },
+    equipments: {
+      a: 'No Equipment Required'
+    }
+  },
+  {
+    id: 11,
+    name: '10 Rounds',
+    category: 'Cardio',
+    price: 9.99,
+    price_id: `${process.env.VUE_APP_10ROUNDS_PRICE_ID}`,
+    imageURL: require('../images/workoutCovers/10Rounds.jpg'),
+    strogeURL: 'https://firebasestorage.googleapis.com/v0/b/workoutstracker.appspot.com/o/WorkoutCovers%2F10Rounds.jpg?alt=media&token=b42cdc26-97b6-495a-85b0-d4bf6333cea4',
+    includes: {
+      a: '40 Days Program',
+      b: '5 Workouts Per Week',
       c: 'Download Links'
     },
     equipments: {

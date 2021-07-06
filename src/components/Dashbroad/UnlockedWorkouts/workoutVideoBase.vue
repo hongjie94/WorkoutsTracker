@@ -60,12 +60,16 @@ export default {
     }
   },
   props: {
-    workoutVideos: Array
+    workoutVideos: [Object, Array]
   },
   beforeDestroy () {
     clearInterval(this.interval)
   },
   methods: {
+    test () {
+      console.log(this.workoutVideos)
+      console.log(this.workoutVideos.name)
+    },
     toggleLoader (name) {
       clearInterval(this.interval)
       this.value = 0

@@ -113,7 +113,7 @@ export default {
         Progress: 0
       }, { merge: true })
       this.$store.dispatch('getUserData', this.uid)
-      swal('Payment Completed')
+      swal('Payment Completed', { icon: 'success' })
       this.$router.push({ name: 'Dashbroad' })
     }
   }
