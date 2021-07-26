@@ -2,7 +2,8 @@
 node_modules
 /dist
 .editorconfig
-
+.firebaserc
+/babel.config.js
 # local env files
 .env
 .env.local
