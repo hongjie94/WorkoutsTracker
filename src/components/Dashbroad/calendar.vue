@@ -93,8 +93,8 @@
             <div class="calendarDetails" v-if="showCalendarDetails">
               <p class="textHeader" v-html="'Completed Workout Details'"></p>
               <p v-html="`Workout: ${selectedEvent.name}`"></p>
-              <p v-html="`Date: ${calendarDate}`"></p>
-              <p v-html="`Time: ${calendarTime}`"></p>
+              <p v-html="`Date: ${selectedEvent.calendarDate}`"></p>
+              <p v-html="`Time: ${selectedEvent.calendarTime}`"></p>
               <p v-html="`Duration: ${selectedEvent.duration} min`"></p>
             </div>
             <div class="updateColor" v-if="showColorPicker" @click="changeColor(selectedColors)">
@@ -192,7 +192,9 @@ export default {
             programName: dbCalendar.programName,
             duration: dbCalendar.duration,
             dayNum: dbCalendar.dayNum,
-            submitDay: dbCalendar.currentDay
+            submitDay: dbCalendar.currentDay,
+            calendarTime: new Date(`${dbCalendar.dateComplete}T${dbCalendar.timeComplete}`).toLocaleTimeString(),
+            calendarDate: dbCalendar.dateComplete
           })
           this.selectedEvent.color = dbCalendar.color
           this.calendarDate = dbCalendar.dateComplete

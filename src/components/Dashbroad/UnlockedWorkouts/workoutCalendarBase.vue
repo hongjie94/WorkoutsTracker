@@ -432,7 +432,7 @@ export default {
         this.workoutName2 = null
         this.workoutVideo = null
         this.workoutVideo2 = null
-        this.workoutDuration = null
+        this.workoutDuration = 0
         this.workoutDuration2 = null
         this.workoutDl = null
         this.workoutDl2 = null
