@@ -1,11 +1,15 @@
 <template>
   <div class="auth_register">
+    <!-- animation -->
     <transition appear enter-active-class="animated bounceInDown delay">
+
+      <!-- Auth form -->
       <div class="auth_form" @submit.prevent = "register">
         <ul class="tab-group">
           <li class="tab "><router-link to= "/login"> Log In </router-link></li>
           <li class="tab active"><router-link to= "/register"> Sign Up </router-link></li>
         </ul>
+        <!-- Signup -->
         <div id="signup">
           <transition enter-active-class="animated headShake">
             <div v-if="error" ><h4>{{error}}</h4></div>
@@ -33,9 +37,9 @@
             </div>
             <button type="submit" class="auth_button button-block">Get Started</button>
           </form>
-        </div> <!-- /signup -->
-      </div> <!-- /auth_form -->
-    </transition> <!-- auth_form_box animation-->
+        </div>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -55,6 +59,11 @@ export default {
       fristname: '',
       lastname: '',
       show: true
+    }
+  },
+  mounted () {
+    if (localStorage.email) {
+      this.email = localStorage.email
     }
   },
   computed: {

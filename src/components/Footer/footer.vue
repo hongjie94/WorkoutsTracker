@@ -6,24 +6,24 @@
                 <p> © {{ new Date().getFullYear() }}  Online Workout Tracker. All Rights Reserved</p>
             </div>
             <div class="footer__links">
-                <h2 class="footer__title">Footer menu</h2>
-                <a href="#" class="footer__link">Home</a>
-                <a href="#" class="footer__link">Workouts</a>
-                <a href="#" class="footer__link">Resources</a>
+                <h2 class="footer__title">Links</h2>
+                <router-link class="footer__link" to= "/" exact>Home</router-link >
+                <router-link class="footer__link" to= "/workouts">Workouts</router-link>
+                <!-- <router-link class="footer__link" to= "/resources">Resources</router-link> -->
             </div>
         </div>
         <div class="footer__wrapper">
             <div class="footer__links">
-                <h2 class="footer__title">Workouts </h2>
-                <a href="/Workout" class="footer__link">Intense Cardios</a>
-                <a href="/Workout" class="footer__link">Strength Trainings</a>
-                <a href="#" class="footer__link">Yoga & Meditation</a>
+              <h2 class="footer__title">Workouts </h2>
+              <router-link class="footer__link" to= "/workouts">Intense Cardios</router-link>
+              <router-link class="footer__link" to= "/workouts">Strength Trainings</router-link>
+              <router-link class="footer__link" to= "/workouts">Yoga & Meditation</router-link>
             </div>
             <div class="footer__links">
-                <h2 class="footer__title">Products</h2>
-                <a href="#" class="footer__link">Instagram</a>
-                <a href="#" class="footer__link">Facebook</a>
-                <a href="#" class="footer__link">Youtube</a>
+              <h2 class="footer__title">User</h2>
+              <router-link class="footer__link" to= "/login">Log in</router-link>
+              <router-link class="footer__link" to= "/register">Sign Up</router-link>
+              <a href="#" class="footer__link">Scroll Top</a>
             </div>
         </div>
     </div>

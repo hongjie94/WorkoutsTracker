@@ -6,9 +6,9 @@
             <form action="#" class="animate-email">
                 <div class="form__wrap">
                     <label for="email">
-                        <input type="email" placeholder="Enter your email" id="email">
+                        <input type="email" v-model="email"  placeholder="Enter your email" id="email">
                     </label>
-                    <button class="button" type="submit" @submit.prevent >Sign Up</button>
+                    <button class="button" type="submit" @click='getEmail' >Sign Up</button>
                 </div>
             </form>
         </div>
@@ -16,8 +16,25 @@
 </template>
 
 <script>
-export default {
+import { mapActions } from 'vuex'
 
+export default {
+  data () {
+    return {
+      email: ''
+    }
+  },
+  computed: {
+    ...mapActions([
+      'getNewUserEmail'
+    ])
+  },
+  methods: {
+    async getEmail () {
+      localStorage.email = this.email
+      this.$router.replace({ name: 'Register' })
+    }
+  }
 }
 </script>
 

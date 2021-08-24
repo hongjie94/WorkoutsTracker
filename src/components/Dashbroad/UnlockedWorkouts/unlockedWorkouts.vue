@@ -7,7 +7,6 @@
               </div>
           </v-card-text>
         </v-card>
-        <transition  appear enter-active-class="animated zoomIn" leave-active-class="animated fadeOut">
         <div class="unlocked_div">
           <v-card class="unlocked_div_cards"
             @mouseenter="overProgress((index), (unlockedWorkout.workoutName))"
@@ -17,12 +16,12 @@
             >
             <router-link :to="'/workouts/'+`${unlockedWorkout.workoutName.replace(/\s/g, '')}`">
               <v-img :src="unlockedWorkout.imgUrl" alt="NotFund"
-              :class="{ opacity: showProgress === index }"/>
+              class="opacity"/>
               <transition
-              appear enter-active-class="animated fadeInUp"
-              leave-active-class="animated fadeOut">
+                appear enter-active-class="animated fadeInUp porgressDelay"
+                leave-active-class="animated fadeOutDown porgressDelay">
                 <div
-                  v-if="showProgress === index"
+                  v-if="showProgress === index & tabVisible"
                   class="workoutProgress"
                   >
                   Progress: {{progress}}%
@@ -32,19 +31,18 @@
             <div class="workoutTitle">
               {{unlockedWorkout.workoutName}}
             </div>
-            </v-card>
+          </v-card>
         </div>
-        </transition>
-         <div class="noWorkouts" v-if="unlockedWorkouts.length < 1">
-              <p>No Workouts Available ...</p>
-              <v-btn
-                @click="toWorkoutPage"
-                text
-                color="#fff"
-                >
-                Add Workouts
-              </v-btn>
-            </div>
+        <div class="noWorkouts" v-if="unlockedWorkouts.length < 1">
+          <p>No Workouts Available ...</p>
+          <v-btn
+            @click="toWorkoutPage"
+            text
+            color="#fff"
+            >
+            Add Workouts
+          </v-btn>
+        </div>
     </v-app>
 </template>
 
@@ -54,6 +52,9 @@ export default {
   name: 'Dashbroad',
   data () {
     return {
+      showOpacity: false,
+      tabVisible: false,
+      t: null,
       showProgress: null,
       progress: null
     }
@@ -74,10 +75,17 @@ export default {
           this.progress = 0
         }
       })
-      this.showProgress = index
+      this.t = await setTimeout(() => {
+        this.tabVisible = true
+        this.showProgress = index
+      }, 200)
     },
     leaveProgress () {
-      this.showProgress = null
+      clearTimeout(this.t)
+      setTimeout(() => {
+        this.tabVisible = false
+        this.showProgress = null
+      }, 100)
     },
     toWorkoutPage () {
       this.$router.push({ name: 'Workouts' })
@@ -89,4 +97,6 @@ export default {
 .noWorkouts
   color: rgba(255, 255, 255, 0.5)
   margin-top: 10%
+.porgressDelay
+  animation-duration: 800ms
 </style>

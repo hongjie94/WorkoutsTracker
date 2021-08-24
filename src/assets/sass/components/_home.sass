@@ -66,33 +66,34 @@
         display: flex
         justify-content: flex-start
         align-items: center
-// Members section
 
+// Members section
 .memberships
-    background: $black
-    color: $white
-    padding: 6rem calc((100vw - 1100px) / 2)
-    text-align: center 
-    h1
-        margin-bottom: 1rem
-        font-size: clamp(1.4rem, 5vw, 3rem)
-        padding: 0 1rem
-    h3 
-        margin-bottom: 3rem
-        font-size: clamp(1rem, 3vw, 1.5rem)
-        padding: 1rem
+  background: $black
+  color: $white
+  padding: 6rem calc((100vw - 1100px) / 2)
+  text-align: center 
+  h1
+    margin-bottom: 1rem
+    font-size: clamp(1.4rem, 5vw, 3rem)
+    padding: 0 1rem
+    font-weight: 700
+  h3 
+    margin-bottom: 3rem
+    font-size: clamp(1rem, 3vw, 1.5rem)
+    padding: 1rem
 
 .membership__wrapper
     display: flex
     justify-content: space-between
     align-items: flex-start
     padding: 1rem
-
 .membership__title
     position: absolute
 .membership__card
     cursor: pointer
     height: 450px
+    overflow: hidden
     width: 325px
     background: $black !important
     border-radius: 10px
@@ -107,6 +108,13 @@
       cursor: pointer
       &:hover
         transform: scale(1.1)
+    .workout_benifits
+      padding: 2.5em
+      text-align: start
+      h2
+        margin-bottom: 1em
+        font-size: 1.4em
+     
 
 .membership__card h3
     font-size: clamp(1rem, 5vw, 2rem)
@@ -129,7 +137,6 @@
     .membership__wrapper
         flex-direction: column
         align-items: center
-    
     .membership__card
         width: 90%
         margin-bottom: 2rem
@@ -144,7 +151,102 @@
     .membership__wrapper
         flex-direction: column
         align-items: center
-    
+        padding: 3rem
+  
+// Introuction section
+#introduction
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.0)), url('../../components/Home/img/introductionBg.jpg')
+  background-position: center center
+  background-size: cover
+  min-height: 100vh  
+  display: flex
+  justify-content: center
+  align-items: center
+.intro
+  padding: 2em
+  margin-bottom: 60px
+  &::after 
+    content: ""
+    display: block
+    clear: both
+  li 
+    list-style: none
+    float: left
+    width: 33.33%
+    text-align: center
+    padding: 2em 0
+    a
+      color:#ffffff
+      text-decoration: none
+      font-weight: bold
+      font-size: 1.25em
+      font-style: italic
+      letter-spacing: 5px
+      &:hover
+        color: $myBlue
+        transition: all .5s     
+  img
+    background-color: #ffffff
+    border: 1px solid#ffffff
+    width: 60%
+    margin: 20px 20%   
+    padding: 1em
+    border-radius:50%
+    margin-bottom: 3em   
+  .wrapper 
+    width: 100%
+    max-width: 1200px
+    margin: 0 auto
+    padding: 0 20px
+    box-sizing: border-box
+    h1
+      color:#ffffff
+      margin: 1rem
+      padding: 8px
+      text-align: center
+      letter-spacing: 10px
+      font-size: clamp(1.4rem, 5vw, 3rem)
+      font-style: italic
+      // font-size: 2.75em
+      font-weight: 700
+
+@media screen and (max-width: 500px)
+  .intro img
+    width: 70%
+    padding: .5em
+    margin-bottom: 2em
+  .intro li a
+    font-size: 1em  
+
+
+
+
+// Sample section
+#samples
+  display: flex
+  justify-content: center
+  align-items: center
+  
+.samples
+  width: 100%
+  max-width: 1200px
+  margin: 0 auto 5em auto
+  padding: 2rem
+  box-sizing: border-box
+  h1
+    text-align: center
+    margin: 1em 0
+    padding:10px
+    letter-spacing: 2px
+    color: #ffffff 
+    font-weight: 700
+  li
+    list-style: none
+    @include grid(6, 2%)
+    img
+      width: 100%
+
+
 //email section
 .home_email
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.6) 35%, rgba(0, 0, 0, 0.1) 100%), url('../../images/home_email.jpg') no-repeat center

@@ -1,68 +1,68 @@
 <template>
- <transition appear enter-active-class="animated fadeInDown customDelay" leave-active-class="animated fadeOut">
-<div class="workoutCalendars">
-  <div class="workout_calendar">
-    <!-- Banner -->
-    <div class="container p-0">
-      <section class="banner jumbotron">
-        <h1>{{workoutName}}</h1>
-        <h5> Completed: {{progress}}%</h5>
-        <div class="progress">
+ <transition appear enter-active-class="animated fadeInDown" leave-active-class="animated fadeOut">
+  <div class="workoutCalendars">
+    <div class="workout_calendar">
+      <!-- Banner -->
+      <div class="container p-0">
+        <section class="banner jumbotron">
+          <h1>{{workoutName}}</h1>
+          <h5> Completed: {{progress}}%</h5>
+          <div class="progress">
               <div class="progress-bar"
                 :style="`width:${progress}%`">
                 {{progress}}%
               </div>
-        </div>
-        <p>Total Days Completed: {{totalCompletedDays}}</p>
-        <p>Total Days Remaining: {{remainingDays}}</p>
-        <div class="calendar_menu" >
-          <b-button
-            class="mr-4"
-            @click.prevent="toggleCalendar"
-            :pressed="showCalendar"
-            :variant = "calendar_btn"
-          >
-          <i class="far fa-calendar-alt" />
-          </b-button>
-          <b-button
-            @click.prevent="toggleVideos"
-            :pressed="showVideos"
-            :variant = "video_btn"
-          >
-          <i class="far fa-play-circle" />
-          </b-button>
-          <b-button
-            class="ml-4"
-            @click.prevent="$router.push({name: 'Dashbroad'})"
-          >
-          <i class="fas fa-dumbbell"></i>
-          </b-button>
-        </div>
-      </section>
-    </div>
+          </div>
+          <p>Total Days Completed: {{totalCompletedDays}}</p>
+          <p>Total Days Remaining: {{remainingDays}}</p>
+          <div class="calendar_menu" >
+            <b-button
+              class="mr-4"
+              @click.prevent="toggleCalendar"
+              :pressed="showCalendar"
+              :variant = "calendar_btn"
+            >
+            <i class="far fa-calendar-alt" />
+            </b-button>
+            <b-button
+              @click.prevent="toggleVideos"
+              :pressed="showVideos"
+              :variant = "video_btn"
+            >
+            <i class="far fa-play-circle" />
+            </b-button>
+            <b-button
+              class="ml-4"
+              @click.prevent="$router.push({name: 'Dashbroad'})"
+            >
+            <i class="fas fa-dumbbell"></i>
+            </b-button>
+          </div>
+        </section>
+      </div>
 
-    <!-- Calendar -->
-    <transition  appear enter-active-class="animated fadeInRight m1in">
-      <Calendar
-        v-if="showCalendar"
-        :header = "header"
-        :calendars = "Calendar"
-        :workoutVideos = "workoutVideos"
-        :totalWorkoutDays = "totalWorkoutDays"
-        :currentProgram = "workoutName"
-        :progress = "progress"
-        :lastWeeks = "lastWeeks"
-        >
-      </Calendar>
-    </transition>
+      <!-- Calendar -->
+      <transition enter-active-class="animated fadeInLeft m1in">
+        <Calendar
+          v-if="showCalendar"
+          :header = "header"
+          :calendars = "Calendar"
+          :workoutVideos = "workoutVideos"
+          :totalWorkoutDays = "totalWorkoutDays"
+          :currentProgram = "workoutName"
+          :progress = "progress"
+          :lastWeeks = "lastWeeks"
+          >
+        </Calendar>
+      </transition>
 
-    <!-- Videos -->
-    <transition  appear enter-active-class="animated fadeInRight vin" leave-active-class="animated fadeOutLeft m1out">
-    <Video
-      v-if="showVideos"
-      :workoutVideos = "Videos"
-    />
-    </transition>
+      <!-- Videos -->
+      <transition appear enter-active-class="animated fadeInRight vin" leave-active-class="animated fadeOutLeft m1out">
+      <Video
+        v-if="showVideos"
+        :workoutVideos = "Videos"
+      />
+      </transition>
     </div>
   </div>
  </transition>

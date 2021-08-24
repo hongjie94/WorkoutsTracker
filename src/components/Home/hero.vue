@@ -9,7 +9,7 @@
         </p>
           <!-- Stick with the plan
           and achieve your fitness goals. -->
-        <router-link to= "/register" class="home_button"> Learn more </router-link>
+        <a href= "#memberships" class="home_button"> Learn more </a>
     </div>
   </div>
 </template>

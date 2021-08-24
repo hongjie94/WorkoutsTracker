@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap')
 .fa-shopping-cart
     position: relative
-.mobile_icon, .mobile_logout
+.LoginActive
+    color: $myBlue !important    
+.mobile_icon, .mobile_auth
     display: none !important
 .navbar
     background: $black
@@ -112,13 +114,17 @@
         display: flex
         align-items: center
         justify-content: center
-    .mobile_logout
+    .mobile_auth
         color: #ffffff
         cursor: pointer
         outline: none
         height: 100%
         display: flex !important
         align-items: center
+    .mobile_login
+        display: flex
+    .mobile_register
+        display: flex
     .navbar__menu
         width: 100% !important
     .hide
@@ -165,6 +171,11 @@
         background: $white
         display: block
         cursor: pointer
+    .navbar__toggle
+        &:hover
+            .bar
+                transition: all 0.5 ease-in-out
+                background: $myBlue    
     .num-cart-product    
         top: -5px
         right: -3px

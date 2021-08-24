@@ -1,4 +1,20 @@
+# Technologies Used
+* Vue/VueX
+* CSS3
+* HTML5
+* Vuetify
+* Stripe
+* PayPal
+* Sass
+* Animate.css(Animation)
+* Firebase(Database, Authentication & Hosting)
+
+## App-Diagram 
+![Screenshot](./Diagram.jpg)
+
 # WorkoutsTracker
+### [https://workoutstracker.com](https://workoutstracker.com)
+
 
 ## Project setup
 ```

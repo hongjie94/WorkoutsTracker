@@ -22,6 +22,7 @@
               <div class="weeks">
                 <span>WEEK</span>
                 <h1>{{calendar.week}}</h1>
+                <b v-if="calendar.phase">Phase- {{calendar.phase}}</b>
                 <b v-if="calendar.detail">{{calendar.detail}}</b>
               </div>
             </div>
@@ -154,6 +155,11 @@
                   v-if="currentProgram === 'Insanity Max 30' & calendar.sat.workout === 'REST' "
                   class="pluse rest">PULSE
                 </p>
+                 <p
+                  @click="showOverlay(calendar.sat.day)"
+                  v-if="currentProgram === 'Insanity Max 30' & calendar.sat.workout !== 'REST' ">
+                  {{calendar.sat.workout}}
+                </p>
                 <p
                   @click="showOverlay(calendar.sat.day)"
                   v-if="currentProgram !== 'Insanity Max 30' ">
@@ -200,11 +206,6 @@
               >
                 <div class="calendarDownload">
                   <div class="icon_div">
-                    <div class="dl_icon">
-                      <a :href="workoutDl" download>
-                        <i class="mdi mdi-download-circle"></i>
-                      </a>
-                    </div>
                   </div>
                 </div>
               <iframe
@@ -219,9 +220,6 @@
                 <div class="calendarDownload-w1">
                   <div class="icon_div">
                     <div class="dl_icon">
-                      <a :href="workoutDl" download>
-                        <i class="mdi mdi-download-circle"></i>
-                      </a>
                     </div>
                   </div>
                 </div>
@@ -235,9 +233,6 @@
                 <div class="calendarDownload-w2">
                   <div class="icon_div">
                     <div class="dl_icon">
-                      <a :href="workoutDl2" download>
-                        <i class="mdi mdi-download-circle"></i>
-                      </a>
                     </div>
                   </div>
                 </div>
@@ -395,7 +390,7 @@ export default {
     // Show overlay
     showOverlay (day) {
       this.workoutDay = day
-      alert(this.workoutDay)
+      // alert(this.workoutDay)
       this.toggleStatus = false
       this.overlay = true
     },

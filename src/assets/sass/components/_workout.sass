@@ -97,7 +97,10 @@
     height: max-content
     max-width: 350px
     min-width: 100px
-    width: 200px 
+    width: 200px
+    .cardImage_wrap
+      overflow: hidden
+      position: relative
   .v-card__title
     font-size: 17px
   .cards .unlock-section .v-card__subtitle, .cards .v-card__title  
@@ -115,9 +118,11 @@
   .unlock-section
     position: absolute
     width: 100%
-    top: 16%
+    top: 0
+    height: 100%
     display: flex
     flex-direction: column
+    justify-content: center
     background: linear-gradient(to right, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.7))
     padding: 0
     .v-card__actions
@@ -187,10 +192,8 @@
   .cards .unlock-section
     .v-card__actions
       padding: 18.5px 8px
-  .cards .unlock-section
-    top: 0%
   .cards .unlock-section .details
-    font-size: 11px
+    font-size: 10px
   .details_btn 
     width: 8em !important
   .card_div

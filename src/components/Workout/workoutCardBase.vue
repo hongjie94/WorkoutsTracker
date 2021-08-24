@@ -9,46 +9,50 @@
       @mouseleave="hideUnlockSection"
       >
         <v-card class="card_theme">
+          <div class='cardImage_wrap'>
           <v-img :src="workout.imageURL"
           :class="{ opacity: unlockSection === workout.name }"
           @mouseenter="showUnlockSection(workout.name)"
           alt="NotFund" />
+            <transition
+                enter-active-class="animated fadeInUp"
+                leave-active-class="animated fadeOutDown">
+              <!-- Unlock section -->
+                <div class="unlock-section"
+                  @mouseenter="showUnlockSection(workout.name)"
+                  v-if="unlockSection === workout.name & tabVisible"
+                >
+                <v-card-title>
+                  <span>{{workout.name}}</span>
+                </v-card-title>
+                <v-card-subtitle class="price_div">
+                  <span class="details">
+                    <li :key='include.index' v-for="include in workout.includes">{{include}}</li>
+                  </span>
+                </v-card-subtitle>
+                <v-card-actions>
+                  <v-btn
+                    text
+                    :disabled ='isUnlock(workout.name)'
+                    :class="{ btn_unlocked: isUnlock(workout.name) }"
+                    @click="unlockClicked(workout.name, workout.strogeURL, workout.price, workout.price_id)">
+                    <i style="font-size: 2em" v-if="isUnlock(workout.name)" class="mdi mdi-lock-open-variant" aria-hidden="true"></i>
+                    <span v-if="!isUnlock(workout.name)"> Unlock</span>
+                  </v-btn>
+                  <v-spacer></v-spacer>
+                  <v-btn icon
+                  :class="{ btn_unlocked:isUnlock(workout.name)}"
+                  @click="toggle(workout.id)" >
+                    <v-icon>{{ isActive === workout.id ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+                  </v-btn>
+                </v-card-actions>
+                </div>
+            </transition>
+           </div>
             <div class="workoutsTitle">
               <p>{{workout.name}}</p>
               <span class="price">$ {{workout.price}}</span>
             </div>
-           <transition
-              enter-active-class="animated fadeInUp"
-              leave-active-class="animated fadeOutDown">
-          <div class="unlock-section"
-          @mouseover="showUnlockSection(workout.name)"
-          v-if="unlockSection === workout.name">
-             <v-card-title>
-          <span>{{workout.name}}</span>
-          </v-card-title>
-          <v-card-subtitle class="price_div">
-            <span class="details">
-              <li :key='include.index' v-for="include in workout.includes">{{include}}</li>
-            </span>
-          </v-card-subtitle>
-            <v-card-actions>
-              <v-btn
-                text
-                :disabled ='isUnlock(workout.name)'
-                :class="{ btn_unlocked: isUnlock(workout.name) }"
-                @click="unlockClicked(workout.name, workout.strogeURL, workout.price, workout.price_id)">
-                <i style="font-size: 2em" v-if="isUnlock(workout.name)" class="mdi mdi-lock-open-variant" aria-hidden="true"></i>
-                <span v-if="!isUnlock(workout.name)"> Unlock</span>
-              </v-btn>
-              <v-spacer></v-spacer>
-              <v-btn icon
-              :class="{ btn_unlocked:isUnlock(workout.name)}"
-              @click="toggle(workout.id)" >
-                <v-icon>{{ isActive === workout.id ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
-              </v-btn>
-            </v-card-actions>
-          </div>
-           </transition>
           <v-expand-transition>
             <div v-show="isActive === workout.id">
               <v-card-text style="text-align: initial;">
@@ -105,16 +109,16 @@
                   </transition>
                 <div class="content">
                     <div id="login">
-                    <form action="/" method="post" @submit.prevent= "unlockLogin">
-                    <div class="field-wrap">
-                    <input class="auth_input" type="email" v-model="email" autocomplete="on" placeholder="Email Address" />
-                    </div>
-                    <div class="field-wrap">
-                    <input class="auth_input" type="password" placeholder="Password" autocomplete="on" v-model="password" >
-                    </div>
-                    <p class="forgot"><router-link to= "/resetPassword"> Forgot Password?</router-link></p>
-                    <button type="submit" class="unlock_auth_button button-block">Log In</button>
-                    </form>
+                      <form action="/" method="post" @submit.prevent= "unlockLogin">
+                        <div class="field-wrap">
+                          <input class="auth_input" type="email" v-model="email" autocomplete="on" placeholder="Email Address" />
+                        </div>
+                        <div class="field-wrap">
+                          <input class="auth_input" type="password" placeholder="Password" autocomplete="on" v-model="password" >
+                        </div>
+                        <p class="forgot"><router-link to= "/resetPassword"> Forgot Password?</router-link></p>
+                        <button type="submit" class="unlock_auth_button button-block">Log In</button>
+                      </form>
                     </div>
                     <p>Don't have an account?
                       <router-link to= "/register"> Register</router-link>
@@ -152,6 +156,8 @@ export default {
   },
   data () {
     return {
+      tabVisible: false,
+      t: null,
       loggedIn: false,
       loginRequired: 'Please log in before continuing to unlock your workout.',
       email: '',
@@ -174,17 +180,24 @@ export default {
     async unlockLogin () {
       try {
         await firebase.auth().signInWithEmailAndPassword(this.email, this.password)
-        this.$router.replace({ name: 'Workout' })
+        this.$router.replace({ name: 'Workouts' })
       } catch (error) {
         this.error = error.message
       }
     },
     showUnlockSection (workoutName) {
-      this.workoutName = workoutName
-      this.unlockSection = workoutName
+      this.t = setTimeout(() => {
+        this.tabVisible = true
+        this.workoutName = workoutName
+        this.unlockSection = workoutName
+      }, 200)
     },
     hideUnlockSection () {
-      this.unlockSection = ''
+      clearTimeout(this.t)
+      setTimeout(() => {
+        this.tabVisible = false
+        this.unlockSection = null
+      }, 200)
     },
     isUnlock (workoutName) {
       if (this.UnlockedWorkoutName) {

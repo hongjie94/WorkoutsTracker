@@ -1,7 +1,7 @@
 <template>
   <div class="paypalCheckout">
     <PayPal
-      env="sandbox"
+      env="production"
       :amount="priceToString"
       currency="USD"
       locale="en_US"
@@ -33,8 +33,8 @@ export default {
   components: { PayPal },
   data: () => ({
     paypal: {
-      sandbox: `${process.env.VUE_APP_PAYPAL_PUBLISHABLE_KEY}`,
-      production: ''
+      sandbox: `${process.env.VUE_APP_PAYPAL_TEST_PUBLISHABLE_KEY}`,
+      production: `${process.env.VUE_APP_PAYPAL_PUBLISHABLE_KEY}`
     },
     myStyle: {
       shape: 'rect',

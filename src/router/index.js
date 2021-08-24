@@ -9,6 +9,7 @@ import ResetPassword from '../views/Authentication/ResetPassword.vue'
 import Workouts from '../views/Workouts.vue'
 import CurrentWorkout from '../components/Dashbroad/UnlockedWorkouts/currentWorkout.vue'
 import Dashbroad from '../views/Dashbroad.vue'
+// import Resources from '../views/Resources.vue'
 import PaymentSuccess from '../views/PaymentSuccess.vue'
 
 Vue.use(VueRouter)
@@ -45,6 +46,11 @@ const routes = [
     component: CurrentWorkout,
     meta: { requiresAuth: true }
   },
+  // {
+  //   path: '/resources',
+  //   name: 'Resources',
+  //   component: Resources
+  // },
   {
     path: '/paymentSuccess/:workout_id',
     name: 'PaymentSuccess',
@@ -59,6 +65,9 @@ const routes = [
 ]
 
 const router = new VueRouter({
+  scrollBehavior (to, from, savedPosition) {
+    return { x: 0, y: 0 }
+  },
   mode: 'history',
   routes
 })

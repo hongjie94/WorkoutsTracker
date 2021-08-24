@@ -15,10 +15,10 @@
           </transition>
             <form action="/" method="post">
               <div class="field-wrap">
-              <input class="auth_input" autocomplete="on" type="email" v-model="email"  placeholder="Email Address" />
+              <input class="auth_input" autocomplete="on" type="email" v-model="email"  value='DemoUser@example.com' placeholder="Email Address" />
             </div>
             <div class="field-wrap">
-              <input class="auth_input" type="password" placeholder="Password" autocomplete="on" v-model="password" >
+              <input class="auth_input" value='123456' type="password" placeholder="Password" autocomplete="on" v-model="password" >
             </div>
             <p class="forgot"><router-link to= "/resetPassword"> Forgot Password?</router-link></p>
             <button type="submit" class="auth_button button-block">Log In</button>
