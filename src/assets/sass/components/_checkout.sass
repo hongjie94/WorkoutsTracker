@@ -318,3 +318,45 @@
     h4 
      font-size: 14px !important
          
+// Payment Success
+.paymentSuccess
+  min-height: 80vh
+  background: #E9E9E9
+  display: flex
+  justify-content: center
+  align-items: start
+  &__content
+    margin-top: 5em
+  .successImg
+    width: 150px
+    height: 150px
+    padding: 2em
+  .workoutImg
+    width: 240px
+    height: 300px
+    border-radius: 5px
+  .paymentSummary
+    padding: 1em
+    margin: 1em 2em
+    border-radius: 5px
+    display: flex
+    justify-content: center
+    align-items: center
+  .ExpiredLink
+    min-height: 80vh
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-direction: column
+    h5
+      max-width: 31rem
+
+@media screen and ( max-width: 450px )
+  .paymentSuccess
+    &__content
+      h1
+        font-size: 2rem
+      h2 
+        font-size: 1.5rem
+      h5
+        font-size: 1rem   

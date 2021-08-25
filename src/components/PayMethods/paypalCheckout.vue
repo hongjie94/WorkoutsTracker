@@ -53,7 +53,6 @@ export default {
   }),
   computed: {
     ...mapState([
-      'userCalendar',
       'unlockedWorkouts'
     ]),
     ...mapActions([
@@ -62,7 +61,7 @@ export default {
   },
   async mounted () {
     // Get api key from env
-    this.paypal.sandbox = process.env.VUE_APP_PAYPAL_PUBLISHABLE_KEY
+    this.paypal.production = process.env.VUE_APP_PAYPAL_PUBLISHABLE_KEY
     // Number to String
     this.priceToString = this.price.toString()
     await firebase.auth().onAuthStateChanged(user => {

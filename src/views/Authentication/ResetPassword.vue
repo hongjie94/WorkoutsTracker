@@ -18,7 +18,7 @@
           </transition> <!-- Send animation-->
           <form action="/" method="post">
             <div class="field-wrap">
-              <input autocomplete="on" class="auth_input" type="email" v-model="email" placeholder="Email Address" required />
+              <input autocomplete="off" class="auth_input" type="email" v-model="email" placeholder="Email Address" required />
             </div>
             <button type="submit" class="auth_button button-block">Send email</button>
           </form>

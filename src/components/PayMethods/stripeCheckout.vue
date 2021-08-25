@@ -15,17 +15,20 @@
 </template>
 
 <script>
+import { bus } from '@/main'
 import { StripeCheckout } from '@vue-stripe/vue-stripe'
 export default {
   props: {
     workoutName: String,
-    price_id: String
+    price_id: String,
+    showLoader: Boolean
   },
   components: {
     StripeCheckout
   },
   data () {
     this.publishableKey = `${process.env.VUE_APP_STRIPE_PUBLISHABLE_KEY}`
+    this.test_publishableKey = `${process.env.VUE_APP_STRIPE_TEST_PUBLISHABLE_KEY}`
     return {
       loading: false,
       lineItems: [
@@ -34,17 +37,18 @@ export default {
           quantity: 1
         }
       ],
-      successURL: 'https://www.workoutstracker.com/workous',
-      cancelURL: 'http://www.workoutstracker.com/workouts'
+      successURL: 'https://workoutstracker.com/paymentSuccess/' + this.price_id.split('price_').pop(','), // 'https://workoutstracker.com/dashbroad/' + this.price_id.split('price_').pop(','),
+      cancelURL: 'https://workoutstracker.com/workouts/'
+      // successURL: 'http://localhost:8080/paymentSuccess/' + this.price_id.split('price_').pop(','), // 'https://workoutstracker.com/dashbroad/' + this.price_id.split('price_').pop(','),
+      // cancelURL: 'http://localhost:8080/workouts/'
     }
   },
   methods: {
     async submit () {
-      this.successURL = 'http://www.workoutstracker/dashbroad/' + this.price_id.split('price_').pop(',')
-      // alert(this.successURL)
       // You will be redirected to Stripe's secure checkout page
+      localStorage.setItem('StripeWorkoutName', this.workoutName)
+      bus.$emit('setTrue', true)
       this.$refs.checkoutRef.redirectToCheckout()
-      // this.$router.replace({ name: 'PaymentSuccess' })
     }
   }
 }

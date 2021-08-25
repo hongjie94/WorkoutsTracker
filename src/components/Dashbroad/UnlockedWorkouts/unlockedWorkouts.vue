@@ -93,10 +93,3 @@ export default {
   }
 }
 </script>
-<style lang="sass">
-.noWorkouts
-  color: rgba(255, 255, 255, 0.5)
-  margin-top: 10%
-.porgressDelay
-  animation-duration: 800ms
-</style>

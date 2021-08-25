@@ -69,6 +69,16 @@
   font-weight: 500
   display: flex
   background:#1E1E1E
+    
+.noWorkouts
+  color: rgba(255, 255, 255, 0.5)
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+.porgressDelay
+  animation-duration: 800ms
+
 @media screen and (max-width: 1200px)
   .unlocked_div 
     grid-template-columns: repeat(4, minmax(0, 1fr))
@@ -83,7 +93,8 @@
 
 @media screen and (max-width: 500px)
   .unlocked_div 
-    grid-template-columns: repeat(1, minmax(0, 1fr))           
+    grid-template-columns: repeat(1, minmax(0, 1fr)) 
+
 // Calendar
 #calendar
   margin-bottom: 35em !important

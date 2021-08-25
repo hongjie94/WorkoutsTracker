@@ -20,5 +20,13 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.v-progress-circular {
+  position: absolute !important;
+  z-index: 1 !important;
+  top: 25% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%);
+}
+
 </style>

@@ -18,6 +18,7 @@
 <script>
 import WorkoutCardBase from '@/components/Workout/workoutCardBase.vue'
 import { mapState, mapGetters } from 'vuex'
+import { bus } from '@/main'
 export default {
   components: { WorkoutCardBase },
   props: {
@@ -90,6 +91,7 @@ export default {
     },
     // Unlock button clicked
     unlockClicked (name, image, price, priceId) {
+      bus.$emit('setTrue', false)
       this.unlock.name = name
       this.unlock.image = image
       this.unlock.price = price

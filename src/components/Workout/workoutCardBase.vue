@@ -77,6 +77,11 @@
             <v-card class="unlock_vCard">
               <div class="unlockPayment" v-if="loggedIn">
                 <div class="unlockDetail">
+                  <v-progress-circular
+                    :size="50"
+                    indeterminate
+                    v-if='showLoader'
+                   />
                   <v-img class="unlock_img" :src="unlock.image" />
                   <h5> {{unlock.name}}</h5>
                   <h6>Total: ${{unlock.price}}</h6>
@@ -85,12 +90,14 @@
                 <StripeCheckout
                   :price_id ="unlock.priceId"
                   :workoutName = "unlock.name"
+                  :showLoader = 'showLoader'
                 />
                 <PayPalCheckout
                   :price_id ="unlock.priceId"
                   :price = "unlock.price"
                   :workoutName = "unlock.name"
                   :unlockImage = "unlock.image"
+                  :showLoader = 'showLoader'
                 />
                 </div>
                 <div class="card_image">
@@ -134,6 +141,7 @@
     </div>
 </template>
 <script>
+import { bus } from '@/main'
 import firebase from 'firebase/app'
 import StripeCheckout from '@/components/PayMethods/stripeCheckout.vue'
 import PayPalCheckout from '@/components/PayMethods/paypalCheckout.vue'
@@ -156,6 +164,7 @@ export default {
   },
   data () {
     return {
+      showLoader: false,
       tabVisible: false,
       t: null,
       loggedIn: false,
@@ -209,6 +218,9 @@ export default {
     }
   },
   created () {
+    bus.$on('setTrue', (boolean) => (
+      this.showLoader = boolean
+    ))
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         this.loggedIn = true

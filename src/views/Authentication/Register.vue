@@ -20,20 +20,20 @@
           <form action="/" method="post">
             <div class="top-row">
               <div class="field-wrap">
-                <input  autocomplete="on" class="auth_input active highlight" type="text"  placeholder="First Name*" v-model="fristname" required />
+                <input  autocomplete="off" class="auth_input active highlight" type="text"  placeholder="First Name*" v-model="fristname" required />
               </div>
               <div class="field-wrap">
-                <input  autocomplete="on" class="auth_input active highlight"  type="text" placeholder="Last Name*"  v-model="lastname" required />
+                <input  autocomplete="off" class="auth_input active highlight"  type="text" placeholder="Last Name*"  v-model="lastname" required />
               </div>
             </div>
             <div class="field-wrap">
-              <input autocomplete="on" class="auth_input" type="email" placeholder="Email Address*" v-model="email" required />
+              <input autocomplete="off" class="auth_input" type="email" placeholder="Email Address*" v-model="email" required />
             </div>
             <div class="field-wrap">
-              <input autocomplete="on" class="auth_input" type="password" placeholder="Set A Password*" v-model="password" required />
+              <input autocomplete="off" class="auth_input" type="password" placeholder="Set A Password*" v-model="password" required />
             </div>
             <div class="field-wrap">
-              <input autocomplete="on" class="auth_input" type="password"  placeholder="Confirmation Password*" v-model="conformation" required />
+              <input autocomplete="off" class="auth_input" type="password"  placeholder="Confirmation Password*" v-model="conformation" required />
             </div>
             <button type="submit" class="auth_button button-block">Get Started</button>
           </form>
