@@ -75,7 +75,7 @@ export default {
       this.pageNum = data.pageNum
       this.page = data.page
       this.filterWorkouts = data.filterWorkouts
-      this.pageNum = Math.ceil(data.workoutCounts / 10)
+      this.pageNum = Math.ceil(data.workoutCounts / 20)
     })
   }
 }

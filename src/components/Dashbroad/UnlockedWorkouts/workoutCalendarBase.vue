@@ -38,6 +38,7 @@
                   (calendar.mon.workout2)
                   )"
               >
+              {{calendar.mon.videoIndex2}}
                 <p
                   @click="showOverlay(calendar.mon.day)">
                   {{calendar.mon.workout}}
@@ -184,6 +185,10 @@
                 <p
                   @click="showOverlay(calendar.sun.day)">
                   {{calendar.sun.workout}}
+                </p>
+                 <p @click="showOverlay(calendar.sun.day)"
+                  v-if="calendar.sun.workout2">
+                  + {{calendar.sun.workout2}}
                 </p>
               </div>
           </div>

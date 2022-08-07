@@ -28,7 +28,7 @@
                 </div>
               </transition>
             </router-link>
-            <div class="workoutTitle">
+            <div class="workoutTitle text-truncate">
               {{unlockedWorkout.workoutName}}
             </div>
           </v-card>

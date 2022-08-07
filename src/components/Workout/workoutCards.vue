@@ -58,7 +58,7 @@ export default {
     ]),
     paginationFilter () {
       const page = this.page
-      const numItemShow = 10
+      const numItemShow = 20
       const start = (page - 1) * numItemShow
       const end = page * numItemShow
       return this.workouts.slice((start), (end))

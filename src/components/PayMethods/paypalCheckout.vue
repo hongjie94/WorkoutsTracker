@@ -12,6 +12,7 @@
       v-on:payment-completed="paymentCompleted"
       >
     </PayPal>
+    <button @click="checkOut">Click Me!</button>
   </div>
 </template>
 
@@ -59,9 +60,10 @@ export default {
       'getUserData'
     ])
   },
-  async mounted () {
+  async mounted () { // workoutstracker-buyer@test.com (test account)
     // Get api key from env
     this.paypal.production = process.env.VUE_APP_PAYPAL_PUBLISHABLE_KEY
+
     // Number to String
     this.priceToString = this.price.toString()
     await firebase.auth().onAuthStateChanged(user => {
@@ -112,7 +114,46 @@ export default {
         Progress: 0
       }, { merge: true })
       this.$store.dispatch('getUserData', this.uid)
-      swal('Payment Completed', { icon: 'success' })
+      swal('Payment is completed', { icon: 'success' })
+      this.$router.push({ name: 'Dashbroad' })
+    },
+    async checkOut () {
+      const newWorkouts = {
+        workoutName: this.workoutName,
+        workoutId: this.price_id.split('price_').pop(','),
+        imgUrl: this.unlockImage,
+        unlockedTime: new Date()
+      }
+      // Save to firebase
+      const dbRef = db.collection(this.uid).doc('unlockedWorkouts')
+      if (this.unlockedWorkouts === undefined) {
+        this.unlockedWorkouts = []
+        await dbRef.set({
+          unlockedWorkouts: this.unlockedWorkouts
+        })
+      } else {
+        this.unlockedWorkouts.push(newWorkouts)
+        await dbRef.set({
+          unlockedWorkouts: this.unlockedWorkouts
+        }, { merge: true })
+      }
+      const workoutId = this.price_id.split('price_').pop(',')
+      const url = `https://workoutstracker-default-rtdb.firebaseio.com/${workoutId}.json`
+      let CalendarData = []
+      await axios
+        .get(url)
+        .then(response => (CalendarData = response.data))
+      const dbRef2 = db.collection(this.uid).doc(this.workoutName.replace(/\s/g, ''))
+      await dbRef2.set({
+        Calendar: CalendarData.Calendar,
+        Videos: CalendarData.Videos,
+        ProgramName: CalendarData.ProgramName,
+        TotalWorkoutDays: CalendarData.TotalWorkoutDays,
+        CompletedDays: [],
+        Progress: 0
+      }, { merge: true })
+      this.$store.dispatch('getUserData', this.uid)
+      swal('Payment is completed', { icon: 'success' })
       this.$router.push({ name: 'Dashbroad' })
     }
   }

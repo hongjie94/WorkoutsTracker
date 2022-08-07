@@ -71,7 +71,7 @@ export default {
       this.showCategory = 'ALL'
       this.Category = 'Workouts'
       this.workoutCounts = this.$store.state.workouts.length
-      this.pageNum = Math.ceil(this.$store.state.workouts.length / 10)
+      this.pageNum = Math.ceil(this.$store.state.workouts.length / 20)
       this.noResult = false
       this.page = 1
     },
@@ -80,7 +80,7 @@ export default {
       this.showCategory = 'CARDIO'
       this.Category = 'Cardio Workouts'
       this.workoutCounts = this.$store.getters.CardioWorkouts.length
-      this.pageNum = Math.ceil(this.$store.getters.CardioWorkouts.length / 10)
+      this.pageNum = Math.ceil(this.$store.getters.CardioWorkouts.length / 20)
       this.noResult = false
       this.page = 1
     },
@@ -89,7 +89,7 @@ export default {
       this.showCategory = 'STRENGTH'
       this.Category = 'STRENGTH Workouts'
       this.workoutCounts = this.$store.getters.MuscleWorkouts.length
-      this.pageNum = Math.ceil(this.$store.getters.MuscleWorkouts.length / 10)
+      this.pageNum = Math.ceil(this.$store.getters.MuscleWorkouts.length / 20)
       this.noResult = false
       this.page = 1
     },
@@ -98,7 +98,7 @@ export default {
       this.showCategory = 'YOGA'
       this.Category = 'Yoga Workouts'
       this.workoutCounts = this.$store.getters.YogaWorkouts.length
-      this.pageNum = Math.ceil(this.$store.getters.YogaWorkouts.length / 10)
+      this.pageNum = Math.ceil(this.$store.getters.YogaWorkouts.length / 20)
       this.noResult = false
       this.page = 1
     },
@@ -113,7 +113,7 @@ export default {
       } else if (this.workoutCounts >= 1) {
         this.noResult = false
       }
-      this.pageNum = Math.ceil(this.filterWorkouts.length / 10)
+      this.pageNum = Math.ceil(this.filterWorkouts.length / 20)
     },
     // Update data from parent components
     changeData () {
@@ -133,7 +133,7 @@ export default {
     // Get total workoutout counts
     this.workoutCounts = this.$store.state.workouts.length
     // Get page number for pagination
-    this.pageNum = Math.ceil(this.$store.state.workouts.length / 10)
+    this.pageNum = Math.ceil(this.$store.state.workouts.length / 20)
     // Pass data to parent components
     bus.$emit('changeData', {
       search: this.search,

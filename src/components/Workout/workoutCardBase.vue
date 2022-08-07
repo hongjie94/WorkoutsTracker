@@ -23,7 +23,7 @@
                   v-if="unlockSection === workout.name & tabVisible"
                 >
                 <v-card-title>
-                  <span>{{workout.name}}</span>
+                  <span class="text-truncate">{{workout.name}}</span>
                 </v-card-title>
                 <v-card-subtitle class="price_div">
                   <span class="details">
@@ -50,14 +50,16 @@
             </transition>
            </div>
             <div class="workoutsTitle">
-              <p>{{workout.name}}</p>
+              <p class="text-truncate flex-text">{{workout.name}}</p>
               <span class="price">$ {{workout.price}}</span>
             </div>
           <v-expand-transition>
             <div v-show="isActive === workout.id">
               <v-card-text style="text-align: initial;">
                 <b :key='equipment.index' v-for="equipment in workout.equipments">{{equipment}}</b>
-                <li :key='require.index' v-for="require in workout.required">{{require}}</li>
+                <li :key='require.index' v-for="require in workout.required">
+                  <a target="_blank" :href='require[1]'>{{require[0]}}</a>
+                </li>
               </v-card-text>
             </div>
           </v-expand-transition>
@@ -77,11 +79,13 @@
             <v-card class="unlock_vCard">
               <div class="unlockPayment" v-if="loggedIn">
                 <div class="unlockDetail">
-                  <v-progress-circular
-                    :size="50"
-                    indeterminate
-                    v-if='showLoader'
+                  <div class='paymentClickedLoader'>
+                    <v-progress-circular
+                      :size="50"
+                      indeterminate
+                      v-if='showLoader'
                    />
+                  </div>
                   <v-img class="unlock_img" :src="unlock.image" />
                   <h5> {{unlock.name}}</h5>
                   <h6>Total: ${{unlock.price}}</h6>
@@ -231,3 +235,21 @@ export default {
   }
 }
 </script>
+<style scoped>
+.unlockDetail {
+  position: relative;
+}
+.paymentClickedLoader {
+  position:absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 4rem;
+}
+ .v-progress-circular {
+    position: absolute;
+    z-index: 3;
+    color: #fff;
+ }
+</style>
