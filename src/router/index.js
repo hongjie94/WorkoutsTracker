@@ -10,7 +10,7 @@ import Workouts from '../views/Workouts.vue'
 import CurrentWorkout from '../components/Dashbroad/UnlockedWorkouts/currentWorkout.vue'
 import Dashbroad from '../views/Dashbroad.vue'
 import NotFound from '../views/NotFound.vue'
-import Resources from '../views/Resources.vue'
+import Supplements from '../views/Supplements.vue'
 import PaymentSuccess from '../components/PayMethods/paymentSuccess.vue'
 
 Vue.use(VueRouter)
@@ -48,9 +48,9 @@ const routes = [
     meta: { requiresAuth: true }
   },
   {
-    path: '/resources',
-    name: 'Resources',
-    component: Resources
+    path: '/supplements',
+    name: 'Supplements',
+    component: Supplements
   },
   {
     path: '/paymentSuccess/:workout_id',

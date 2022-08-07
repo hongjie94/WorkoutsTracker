@@ -17,7 +17,7 @@
       <div class="nav_center" @click="overflowYAuto">
         <router-link class="navbar__link c" to= "/" exact> Home </router-link>
         <router-link class="navbar__link c" to= "/workouts" exact> Workouts</router-link>
-        <router-link class="navbar__link c" to= "/resources" exact> Resources </router-link>
+        <router-link class="navbar__link c" to= "/supplements" exact> Supplements </router-link>
         <router-link class="navbar__link c" v-if="loggedIn"  to= "/dashbroad" exact> Dashbroad </router-link>
         <router-link class="navbar__link mobile_auth" to= "/login" v-if="!loggedIn"> <span>Log In</span></router-link>
         <router-link class="navbar__link mobile_auth" to= "/register" v-if="!loggedIn"> <span>Sign Up</span></router-link>
