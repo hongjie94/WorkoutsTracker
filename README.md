@@ -13,7 +13,7 @@
 ![Screenshot](./Diagram.jpg)
 
 # WorkoutsTracker
-### [https://workoutstracker.com](https://workoutstracker.com)
+### [https://workoutstracker.web.app](https://workoutstracker.web.app)
 
 
 ## Project setup
